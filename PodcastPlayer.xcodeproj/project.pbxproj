@@ -13,6 +13,10 @@
 		C204DC531E921B9500972FDA /* PodcastPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C204DC511E921B9500972FDA /* PodcastPlayer.xcdatamodeld */; };
 		C204DC551E921B9500972FDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C204DC541E921B9500972FDA /* Assets.xcassets */; };
 		C204DC581E921B9500972FDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C204DC561E921B9500972FDA /* LaunchScreen.storyboard */; };
+		C204DC601E921CA000972FDA /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC5F1E921CA000972FDA /* PlayerManager.swift */; };
+		C204DC621E922C8E00972FDA /* QTGlobalInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */; };
+		C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */; };
+		C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		C204DC541E921B9500972FDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C204DC571E921B9500972FDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C204DC591E921B9500972FDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C204DC5F1E921CA000972FDA /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
+		C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QTGlobalInstance.swift; sourceTree = "<group>"; };
+		C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastPlayerViewController.swift; sourceTree = "<group>"; };
+		C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastPlayerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +66,10 @@
 			children = (
 				C204DC4A1E921B9500972FDA /* AppDelegate.swift */,
 				C204DC4C1E921B9500972FDA /* ViewController.swift */,
+				C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */,
+				C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */,
+				C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */,
+				C204DC5F1E921CA000972FDA /* PlayerManager.swift */,
 				C204DC4E1E921B9500972FDA /* Main.storyboard */,
 				C204DC541E921B9500972FDA /* Assets.xcassets */,
 				C204DC561E921B9500972FDA /* LaunchScreen.storyboard */,
@@ -101,6 +113,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = ZE2EAVJ28G;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -129,6 +146,7 @@
 			files = (
 				C204DC581E921B9500972FDA /* LaunchScreen.storyboard in Resources */,
 				C204DC551E921B9500972FDA /* Assets.xcassets in Resources */,
+				C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */,
 				C204DC501E921B9500972FDA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,8 +158,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */,
 				C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */,
 				C204DC4B1E921B9500972FDA /* AppDelegate.swift in Sources */,
+				C204DC601E921CA000972FDA /* PlayerManager.swift in Sources */,
+				C204DC621E922C8E00972FDA /* QTGlobalInstance.swift in Sources */,
 				C204DC531E921B9500972FDA /* PodcastPlayer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
