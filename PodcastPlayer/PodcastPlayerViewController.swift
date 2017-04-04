@@ -8,11 +8,11 @@
 
 import UIKit
 
-class PodcastPlayerViewController: UIViewController {
+class PodcastPlayerViewController: BaseViewController {
 
     
-    required init(qtObject:QTGlobalInstance = QTGlobalInstance.init(tdAttributes: nil), nibName:String, bundle:Bundle){
-        super.init(nibName: nibName, bundle: bundle)
+    required init(_ qtObject:QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName:String, bundle:Bundle){
+        super.init(qtObject, nibName: nibName, bundle: bundle)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,6 +27,13 @@ class PodcastPlayerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
+    
+    
     
 
     /*
