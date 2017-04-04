@@ -35,11 +35,6 @@ class PlayerManager: NSObject {
 
 }
 
-/*
- 
-    Really, anything that goes about observing the player state should go here. I mean, DO IT.
- */
-
 extension PlayerManager{
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath ?? "" == "currentItem")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{

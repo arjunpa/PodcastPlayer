@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D5D0FB11E92577D00B2DA32 /* PlayerToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB01E92577D00B2DA32 /* PlayerToolbar.xib */; };
+		1D5D0FB31E92658F00B2DA32 /* PlayerToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB21E92658F00B2DA32 /* PlayerToolbar.swift */; };
+		1D5D0FBA1E92C2D400B2DA32 /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB91E92C2D400B2DA32 /* SecondController.swift */; };
 		C204DC4B1E921B9500972FDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC4A1E921B9500972FDA /* AppDelegate.swift */; };
 		C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC4C1E921B9500972FDA /* ViewController.swift */; };
 		C204DC501E921B9500972FDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C204DC4E1E921B9500972FDA /* Main.storyboard */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D5D0FB01E92577D00B2DA32 /* PlayerToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerToolbar.xib; sourceTree = "<group>"; };
+		1D5D0FB21E92658F00B2DA32 /* PlayerToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerToolbar.swift; sourceTree = "<group>"; };
+		1D5D0FB91E92C2D400B2DA32 /* SecondController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
 		C204DC471E921B9500972FDA /* PodcastPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C204DC4A1E921B9500972FDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C204DC4C1E921B9500972FDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D5D0FAF1E92561B00B2DA32 /* PlayerToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				1D5D0FB01E92577D00B2DA32 /* PlayerToolbar.xib */,
+				1D5D0FB21E92658F00B2DA32 /* PlayerToolbar.swift */,
+			);
+			name = PlayerToolbar;
+			sourceTree = "<group>";
+		};
 		C204DC3E1E921B9400972FDA = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +79,7 @@
 		C204DC491E921B9500972FDA /* PodcastPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				1D5D0FAF1E92561B00B2DA32 /* PlayerToolbar */,
 				C204DC4A1E921B9500972FDA /* AppDelegate.swift */,
 				C204DC4C1E921B9500972FDA /* ViewController.swift */,
 				C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */,
@@ -75,6 +91,7 @@
 				C204DC561E921B9500972FDA /* LaunchScreen.storyboard */,
 				C204DC591E921B9500972FDA /* Info.plist */,
 				C204DC511E921B9500972FDA /* PodcastPlayer.xcdatamodeld */,
+				1D5D0FB91E92C2D400B2DA32 /* SecondController.swift */,
 			);
 			path = PodcastPlayer;
 			sourceTree = "<group>";
@@ -111,7 +128,6 @@
 				TargetAttributes = {
 					C204DC461E921B9400972FDA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZE2EAVJ28G;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -144,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D5D0FB11E92577D00B2DA32 /* PlayerToolbar.xib in Resources */,
 				C204DC581E921B9500972FDA /* LaunchScreen.storyboard in Resources */,
 				C204DC551E921B9500972FDA /* Assets.xcassets in Resources */,
 				C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */,
@@ -158,6 +175,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D5D0FB31E92658F00B2DA32 /* PlayerToolbar.swift in Sources */,
+				1D5D0FBA1E92C2D400B2DA32 /* SecondController.swift in Sources */,
 				C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */,
 				C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */,
 				C204DC4B1E921B9500972FDA /* AppDelegate.swift in Sources */,
@@ -284,7 +303,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZE2EAVJ28G;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PodcastPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arjun.PodcastPlayer;
@@ -297,7 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZE2EAVJ28G;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PodcastPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arjun.PodcastPlayer;
@@ -325,6 +344,7 @@
 				C204DC5E1E921B9500972FDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
