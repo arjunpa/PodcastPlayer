@@ -1,0 +1,18 @@
+PODS:
+  - 1PasswordExtension (1.8.4)
+  - KeychainAccess (3.0.1)
+  - Soundcloud (1.1.0):
+    - 1PasswordExtension (~> 1.8.3)
+    - KeychainAccess (~> 3.0)
+
+DEPENDENCIES:
+  - Soundcloud
+
+SPEC CHECKSUMS:
+  1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
+  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
+  Soundcloud: 476ba41826b4968a963048e76303056dbe529b64
+
+PODFILE CHECKSUM: 77e2b7dc291000b186742ca9da4d5382d7943230
+
+COCOAPODS: 1.2.1.beta.1
