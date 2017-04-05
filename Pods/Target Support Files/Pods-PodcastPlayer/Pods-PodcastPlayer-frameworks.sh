@@ -90,11 +90,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/1PasswordExtension/OnePasswordExtension.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/IGListKit/IGListKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Soundcloud/Soundcloud.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/1PasswordExtension/OnePasswordExtension.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/IGListKit/IGListKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Soundcloud/Soundcloud.framework"
 fi

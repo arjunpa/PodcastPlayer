@@ -7,13 +7,33 @@
 //
 
 import UIKit
+import Soundcloud
+import IGListKit
+
 
 class PodcastPlayerViewController: BaseViewController {
 
     
-    required init(_ qtObject:QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName:String, bundle:Bundle){
+    required init(_ qtObject:QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName:String?, bundle:Bundle?){
         super.init(qtObject, nibName: nibName, bundle: bundle)
+        self.configureSCClient()
     }
+    
+    
+    func configureSCClient(){
+        SoundcloudClient.clientSecret = "esv5NccmUd0wRgyFgUojqMiNBwM9nZhl"
+        SoundcloudClient.clientIdentifier = "fs2FkPBdYj7aNns0zJqgi8ZmR7CAXaBw"
+        SoundcloudClient.redirectURI = ""
+        
+        let queries: [SearchQueryOptions] = [
+            .queryString("ed sheeran"),
+            .types([TrackType.live, TrackType.demo])
+        ]
+        Track.search(queries: queries) { (response:PaginatedAPIResponse<Track>) in
+            print(response.response.result)
+        }
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -16,7 +16,10 @@ import UIKit
 }
 
 struct QTGlobalAttributes{
+
+    
     var player:PlayerManager?
+    var playerAttributes:Dictionary<String, Any>?
     
 }
 
@@ -27,7 +30,7 @@ class QTGlobalInstance: NSObject, QTGlobalProtocol {
     required init(tdAttributes:QTGlobalAttributes?){
         
         guard let atAttributes = tdAttributes else{
-            self.playerManager = PlayerManager.init()
+            self.playerManager = PlayerManager.init(playerAttributes: tdAttributes?.playerAttributes)
             super.init()
             return
         }
@@ -36,7 +39,7 @@ class QTGlobalInstance: NSObject, QTGlobalProtocol {
             self.playerManager = attributedPlayer
         }
         else{
-            self.playerManager = PlayerManager.init()
+            self.playerManager = PlayerManager.init(playerAttributes: tdAttributes?.playerAttributes)
         }
         super.init()
     }

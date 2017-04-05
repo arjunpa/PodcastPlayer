@@ -22,6 +22,7 @@
 		C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */; };
 		C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */; };
 		C258E1D61E93608F00F5A22A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258E1D51E93608F00F5A22A /* BaseViewController.swift */; };
+		C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258E1D71E937D2700F5A22A /* PlayerControlsProtocol.swift */; };
 		C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */; };
 		C2AF50481E92E5720096DEAD /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastPlayerViewController.swift; sourceTree = "<group>"; };
 		C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastPlayerViewController.xib; sourceTree = "<group>"; };
 		C258E1D51E93608F00F5A22A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C258E1D71E937D2700F5A22A /* PlayerControlsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControlsProtocol.swift; sourceTree = "<group>"; };
 		C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
 		C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
 		D48A3EF9146C0E23B4A63F28 /* Pods-PodcastPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastPlayer/Pods-PodcastPlayer.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				C204DC5F1E921CA000972FDA /* PlayerManager.swift */,
 				C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */,
 				C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */,
+				C258E1D71E937D2700F5A22A /* PlayerControlsProtocol.swift */,
 				C204DC4E1E921B9500972FDA /* Main.storyboard */,
 				C204DC541E921B9500972FDA /* Assets.xcassets */,
 				C204DC561E921B9500972FDA /* LaunchScreen.storyboard */,
@@ -164,6 +167,7 @@
 				TargetAttributes = {
 					C204DC461E921B9400972FDA = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = ZE2EAVJ28G;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -220,7 +224,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9079821F3B1EC4E17AD7E4D9 /* [CP] Embed Pods Frameworks */ = {
@@ -263,6 +267,7 @@
 				1D5D0FB31E92658F00B2DA32 /* PlayerToolbar.swift in Sources */,
 				1D5D0FBA1E92C2D400B2DA32 /* SecondController.swift in Sources */,
 				C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */,
+				C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */,
 				C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */,
 				C2AF50481E92E5720096DEAD /* PlayerControlsView.swift in Sources */,
 				C204DC4B1E921B9500972FDA /* AppDelegate.swift in Sources */,
@@ -391,7 +396,7 @@
 			baseConfigurationReference = F41A8632833E96FD680348F3 /* Pods-PodcastPlayer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZE2EAVJ28G;
 				INFOPLIST_FILE = PodcastPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arjun.PodcastPlayer;
@@ -405,7 +410,7 @@
 			baseConfigurationReference = D48A3EF9146C0E23B4A63F28 /* Pods-PodcastPlayer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZE2EAVJ28G;
 				INFOPLIST_FILE = PodcastPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arjun.PodcastPlayer;

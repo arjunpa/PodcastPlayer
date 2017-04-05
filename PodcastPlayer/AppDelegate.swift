@@ -15,22 +15,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-
+    lazy var qtInstance:QTGlobalProtocol = {
+        var attributes = QTGlobalAttributes()
+        attributes.playerAttributes =  [PlayerManager.BackgroundPolicy:NSNumber.init(value: true)]
+        let instance = QTGlobalInstance.init(tdAttributes: attributes)
+        instance.playerManager.registerClassForPlayerControls(classd: PlayerControlsView.self)
+        return instance
+    }()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        PlayerManager.enableBackgroundPlay()
-//        self.loadPlayerView()
+        
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+        let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtInstance, nibName: "PodcastPlayerViewController", bundle: nil)
+        window?.rootViewController = podController
+       // self.loadPlayerView()
         return true
     }
 
-    func loadPlayerView(){
-        let controlView:PlayerControlsView = PlayerControlsView.loadFromNib()
-        self.window?.addSubview(controlView)
-        controlView.trailingAnchor.constraint(equalTo: self.window!.trailingAnchor).isActive = true
-        controlView.leadingAnchor.constraint(equalTo: self.window!.leadingAnchor).isActive = true
-        controlView.bottomAnchor.constraint(equalTo: self.window!.bottomAnchor).isActive = true
-        
-    }
+
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -8,7 +8,21 @@
 
 import UIKit
 
-class PlayerControlsView: UIView {
+public class BasePlayerControlView:UIView{
+    
+    weak var controlDelegate:PlayerControlActionProtocol?
+    
+    public class func loadFromNib() -> BasePlayerControlView{
+        fatalError("Override this")
+    }
+    
+    public func sizeFit() -> CGSize{
+        fatalError("override this")
+    }
+}
+
+
+public class PlayerControlsView: BasePlayerControlView {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -18,14 +32,14 @@ class PlayerControlsView: UIView {
     }
     */
     
-    class func loadFromNib() -> PlayerControlsView{
+    public override class func loadFromNib() -> PlayerControlsView{
         let nib = UINib.init(nibName: "PlayerControlsView", bundle: nil)
         let view = nib.instantiate(withOwner: nil, options: nil)[0] as! PlayerControlsView
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
 
-    func sizeFit() -> CGSize{
+    public override func sizeFit() -> CGSize{
         var compressedSize = UILayoutFittingCompressedSize
         compressedSize.width = UIScreen.main.bounds.width
         let sized = self.systemLayoutSizeFitting(compressedSize)

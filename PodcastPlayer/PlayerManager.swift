@@ -9,6 +9,18 @@
 import UIKit
 import AVFoundation
 
+
+private class AbstractPlayerManager:NSObject{
+    
+    
+//    private override init(){
+//        BackgroundPolicy = "Background_Policy"
+//        super.init()
+//    }
+
+}
+
+
 class PlayerManager: NSObject {
     
     //keep this really really duummmbbbbb
@@ -29,8 +41,11 @@ class PlayerManager: NSObject {
         }
     }
     
-    var player:AVPlayer!
     
+    
+    public static let BackgroundPolicy:String = "Background_Policy"
+    var player:AVPlayer!
+    var playerControls:BasePlayerControlView?
     
     var currentPlayerItemDuration:CMTime{
         get{
@@ -41,9 +56,30 @@ class PlayerManager: NSObject {
         }
     }
     
-    override init() {
+    
+    
+    required init(playerAttributes:Dictionary<String,Any>?){
         super.init()
         commonInit()
+        configure(playerAttributes: playerAttributes)
+    }
+    
+    func configure(playerAttributes:Dictionary<String,Any>?){
+        guard let attributes = playerAttributes else{return}
+        
+        if let bgPolicy = (attributes[PlayerManager.BackgroundPolicy] as? NSNumber)?.boolValue{
+            if bgPolicy{
+                PlayerManager.enableBackgroundPlay()
+            }
+        }
+        
+    }
+    
+    func registerClassForPlayerControls(classd:BasePlayerControlView.Type){
+   
+        playerControls = classd.loadFromNib()
+        playerControls?.controlDelegate = self
+        
     }
     
     private func commonInit(){
@@ -103,6 +139,10 @@ class PlayerManager: NSObject {
 }
 
 extension PlayerManager{
+    
+}
+
+extension PlayerManager{
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath ?? "" == "status")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
             if player.status == AVPlayerStatus.readyToPlay{
@@ -119,5 +159,20 @@ extension PlayerManager{
         }
     }
 }
+extension PlayerManager:PlayerControlActionProtocol{
+    func didClickOnNext(control: PlayerControlActionProtocol) {
+        
+    }
+    
+    func didClickOnPlay(control: PlayerControlActionProtocol) {
+        
+    }
+    
+    func didClickOnPrev(control: PlayerControlActionProtocol) {
+        
+    }
+}
+
+
 
 

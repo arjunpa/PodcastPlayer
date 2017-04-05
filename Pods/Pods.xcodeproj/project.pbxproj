@@ -7,64 +7,135 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0068518424BBECD5B17EE19447E0FE1A /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FBE0E17B347FBAF7B8E8D48917447 /* Enums.swift */; };
-		021A5067A757FA6D698F00CCCDD09720 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA99ECF384C5690AA4304B93C25CFB5A /* DictionaryExtension.swift */; };
-		08FC37D9251164A352494881C35FD4BD /* ImageURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19321C8BFA41B6484031E625245C887 /* ImageURLs.swift */; };
-		147AEB5962C9236FECDA50FE2800E085 /* SoundcloudWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9174CC8E6592617880F7F96194F4D0D /* SoundcloudWebViewController.swift */; };
-		1E9223E9F9F1B09710CA21ED6DACD4FD /* OnePasswordExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91339F05D83992E7554B755F342C69A3 /* OnePasswordExtension.framework */; };
-		24888D66E5EAF4EB6E7E8D233E879DE8 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DE3EE49B0A0E4E93B101797C0A501 /* DataExtension.swift */; };
-		2ABAB227FB255DD27A1693CFCC63743C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCADBD43FACEDB5A4A273C60A3C63DB3 /* StringExtension.swift */; };
-		2B18F120384B0442B945856E922A684A /* Soundcloud-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 99D816DD3AA2CBB3E13059454C977FCE /* Soundcloud-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		369CA5935D410435E1EC667B089596CE /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A04751CD0FE61DB9699E39FAD446D /* Activity.swift */; };
-		36C9D6E8B894E5CAF5E2E9D3963C40B7 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EE1D527BA5F8E9D2F5A213011A832C /* App.swift */; };
-		377D4A936A6EC841AA6DD4C5998C4987 /* 1PasswordExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E7CE57B2A89A427A323A961E02AE4834 /* 1PasswordExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3D13B886B5E9900818504C52B54F5C09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B09A406250902988205DE5E31F10F4 /* Foundation.framework */; };
-		4220B0DA4A9D97405B982A27409C9190 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C2E63A1AE0300C8CA4E1C7126BE375 /* KeychainAccess.framework */; };
-		424F4E5963CD43F2EFE80682A162E9AE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224AC70BF968FBE73DE7FDC83245E1C8 /* Comment.swift */; };
-		4354C5942EDE659E33F8FF72B39A7646 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6380FD67FEBED9E586B9090E1F36B77 /* Track.swift */; };
-		5486E17F4FA73471F7A0B0ABD0590180 /* Pods-PodcastPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF717D6D5E1CBCD1770A18A428FD497 /* Pods-PodcastPlayer-dummy.m */; };
-		561F278CC948FB76E605EF0E641A8DA0 /* OnePasswordExtensionResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E1CAFCF9A925748299D2EE73C21748B1 /* OnePasswordExtensionResources.bundle */; };
+		056C571AF8E633574D9550A0DFB51E2A /* IGListReloadDataUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C88E72FF951F14EA13005BF500FCC6A /* IGListReloadDataUpdater.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		078020D4632D6EBB3CC0108744B11435 /* SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D835D0521A05EAD884B4C1C9D27308E /* SearchQuery.swift */; };
+		07CFFED3739668B8CDB6B7E2C50B9AC6 /* IGListAdapterUpdaterDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 776A213D13E81873E07F6D65CB67BDBE /* IGListAdapterUpdaterDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		08187D5FAA766FE1AA3396169E34F453 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE24D378B79D48F6A4C20CF06FEA72 /* App.swift */; };
+		0A3530212EF07C9859D099C193BE2E30 /* IGListDiff.h in Headers */ = {isa = PBXBuildFile; fileRef = CF41A2975453D44539CC42B47CCCF7E1 /* IGListDiff.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		10F9438B40D41F2BEDC9B5D474B4F184 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B09A406250902988205DE5E31F10F4 /* Foundation.framework */; };
+		117EED0836A779372B15C3C7EA89BEBC /* IGListAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = E2EC0AB2C558CB1DA467AF30BC3103A6 /* IGListAssert.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		121AB85E0D35FCC3991CB04548726803 /* IGListSectionMap.m in Sources */ = {isa = PBXBuildFile; fileRef = D321E2F6A5EDCADF47A07E886AA21975 /* IGListSectionMap.m */; };
+		126BA097C6A36EF900C81A2C232A6F9A /* IGListBatchUpdateData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1FD904D43DE4CF3B922B642F647406F9 /* IGListBatchUpdateData.mm */; };
+		14D8CC4DC6FE7B67AA3CBA0C6206F09B /* IGListAdapterUpdaterInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D217727C9D2067B8394D75E97AE8E88 /* IGListAdapterUpdaterInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		14D9D1CBAEFD8BEA91166582129918AA /* IGListMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 525E28F7918C93880868CFF870DEDC30 /* IGListMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		165C5AABDD2EEE6116ABE530E9B80B1E /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9590F45E13F25B5D21198BB9D58D846 /* Activity.swift */; };
+		16A16FA729A86227A5EA9FC02CEAF130 /* IGListStackedSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70F92F4AF49F5DCF85DE2B05DB8C034D /* IGListStackedSectionController.m */; };
+		16C035E478DAFEDDF480A07B00D25136 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B09A406250902988205DE5E31F10F4 /* Foundation.framework */; };
+		16E5F59CB1A79025A452208DF0635CE4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B63CE8686D4C3976387978933081300 /* Comment.swift */; };
+		23EDB32217BA7836A9DCF0621CA2A7BC /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF18EE03F07C1F6EF2E480B503AEE817 /* DictionaryExtension.swift */; };
+		24F16C6148C7A2A8A84F15429C98E8EE /* IGListMoveIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 0070613565F96A7D672826819485C3A9 /* IGListMoveIndexPath.m */; };
+		2B6A2EEDF97E68351DAC9E726BBE8B43 /* TrackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252D63EC920C22EDAC233DEDA9899F9D /* TrackRequest.swift */; };
+		2F2113E1C6D00DAC44F8D152487EDC4A /* IGListIndexPathResultInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE441DCB943D4AFBF45F13A3248E9AE /* IGListIndexPathResultInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2FE82EE470FB27CD0532758F8007323B /* IGListGridCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 77933B1A626B094ADA984E7214D78875 /* IGListGridCollectionViewLayout.m */; };
+		311660659F4D4D409ED0E0E952A4BA3E /* Soundcloud-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DD67EDE3F891A17B318A67E310A99369 /* Soundcloud-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324C37D6EBD411C536422252ED276EC0 /* ImageURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D51D714B49EF5A6EAFCD8826EABBBF /* ImageURLs.swift */; };
+		339BCF04EE714933721679C950AF7D84 /* IGListMoveIndexPathInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 31F593BAD55B86E3BEEFF7BBF25D08BA /* IGListMoveIndexPathInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		36777A21A45EEBD796CA70FACCCDC3D5 /* IGListIndexSetResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 8993A80A58A5C598C7BDD228E2A7CBFC /* IGListIndexSetResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		377D4A936A6EC841AA6DD4C5998C4987 /* 1PasswordExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AED72C0B59019082F6D7CAF4271832A8 /* 1PasswordExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3EDBFE34DEDB20D562AFD4CE4BB171EE /* IGListDisplayHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E743B8952C2D58BBA018B8F68AF32F64 /* IGListDisplayHandler.m */; };
+		417E7733F3603B02A35B4779974999E1 /* IGListBatchUpdateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 69DA93009FA9555B0490DF0545639148 /* IGListBatchUpdateData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42BBB7C4E03392ADD750B01F198AA45D /* OnePasswordExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91339F05D83992E7554B755F342C69A3 /* OnePasswordExtension.framework */; };
+		4595A94C05DA335670C4C339D3E8F18F /* IGListAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = D1DD2944341EDF79531C12B4694B831F /* IGListAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5438615D1D8668DCE3ABC5F919128F9F /* IGListAdapterDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 75222668EC61680DE78E6F9E03D89A91 /* IGListAdapterDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5440478AFD733077C7912894075404E1 /* IGListExperiments.h in Headers */ = {isa = PBXBuildFile; fileRef = D4A643F6EDE2B51A14CCCE3AEF0BEE90 /* IGListExperiments.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		552F545AD1A7AA60B304B0C2E4D93402 /* IGListKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 19A062DA84ECB34FCB33546CDEAF37C9 /* IGListKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		561F278CC948FB76E605EF0E641A8DA0 /* OnePasswordExtensionResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9C17AC2976A22228C99C7B239EAFB19B /* OnePasswordExtensionResources.bundle */; };
+		582174303410EA0F0354E43E3ACC9DBA /* IGListStackedSectionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 55FCFD4CE5B64BA5BA034653B09CD185 /* IGListStackedSectionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		599FE90DFE5595F98E3EF9486914E928 /* IGListSingleSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A4FDB598DA487200BD2BA3995ABF46B /* IGListSingleSectionController.m */; };
+		5B4E0AC02FB6C341F819083A9F80812E /* Pods-PodcastPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FB1ED298E6A39E1084060D472893A7 /* Pods-PodcastPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5CD9947BEA305F90CD98402293360819 /* IGListMoveIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = A6623FF968F84A1871103440733C9F3B /* IGListMoveIndex.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5FF42961704FA30D4705ED2FA979047E /* IGListSectionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21D23BEC63ABCAB71773F8754E4527ED /* IGListSectionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6075356DEB8120CA19F00C7093CD6A3F /* IGListUpdatingDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 416D629BC43220665E3AA6720060CB53 /* IGListUpdatingDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61E781CB00939739252B3BF830DF5433 /* Soundcloud-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB0D8A1AE442F9298B76F294BE241FB /* Soundcloud-dummy.m */; };
+		635CC8B77630D26AB0DE5AC7B8A148E1 /* IGListGridCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 321AA10FF3CCF74A975FDBB90BB003AF /* IGListGridCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63D05B8E96E508B3AD3F6CE743C8158F /* IGListWorkingRangeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 602501E73F354B196C7C1A2E320DDB6C /* IGListWorkingRangeHandler.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		64A55DD167D9AE19EAE9763C5C46CB1B /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C2330D1C6C00EA161983E3451DE2AE /* URLExtension.swift */; };
+		6C0A694BE4E0EFD543E8D286469DEC48 /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C2E63A1AE0300C8CA4E1C7126BE375 /* KeychainAccess.framework */; };
+		6CBEB65ADE55C8C28F8DFED2BE1E9697 /* IGListCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F02E2B6815200EFFE3B4A34F2E4A2F /* IGListCollectionView.m */; };
+		6D1254500A5ED49C8D6A5A5F138F2DED /* IGListAdapterUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = DB0462B139007C9240CD0F010541262B /* IGListAdapterUpdater.m */; };
+		703A1896BD4B3CB3F73C4DAA410203A2 /* IGListIndexPathResult.h in Headers */ = {isa = PBXBuildFile; fileRef = BB7D4F00EDE124A393B56C1DBE547EF8 /* IGListIndexPathResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		70A5FF7EFA7391CD45057A7CB1F47384 /* Soundcloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A33622116C6A9E92A58E921451E46E /* Soundcloud.swift */; };
 		73520CDD20012B4A245303CEA2B538B0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59180DD2EBBABD830CB6C4CC8B6DE456 /* MobileCoreServices.framework */; };
-		7D5B99D8E7B0F7F66CAD2AF394A3817B /* OnePasswordExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = D3CE4DDDCDB2E1FAF1F451A78045B895 /* OnePasswordExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7EF05A6961B8A4B335BE394744F10A0A /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAF4BE1078530704E1075CD9DC10313 /* UserRequest.swift */; };
-		95E4B1080E18D7DF62E91FA9DD449FE1 /* SouncloudClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43562C2B48B8C3DF01B90D6237D1FD8 /* SouncloudClient.swift */; };
-		9957A70EF3B84A0302E5725918D408BC /* Soundcloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0D559E805FB2C9EC020F423DF06580 /* Soundcloud.swift */; };
-		9A0287B291EBDB986B559A411E92A0E3 /* 1PasswordExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2B62ACA770D8988B67576AE3669CC2 /* 1PasswordExtension-dummy.m */; };
-		9ADBFD5621CA21C1F9095546AC2CF7F0 /* Soundcloud-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FD539A187FF8028FF0824ABDC8C9EB /* Soundcloud-dummy.m */; };
+		745A5A905E4360E945F7DFEB1423B161 /* IGListCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = EF9D8A359A012F6B4A642CC168BBE331 /* IGListCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75C5BADF0090FC6309B4561DBFD23EC1 /* IGListDiffKit.h in Headers */ = {isa = PBXBuildFile; fileRef = BAF6F78DA4454C8CBF20160CC8AFF4A5 /* IGListDiffKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		77EE8338585D748347F6CA1249C27AB1 /* IGListAdapterDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 15623267F7F42F4F35C6695D8FDF0A63 /* IGListAdapterDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78F143CF42A9035E838F2B900A4C3E80 /* IGListAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 844C92CE4AC04262E765ADA0162CF11F /* IGListAdapter.m */; };
+		7AD06D2B148ACE729DA93D38BE81FF78 /* SouncloudClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796DA685D23AB188275FEA99E2B4258 /* SouncloudClient.swift */; };
+		7D5B99D8E7B0F7F66CAD2AF394A3817B /* OnePasswordExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 93B25D8E622460459B7ACE02BE1335D9 /* OnePasswordExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F00048D3F693E301253F9A6CF52A0C5 /* IGListSectionControllerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = BE85BCD0FD092A76D8F61F53F8ED4104 /* IGListSectionControllerInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8056A5C8EB76BB3AC8A661DFF7E30DAF /* Pods-PodcastPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF717D6D5E1CBCD1770A18A428FD497 /* Pods-PodcastPlayer-dummy.m */; };
+		811AF3AB5C1A965BF17E2B2476534860 /* IGListSingleSectionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 23227558DCB0FDF45527C9D64BAE497E /* IGListSingleSectionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		834978BF35C41E7F71E8A636E0A91335 /* IGListMoveIndexPath.h in Headers */ = {isa = PBXBuildFile; fileRef = D7F7257EFD62ADD8BE4F755416457EB6 /* IGListMoveIndexPath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8474B1DC6366E21E672DF3308E152B6F /* UICollectionView+IGListBatchUpdateData.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DBDFE80D2871AED10E4B11AC2EFDB5 /* UICollectionView+IGListBatchUpdateData.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		854AEAB2379C7AEFF1C779DF5309A3B9 /* IGListScrollDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ED85069C90AF6784864A2469BB4C36C /* IGListScrollDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9036CBEDCB02BA0067C051BF2EDAE8C7 /* IGListKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8021EB28298A200DC728CC795603174F /* IGListKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		905812102EDB02DF0D33367E4A4E2601 /* IGListIndexPathResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 354FED6C043FBD86A2C6FEDD27AF6D8C /* IGListIndexPathResult.m */; };
+		90AB760B35956DA2016B4024B8F8912D /* IGListDiffable.h in Headers */ = {isa = PBXBuildFile; fileRef = E75E8CA0896E86403EA2677BC9F6B15C /* IGListDiffable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		92E5B0A32A1CCE45FC6E9E40E5C5F516 /* NSString+IGListDiffable.h in Headers */ = {isa = PBXBuildFile; fileRef = D7746E0F02EDAE75DE1310024353F988 /* NSString+IGListDiffable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95C137A25605D9901AFC77BFA3619EB9 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380E8FA766CC983265F8F8C6F1E770FC /* Track.swift */; };
+		96430F594BFC145867C96B1AD5BF746E /* UICollectionView+IGListBatchUpdateData.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BB082E219E650C69CC33E43DDF6860 /* UICollectionView+IGListBatchUpdateData.m */; };
+		9A0287B291EBDB986B559A411E92A0E3 /* 1PasswordExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BEF17CE81DF36B14576B70168F7E85 /* 1PasswordExtension-dummy.m */; };
+		9CE3DAB66A4E88312B5C907DD0B18571 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847E98074BECB7748327A1003FCE90AF /* User.swift */; };
+		A15959B25AFDE97EC2EA5767D12F2F7A /* IGListAdapterProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FB5F8C64A5217042F85B18242692F66 /* IGListAdapterProxy.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A481CB3C581E4AAD80D9CCDE3E28DF88 /* NSNumber+IGListDiffable.h in Headers */ = {isa = PBXBuildFile; fileRef = 7894522C108A02E8EC35C60E8B5576EF /* NSNumber+IGListDiffable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4BEC54CB9C0F732572289492E8911C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B09A406250902988205DE5E31F10F4 /* Foundation.framework */; };
-		A9304A59047257A0C090138F32D510AE /* Pods-PodcastPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 29FB1ED298E6A39E1084060D472893A7 /* Pods-PodcastPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A967960EE4C1C1AF8A3FC3555BABDC58 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D641023ACC084C7CD9D57420D5880FF3 /* Keychain.swift */; };
-		BDA750A5542A5D826A35B1BE6A69574A /* KeychainAccess-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 828CDFCDEDEE8327EA85D8CBB9AB57FF /* KeychainAccess-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A68EAD390163A48DDC0277E17A48200B /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE2AD21C72665F5F1B8AFAB6ADE039 /* Playlist.swift */; };
+		A967960EE4C1C1AF8A3FC3555BABDC58 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981977FD3B13236482319D9E1E8A8794 /* Keychain.swift */; };
+		AAEEBAF87DA581C4B89F9B280EED196F /* IGListWorkingRangeHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 95D4761CFA25A30BDDFF5A6564171E59 /* IGListWorkingRangeHandler.mm */; };
+		B43B60C55BF231C5BA84B7E0A99C1FC6 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBB2F7168AC9EE0CBA4B53743F82352 /* StringExtension.swift */; };
+		B70CE294922D8F0FECF8B38F993EA788 /* IGListSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = A022C489F06B27CF8F38EA1B91E502A3 /* IGListSectionController.m */; };
+		B84BA70B9C90E960E45851A3DD7C5E60 /* SoundcloudWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB94F23598FD294CDEACF85346BE0D3 /* SoundcloudWebViewController.swift */; };
+		B8D1E1C695F9C1C48A6C4A22F1A0583A /* IGListMoveIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E63B2D50DD6B29687108898AB99551B /* IGListMoveIndex.m */; };
+		BB0BC4C258123F13C9C25915A2DE9845 /* IGListReloadDataUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 361E85CE5FA1B66B2F414492C08C5975 /* IGListReloadDataUpdater.m */; };
+		BD9108B59C7A3C7B343FB6173BE4A0AD /* IGListKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 42416FE935DE333C24441723CFB6F069 /* IGListKit-dummy.m */; };
+		BDA750A5542A5D826A35B1BE6A69574A /* KeychainAccess-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA67228A81B17A241C7EBA0902EC75E /* KeychainAccess-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE4A831E111FE7491D2F711232CC3E38 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1D158ABC82AFED053A0427E1B58B88 /* UIKit.framework */; };
-		C123714F5E49FC8724E2068F92A33C4F /* SearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF64FE94E94C91DA5E26A37D94F8E0 /* SearchQuery.swift */; };
-		C2FEC9D569B69E900E517D96072140D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B09A406250902988205DE5E31F10F4 /* Foundation.framework */; };
-		C83E4FA068B53A78E41CA85AB39392AB /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D86DBF513E39187AA3D9BE033CE787 /* Request.swift */; };
-		D195B000B2061E2C75CD25CC6D0A31E1 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BE20D055C3BEE8DE4C01AABCB2F139 /* APIResponse.swift */; };
-		D5C4F61FF567A1A88BD5C0CDE5B0445B /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = AFEC69B490C04056FDD6837ED166C451 /* OnePasswordExtension.m */; };
-		D823270043210DD356225D7700FAF3E4 /* KeychainAccess-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7694F1DFF123FDBC22E5DF9B21992EBB /* KeychainAccess-dummy.m */; };
-		D8A939BD615FC8B0B2C914647ADC389E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C8195C15F169643F1AB90B5A99A8D2 /* User.swift */; };
-		E1A0276755FC536CE8B02451B48E3099 /* PlaylistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7612ABF48324934358828E299C5BD0D /* PlaylistRequest.swift */; };
-		E674208D0877C088E3F581736B2F3A85 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB9ED76E281DFBBF3E9936F9E7CC886 /* Playlist.swift */; };
+		C0265ABA36762C82F6338723A465F61E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1D158ABC82AFED053A0427E1B58B88 /* UIKit.framework */; };
+		C3658435E913B1FD3A6FF4F77AA06612 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1F1FA7D1E5E87B9884C593D3833838 /* Enums.swift */; };
+		C53F0E50C23F032F4C8B1B40BA660200 /* IGListAdapterInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 5048ACF847EB824FDD6520C9B9EF4981 /* IGListAdapterInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C61C350D22CF4239310015F391A41F32 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F08F683B54CC05657C181FB944245C7 /* Request.swift */; };
+		C64F37A6CB6F3349C0F7709387F088FA /* IGListSectionMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 052BE7A201177AD7CBEBEDDACE83A3DB /* IGListSectionMap.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C79BDF5389F4B9AD81E2C3B5A287EFA9 /* IGListAdapterUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD6462533241208CA75BA3F3CB29498 /* IGListAdapterUpdater.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C9003C07022E4D9E4C1408AC7CE919F2 /* IGListSectionType.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D15F9606E15750803D718AA5041CA0 /* IGListSectionType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1E77053D0B0B25885B1943354910A28 /* IGListCollectionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A235165B5092C4AE412A4A3090D7D4C /* IGListCollectionContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3E684A70A1C747CA914A277599E199C /* IGListIndexSetResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B3DB1657A8127A402777540F507506B7 /* IGListIndexSetResult.m */; };
+		D5C4F61FF567A1A88BD5C0CDE5B0445B /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2768E941C9AC8458B5D6B9A889D327 /* OnePasswordExtension.m */; };
+		D7AF08A6B540404647B64F38B14E0C14 /* NSString+IGListDiffable.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C8A88A020309DA235F970E27A389D7 /* NSString+IGListDiffable.m */; };
+		D823270043210DD356225D7700FAF3E4 /* KeychainAccess-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6BF92DD7AD0F3CE18A3E5ADE0045383 /* KeychainAccess-dummy.m */; };
+		D909200FE75EF11A2A58F03EF4A54714 /* IGListDisplayHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8788C41E9760CA9D73528CDADBBA182E /* IGListDisplayHandler.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D930E442BDDBB93A63BDBC7F384ACD71 /* IGListSupplementaryViewSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A35EDF4EB7C047FE46AC794C7C73586 /* IGListSupplementaryViewSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DCFE90D4EDC843123F66DFFBDCB18A7E /* IGListDiff.mm in Sources */ = {isa = PBXBuildFile; fileRef = 17E3EB15A5F4F20AEE46672221579666 /* IGListDiff.mm */; };
+		DD7E2AEC935E0F65FB77C3052870D8EB /* IGListStackedSectionControllerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EC3EDFCB3C522D1E3AD73CB6F592923 /* IGListStackedSectionControllerInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DF109D9AFDA83F8383A25EFDBEBDABA6 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D41553E5B296E7F595B527C992719F7 /* DataExtension.swift */; };
+		DF6D14394D19505EEAD6A24517CE4419 /* NSNumber+IGListDiffable.m in Sources */ = {isa = PBXBuildFile; fileRef = E3A3F3E2FB7DD94A98449D47E235E283 /* NSNumber+IGListDiffable.m */; };
+		E25AA5D1F848507858471034AC879EA7 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC93A4EFCC81594C399942506DBB06A /* UserRequest.swift */; };
+		E26BDE5212C83FCEF9B7B35D323DBC97 /* IGListWorkingRangeDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 81FCCE41C74F091E9A59655ED960F9D6 /* IGListWorkingRangeDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3E5BF4D653B35B2900929CF77FBE485 /* IGListMoveIndexInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = D4FA7023AAEE63610836CEB54B5E2833 /* IGListMoveIndexInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		E7AD829ABDC90B56F68FF987244ACB1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B09A406250902988205DE5E31F10F4 /* Foundation.framework */; };
 		E8EACF383D5FC840CC04A183FAD043EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82B09A406250902988205DE5E31F10F4 /* Foundation.framework */; };
-		EF35548352B0EEE56CF82DB24579ABA9 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30E32DD20CFFFDE57CEDA3636598680D /* URLExtension.swift */; };
-		F2AAF26303894FAD3FF258A915EF4CB2 /* TrackRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64CE43B0F5AEA12E8ED19407A140B42 /* TrackRequest.swift */; };
-		F438661D55A3DFB0517904D9D6C4D634 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C1DDDC801918D67F00590CCA1C528AB /* 1Password.xcassets */; };
+		EB1A9A7913C95F95741B18970E8D4612 /* PlaylistRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46A8FBB0A89575CA4DA6D5BBEE909B1 /* PlaylistRequest.swift */; };
+		F259C309F97DA818B0D54D98AD77FAA2 /* IGListCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8257839DE106A5371E6F41D4ADB045C6 /* IGListCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2D8F4742BAF2B4EFA953359FE156D14 /* IGListDisplayDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F163D0FFD147D4AF6A94F7992CC6810B /* IGListDisplayDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F438661D55A3DFB0517904D9D6C4D634 /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BBE87A23BC734C7BF4508CA09F2854F /* 1Password.xcassets */; };
+		F4BA9FA0BB119BF592CB48A0DFFC24D1 /* IGListAdapterProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F96BE2EC79991929B4D0604A3E7E74 /* IGListAdapterProxy.m */; };
+		F82ECE6A6BC86560FDBDAEF374ACA751 /* IGListIndexSetResultInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B714C362FF32B713AEE7973612C1FC3 /* IGListIndexSetResultInternal.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		FA75D9CA9287E6DC30CE095BA1674D2B /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B509B7D74C4494DB3F7EE45938958E /* APIResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2B8281B9A2E8C7C28C677A0583F63656 /* PBXContainerItemProxy */ = {
+		162B759EB051966894392AF8DAF905D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E1B7EC9083F43091092793A096E99914;
 			remoteInfo = 1PasswordExtension;
 		};
-		2C84CAF637C9F5F40FFF96D5CA554CA1 /* PBXContainerItemProxy */ = {
+		3D51E27F8D68397CA35CF266C4A2BD9E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E1B7EC9083F43091092793A096E99914;
-			remoteInfo = 1PasswordExtension;
+			remoteGlobalIDString = 536CBC3066612855C38EF63149A322CC;
+			remoteInfo = Soundcloud;
 		};
 		45A2F739B699AB8EEE3A06EAD15EDDC5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -73,98 +144,189 @@
 			remoteGlobalIDString = D228286947C78954173BBDCC39A652CD;
 			remoteInfo = "1PasswordExtension-OnePasswordExtensionResources";
 		};
-		4D574B6EDA2AD166E4BA46AD9D0E6496 /* PBXContainerItemProxy */ = {
+		74E60072798624AF03201A198D13D1C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8905DB6521F8FDC34752B69DEE3FDEB7;
 			remoteInfo = KeychainAccess;
 		};
-		576D5BB9DF2D901D29107EF7CB0F317A /* PBXContainerItemProxy */ = {
+		7CA019CBBA2504712150F5A170EF06A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1B7EC9083F43091092793A096E99914;
+			remoteInfo = 1PasswordExtension;
+		};
+		B178C6EDA0C5E38E72F01284CC212462 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9CE1FC57ED556647A09C53464FF9EB5A;
+			remoteInfo = IGListKit;
+		};
+		DF8E3A8623F977637B28AED3754F28DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8905DB6521F8FDC34752B69DEE3FDEB7;
 			remoteInfo = KeychainAccess;
-		};
-		B28BAC3D205D58DED47AD0C08C96B9BA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A5ACA9630E5F9AB7F9E0D5937DD82083;
-			remoteInfo = Soundcloud;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0692C3C63CE9487DD6A405B2B705A528 /* KeychainAccess.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = KeychainAccess.modulemap; sourceTree = "<group>"; };
-		0C1DDDC801918D67F00590CCA1C528AB /* 1Password.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
-		11EE1D527BA5F8E9D2F5A213011A832C /* App.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = App.swift; path = sources/SoundcloudSDK/model/App.swift; sourceTree = "<group>"; };
-		21BE20D055C3BEE8DE4C01AABCB2F139 /* APIResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIResponse.swift; path = sources/SoundcloudSDK/model/APIResponse.swift; sourceTree = "<group>"; };
-		224AC70BF968FBE73DE7FDC83245E1C8 /* Comment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = sources/SoundcloudSDK/model/Comment.swift; sourceTree = "<group>"; };
-		243A04751CD0FE61DB9699E39FAD446D /* Activity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = sources/SoundcloudSDK/model/Activity.swift; sourceTree = "<group>"; };
-		249FBE0E17B347FBAF7B8E8D48917447 /* Enums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enums.swift; path = sources/SoundcloudSDK/model/Enums.swift; sourceTree = "<group>"; };
-		299828809B036F4FEFD8671FB061A534 /* Soundcloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Soundcloud.framework; path = Soundcloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0070613565F96A7D672826819485C3A9 /* IGListMoveIndexPath.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListMoveIndexPath.m; path = Source/Common/IGListMoveIndexPath.m; sourceTree = "<group>"; };
+		052BE7A201177AD7CBEBEDDACE83A3DB /* IGListSectionMap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListSectionMap.h; path = Source/Internal/IGListSectionMap.h; sourceTree = "<group>"; };
+		15623267F7F42F4F35C6695D8FDF0A63 /* IGListAdapterDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAdapterDelegate.h; path = Source/IGListAdapterDelegate.h; sourceTree = "<group>"; };
+		15D0B80740B30E0105654E3A41DC1D87 /* 1PasswordExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "1PasswordExtension-prefix.pch"; sourceTree = "<group>"; };
+		1736FC42042B1E7FF78EB651DC8C1305 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17E3EB15A5F4F20AEE46672221579666 /* IGListDiff.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = IGListDiff.mm; path = Source/Common/IGListDiff.mm; sourceTree = "<group>"; };
+		19A062DA84ECB34FCB33546CDEAF37C9 /* IGListKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListKit.h; path = Source/IGListKit.h; sourceTree = "<group>"; };
+		1A5CA5C320E91051A053E276F450679D /* OnePasswordExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OnePasswordExtension.framework; path = 1PasswordExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B529271EB773FCE46796B5B9E0A72E6 /* KeychainAccess-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainAccess-prefix.pch"; sourceTree = "<group>"; };
+		1BBE87A23BC734C7BF4508CA09F2854F /* 1Password.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
+		1FD904D43DE4CF3B922B642F647406F9 /* IGListBatchUpdateData.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = IGListBatchUpdateData.mm; path = Source/Common/IGListBatchUpdateData.mm; sourceTree = "<group>"; };
+		21D23BEC63ABCAB71773F8754E4527ED /* IGListSectionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListSectionController.h; path = Source/IGListSectionController.h; sourceTree = "<group>"; };
+		23227558DCB0FDF45527C9D64BAE497E /* IGListSingleSectionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListSingleSectionController.h; path = Source/IGListSingleSectionController.h; sourceTree = "<group>"; };
+		252D63EC920C22EDAC233DEDA9899F9D /* TrackRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TrackRequest.swift; path = sources/SoundcloudSDK/request/TrackRequest.swift; sourceTree = "<group>"; };
+		25A04E6CDA63862DB546FA8663383843 /* IGListKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = IGListKit.framework; path = IGListKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29FB1ED298E6A39E1084060D472893A7 /* Pods-PodcastPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PodcastPlayer-umbrella.h"; sourceTree = "<group>"; };
-		2BAF4BE1078530704E1075CD9DC10313 /* UserRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserRequest.swift; path = sources/SoundcloudSDK/request/UserRequest.swift; sourceTree = "<group>"; };
+		2A4FDB598DA487200BD2BA3995ABF46B /* IGListSingleSectionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListSingleSectionController.m; path = Source/IGListSingleSectionController.m; sourceTree = "<group>"; };
+		2D217727C9D2067B8394D75E97AE8E88 /* IGListAdapterUpdaterInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAdapterUpdaterInternal.h; path = Source/Internal/IGListAdapterUpdaterInternal.h; sourceTree = "<group>"; };
 		2D66D02331D6C908E80D919EF2A7F9B2 /* Pods-PodcastPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PodcastPlayer.release.xcconfig"; sourceTree = "<group>"; };
-		2F0D4C3F3E4CF081EA4384C1EECDB3A0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		30E32DD20CFFFDE57CEDA3636598680D /* URLExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLExtension.swift; path = sources/SoundcloudSDK/extension/URLExtension.swift; sourceTree = "<group>"; };
+		2DBE24D378B79D48F6A4C20CF06FEA72 /* App.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = App.swift; path = sources/SoundcloudSDK/model/App.swift; sourceTree = "<group>"; };
+		2FB5F8C64A5217042F85B18242692F66 /* IGListAdapterProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAdapterProxy.h; path = Source/Internal/IGListAdapterProxy.h; sourceTree = "<group>"; };
+		31F593BAD55B86E3BEEFF7BBF25D08BA /* IGListMoveIndexPathInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListMoveIndexPathInternal.h; path = Source/Common/Internal/IGListMoveIndexPathInternal.h; sourceTree = "<group>"; };
+		321AA10FF3CCF74A975FDBB90BB003AF /* IGListGridCollectionViewLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListGridCollectionViewLayout.h; path = Source/IGListGridCollectionViewLayout.h; sourceTree = "<group>"; };
 		3296F5DF16FA26B6F747E037CAC09AAC /* Pods-PodcastPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PodcastPlayer.modulemap"; sourceTree = "<group>"; };
-		36A8CB69E5D258C37BEC0AB5782116CD /* Pods_PodcastPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PodcastPlayer.framework; path = "Pods-PodcastPlayer.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		44CF64FE94E94C91DA5E26A37D94F8E0 /* SearchQuery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SearchQuery.swift; path = sources/SoundcloudSDK/model/SearchQuery.swift; sourceTree = "<group>"; };
-		4B5F9FD322C73221C52F47ED72A4CFCA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		354FED6C043FBD86A2C6FEDD27AF6D8C /* IGListIndexPathResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListIndexPathResult.m; path = Source/Common/IGListIndexPathResult.m; sourceTree = "<group>"; };
+		361E85CE5FA1B66B2F414492C08C5975 /* IGListReloadDataUpdater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListReloadDataUpdater.m; path = Source/IGListReloadDataUpdater.m; sourceTree = "<group>"; };
+		380E8FA766CC983265F8F8C6F1E770FC /* Track.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Track.swift; path = sources/SoundcloudSDK/model/Track.swift; sourceTree = "<group>"; };
+		39E4CC8070F84200A5E2DB2E616FDDFF /* Pods_PodcastPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PodcastPlayer.framework; path = "Pods-PodcastPlayer.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A35EDF4EB7C047FE46AC794C7C73586 /* IGListSupplementaryViewSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListSupplementaryViewSource.h; path = Source/IGListSupplementaryViewSource.h; sourceTree = "<group>"; };
+		3E2768E941C9AC8458B5D6B9A889D327 /* OnePasswordExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
+		3EB94F23598FD294CDEACF85346BE0D3 /* SoundcloudWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoundcloudWebViewController.swift; path = sources/SoundcloudSDK/views/SoundcloudWebViewController.swift; sourceTree = "<group>"; };
+		3EC3EDFCB3C522D1E3AD73CB6F592923 /* IGListStackedSectionControllerInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListStackedSectionControllerInternal.h; path = Source/Internal/IGListStackedSectionControllerInternal.h; sourceTree = "<group>"; };
+		416D629BC43220665E3AA6720060CB53 /* IGListUpdatingDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListUpdatingDelegate.h; path = Source/IGListUpdatingDelegate.h; sourceTree = "<group>"; };
+		42416FE935DE333C24441723CFB6F069 /* IGListKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "IGListKit-dummy.m"; sourceTree = "<group>"; };
+		42C2330D1C6C00EA161983E3451DE2AE /* URLExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLExtension.swift; path = sources/SoundcloudSDK/extension/URLExtension.swift; sourceTree = "<group>"; };
+		45B509B7D74C4494DB3F7EE45938958E /* APIResponse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIResponse.swift; path = sources/SoundcloudSDK/model/APIResponse.swift; sourceTree = "<group>"; };
+		4BDC2CB47C1593988BCF0CB44E113B35 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5048ACF847EB824FDD6520C9B9EF4981 /* IGListAdapterInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAdapterInternal.h; path = Source/Internal/IGListAdapterInternal.h; sourceTree = "<group>"; };
+		50D15F9606E15750803D718AA5041CA0 /* IGListSectionType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListSectionType.h; path = Source/IGListSectionType.h; sourceTree = "<group>"; };
 		51E7AE1188C9F1E5626CF36FDA91EE7A /* Pods-PodcastPlayer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PodcastPlayer-acknowledgements.plist"; sourceTree = "<group>"; };
-		55DBDC7F22B89AF76E8376F81A421C33 /* Soundcloud.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Soundcloud.xcconfig; sourceTree = "<group>"; };
+		525E28F7918C93880868CFF870DEDC30 /* IGListMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListMacros.h; path = Source/Common/IGListMacros.h; sourceTree = "<group>"; };
+		55FCFD4CE5B64BA5BA034653B09CD185 /* IGListStackedSectionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListStackedSectionController.h; path = Source/IGListStackedSectionController.h; sourceTree = "<group>"; };
 		59180DD2EBBABD830CB6C4CC8B6DE456 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
-		5E20A4202EF87044894D69600A91B58C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F3DE3EE49B0A0E4E93B101797C0A501 /* DataExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataExtension.swift; path = sources/SoundcloudSDK/extension/DataExtension.swift; sourceTree = "<group>"; };
-		7694F1DFF123FDBC22E5DF9B21992EBB /* KeychainAccess-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KeychainAccess-dummy.m"; sourceTree = "<group>"; };
-		828CDFCDEDEE8327EA85D8CBB9AB57FF /* KeychainAccess-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainAccess-umbrella.h"; sourceTree = "<group>"; };
+		5A1046193C2867782F161E4904E9A1C3 /* 1PasswordExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = 1PasswordExtension.modulemap; sourceTree = "<group>"; };
+		5B63CE8686D4C3976387978933081300 /* Comment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Comment.swift; path = sources/SoundcloudSDK/model/Comment.swift; sourceTree = "<group>"; };
+		5E1F1FA7D1E5E87B9884C593D3833838 /* Enums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enums.swift; path = sources/SoundcloudSDK/model/Enums.swift; sourceTree = "<group>"; };
+		601F0901055D1DB5A588F50EF9B220EE /* Soundcloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Soundcloud.framework; path = Soundcloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		602501E73F354B196C7C1A2E320DDB6C /* IGListWorkingRangeHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListWorkingRangeHandler.h; path = Source/Internal/IGListWorkingRangeHandler.h; sourceTree = "<group>"; };
+		613DBCE4F180AA95EC155B90D7002A5F /* IGListKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = IGListKit.xcconfig; sourceTree = "<group>"; };
+		62C8A88A020309DA235F970E27A389D7 /* NSString+IGListDiffable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+IGListDiffable.m"; path = "Source/Common/NSString+IGListDiffable.m"; sourceTree = "<group>"; };
+		6322FEA8D08B01C09B48AB1A9267306A /* Soundcloud.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Soundcloud.modulemap; sourceTree = "<group>"; };
+		65672449028F6FE86619B70084D68824 /* 1PasswordExtension.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = 1PasswordExtension.xcconfig; sourceTree = "<group>"; };
+		69DA93009FA9555B0490DF0545639148 /* IGListBatchUpdateData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListBatchUpdateData.h; path = Source/Common/IGListBatchUpdateData.h; sourceTree = "<group>"; };
+		6A235165B5092C4AE412A4A3090D7D4C /* IGListCollectionContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListCollectionContext.h; path = Source/IGListCollectionContext.h; sourceTree = "<group>"; };
+		6C88E72FF951F14EA13005BF500FCC6A /* IGListReloadDataUpdater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListReloadDataUpdater.h; path = Source/IGListReloadDataUpdater.h; sourceTree = "<group>"; };
+		6E63B2D50DD6B29687108898AB99551B /* IGListMoveIndex.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListMoveIndex.m; path = Source/Common/IGListMoveIndex.m; sourceTree = "<group>"; };
+		70F92F4AF49F5DCF85DE2B05DB8C034D /* IGListStackedSectionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListStackedSectionController.m; path = Source/IGListStackedSectionController.m; sourceTree = "<group>"; };
+		75222668EC61680DE78E6F9E03D89A91 /* IGListAdapterDataSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAdapterDataSource.h; path = Source/IGListAdapterDataSource.h; sourceTree = "<group>"; };
+		776A213D13E81873E07F6D65CB67BDBE /* IGListAdapterUpdaterDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAdapterUpdaterDelegate.h; path = Source/IGListAdapterUpdaterDelegate.h; sourceTree = "<group>"; };
+		77933B1A626B094ADA984E7214D78875 /* IGListGridCollectionViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListGridCollectionViewLayout.m; path = Source/IGListGridCollectionViewLayout.m; sourceTree = "<group>"; };
+		7894522C108A02E8EC35C60E8B5576EF /* NSNumber+IGListDiffable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSNumber+IGListDiffable.h"; path = "Source/Common/NSNumber+IGListDiffable.h"; sourceTree = "<group>"; };
+		7B714C362FF32B713AEE7973612C1FC3 /* IGListIndexSetResultInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListIndexSetResultInternal.h; path = Source/Common/Internal/IGListIndexSetResultInternal.h; sourceTree = "<group>"; };
+		7B7782C7D2A301A0DE7361C79EC36205 /* KeychainAccess.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = KeychainAccess.modulemap; sourceTree = "<group>"; };
+		7D41553E5B296E7F595B527C992719F7 /* DataExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataExtension.swift; path = sources/SoundcloudSDK/extension/DataExtension.swift; sourceTree = "<group>"; };
+		7DBB2F7168AC9EE0CBA4B53743F82352 /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = sources/SoundcloudSDK/extension/StringExtension.swift; sourceTree = "<group>"; };
+		7ED85069C90AF6784864A2469BB4C36C /* IGListScrollDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListScrollDelegate.h; path = Source/IGListScrollDelegate.h; sourceTree = "<group>"; };
+		8021EB28298A200DC728CC795603174F /* IGListKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IGListKit-umbrella.h"; sourceTree = "<group>"; };
+		81FCCE41C74F091E9A59655ED960F9D6 /* IGListWorkingRangeDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListWorkingRangeDelegate.h; path = Source/IGListWorkingRangeDelegate.h; sourceTree = "<group>"; };
+		8257839DE106A5371E6F41D4ADB045C6 /* IGListCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListCollectionView.h; path = Source/IGListCollectionView.h; sourceTree = "<group>"; };
 		82B09A406250902988205DE5E31F10F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		8DC09AAA2200EFC766B9538342DE5704 /* KeychainAccess.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KeychainAccess.xcconfig; sourceTree = "<group>"; };
-		8EB9ED76E281DFBBF3E9936F9E7CC886 /* Playlist.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Playlist.swift; path = sources/SoundcloudSDK/model/Playlist.swift; sourceTree = "<group>"; };
+		844C92CE4AC04262E765ADA0162CF11F /* IGListAdapter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListAdapter.m; path = Source/IGListAdapter.m; sourceTree = "<group>"; };
+		847E98074BECB7748327A1003FCE90AF /* User.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = User.swift; path = sources/SoundcloudSDK/model/User.swift; sourceTree = "<group>"; };
+		84BEF17CE81DF36B14576B70168F7E85 /* 1PasswordExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "1PasswordExtension-dummy.m"; sourceTree = "<group>"; };
+		8788C41E9760CA9D73528CDADBBA182E /* IGListDisplayHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListDisplayHandler.h; path = Source/Internal/IGListDisplayHandler.h; sourceTree = "<group>"; };
+		8993A80A58A5C598C7BDD228E2A7CBFC /* IGListIndexSetResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListIndexSetResult.h; path = Source/Common/IGListIndexSetResult.h; sourceTree = "<group>"; };
+		8D835D0521A05EAD884B4C1C9D27308E /* SearchQuery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SearchQuery.swift; path = sources/SoundcloudSDK/model/SearchQuery.swift; sourceTree = "<group>"; };
+		8F08F683B54CC05657C181FB944245C7 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = sources/SoundcloudSDK/request/Request.swift; sourceTree = "<group>"; };
 		91339F05D83992E7554B755F342C69A3 /* OnePasswordExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OnePasswordExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		99D816DD3AA2CBB3E13059454C977FCE /* Soundcloud-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Soundcloud-umbrella.h"; sourceTree = "<group>"; };
+		93B25D8E622460459B7ACE02BE1335D9 /* OnePasswordExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
+		95D4761CFA25A30BDDFF5A6564171E59 /* IGListWorkingRangeHandler.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = IGListWorkingRangeHandler.mm; path = Source/Internal/IGListWorkingRangeHandler.mm; sourceTree = "<group>"; };
+		9796DA685D23AB188275FEA99E2B4258 /* SouncloudClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SouncloudClient.swift; path = sources/SoundcloudSDK/soundcloud/SouncloudClient.swift; sourceTree = "<group>"; };
+		981977FD3B13236482319D9E1E8A8794 /* Keychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Lib/KeychainAccess/Keychain.swift; sourceTree = "<group>"; };
+		9AD6462533241208CA75BA3F3CB29498 /* IGListAdapterUpdater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAdapterUpdater.h; path = Source/IGListAdapterUpdater.h; sourceTree = "<group>"; };
+		9C17AC2976A22228C99C7B239EAFB19B /* OnePasswordExtensionResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = OnePasswordExtensionResources.bundle; path = OnePasswordExtensionResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CA67228A81B17A241C7EBA0902EC75E /* KeychainAccess-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainAccess-umbrella.h"; sourceTree = "<group>"; };
 		9E1D158ABC82AFED053A0427E1B58B88 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		A9174CC8E6592617880F7F96194F4D0D /* SoundcloudWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SoundcloudWebViewController.swift; path = sources/SoundcloudSDK/views/SoundcloudWebViewController.swift; sourceTree = "<group>"; };
+		A022C489F06B27CF8F38EA1B91E502A3 /* IGListSectionController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListSectionController.m; path = Source/IGListSectionController.m; sourceTree = "<group>"; };
+		A46A8FBB0A89575CA4DA6D5BBEE909B1 /* PlaylistRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PlaylistRequest.swift; path = sources/SoundcloudSDK/request/PlaylistRequest.swift; sourceTree = "<group>"; };
+		A614F3B05F7DCDEC06F653B9710044E3 /* IGListKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = IGListKit.modulemap; sourceTree = "<group>"; };
+		A6623FF968F84A1871103440733C9F3B /* IGListMoveIndex.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListMoveIndex.h; path = Source/Common/IGListMoveIndex.h; sourceTree = "<group>"; };
 		ABF717D6D5E1CBCD1770A18A428FD497 /* Pods-PodcastPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PodcastPlayer-dummy.m"; sourceTree = "<group>"; };
 		AD1BC0FA5A49365BAD7E886AAC8B8E98 /* Pods-PodcastPlayer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PodcastPlayer-resources.sh"; sourceTree = "<group>"; };
-		AFEC69B490C04056FDD6837ED166C451 /* OnePasswordExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
-		B3C1F8E7302D7C144C148BADEC0D0208 /* 1PasswordExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = 1PasswordExtension.modulemap; sourceTree = "<group>"; };
+		AED72C0B59019082F6D7CAF4271832A8 /* 1PasswordExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "1PasswordExtension-umbrella.h"; sourceTree = "<group>"; };
+		B2F02E2B6815200EFFE3B4A34F2E4A2F /* IGListCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListCollectionView.m; path = Source/IGListCollectionView.m; sourceTree = "<group>"; };
+		B3DB1657A8127A402777540F507506B7 /* IGListIndexSetResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListIndexSetResult.m; path = Source/Common/IGListIndexSetResult.m; sourceTree = "<group>"; };
 		B7FE04A0C946682AA7680489402C5FB5 /* Pods-PodcastPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PodcastPlayer.debug.xcconfig"; sourceTree = "<group>"; };
-		BCADBD43FACEDB5A4A273C60A3C63DB3 /* StringExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = sources/SoundcloudSDK/extension/StringExtension.swift; sourceTree = "<group>"; };
+		BAB0D8A1AE442F9298B76F294BE241FB /* Soundcloud-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Soundcloud-dummy.m"; sourceTree = "<group>"; };
+		BAF6F78DA4454C8CBF20160CC8AFF4A5 /* IGListDiffKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListDiffKit.h; path = Source/Common/IGListDiffKit.h; sourceTree = "<group>"; };
+		BB5ABA7CE965D7C9FBFF15B7EEFDA56D /* Soundcloud.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Soundcloud.xcconfig; sourceTree = "<group>"; };
+		BB7D4F00EDE124A393B56C1DBE547EF8 /* IGListIndexPathResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListIndexPathResult.h; path = Source/Common/IGListIndexPathResult.h; sourceTree = "<group>"; };
+		BC98CF1857350ABAD27AA80014F66170 /* IGListKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "IGListKit-prefix.pch"; sourceTree = "<group>"; };
+		BE85BCD0FD092A76D8F61F53F8ED4104 /* IGListSectionControllerInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListSectionControllerInternal.h; path = Source/Internal/IGListSectionControllerInternal.h; sourceTree = "<group>"; };
+		BEB4833175E930622050480D62B68A25 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEB87FDEC7C6953681E02BA5519F4831 /* Pods-PodcastPlayer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PodcastPlayer-frameworks.sh"; sourceTree = "<group>"; };
-		C9FD539A187FF8028FF0824ABDC8C9EB /* Soundcloud-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Soundcloud-dummy.m"; sourceTree = "<group>"; };
-		D3CE4DDDCDB2E1FAF1F451A78045B895 /* OnePasswordExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
-		D43562C2B48B8C3DF01B90D6237D1FD8 /* SouncloudClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SouncloudClient.swift; path = sources/SoundcloudSDK/soundcloud/SouncloudClient.swift; sourceTree = "<group>"; };
-		D5AE653B565EA359B572148C8931345A /* Soundcloud.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Soundcloud.modulemap; sourceTree = "<group>"; };
-		D641023ACC084C7CD9D57420D5880FF3 /* Keychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Lib/KeychainAccess/Keychain.swift; sourceTree = "<group>"; };
-		D64CE43B0F5AEA12E8ED19407A140B42 /* TrackRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TrackRequest.swift; path = sources/SoundcloudSDK/request/TrackRequest.swift; sourceTree = "<group>"; };
-		D7C8195C15F169643F1AB90B5A99A8D2 /* User.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = User.swift; path = sources/SoundcloudSDK/model/User.swift; sourceTree = "<group>"; };
+		BF18EE03F07C1F6EF2E480B503AEE817 /* DictionaryExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DictionaryExtension.swift; path = sources/SoundcloudSDK/extension/DictionaryExtension.swift; sourceTree = "<group>"; };
+		C3A33622116C6A9E92A58E921451E46E /* Soundcloud.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Soundcloud.swift; path = sources/SoundcloudSDK/soundcloud/Soundcloud.swift; sourceTree = "<group>"; };
+		C6BF92DD7AD0F3CE18A3E5ADE0045383 /* KeychainAccess-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KeychainAccess-dummy.m"; sourceTree = "<group>"; };
+		C7A160B11F3E2128B969E4AEDD9055A8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9DBDFE80D2871AED10E4B11AC2EFDB5 /* UICollectionView+IGListBatchUpdateData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UICollectionView+IGListBatchUpdateData.h"; path = "Source/Internal/UICollectionView+IGListBatchUpdateData.h"; sourceTree = "<group>"; };
+		CDF9CCFF704215966046B1BA5C6C7522 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KeychainAccess.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE441DCB943D4AFBF45F13A3248E9AE /* IGListIndexPathResultInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListIndexPathResultInternal.h; path = Source/Common/Internal/IGListIndexPathResultInternal.h; sourceTree = "<group>"; };
+		CF41A2975453D44539CC42B47CCCF7E1 /* IGListDiff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListDiff.h; path = Source/Common/IGListDiff.h; sourceTree = "<group>"; };
+		D1BB082E219E650C69CC33E43DDF6860 /* UICollectionView+IGListBatchUpdateData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UICollectionView+IGListBatchUpdateData.m"; path = "Source/Internal/UICollectionView+IGListBatchUpdateData.m"; sourceTree = "<group>"; };
+		D1DD2944341EDF79531C12B4694B831F /* IGListAdapter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAdapter.h; path = Source/IGListAdapter.h; sourceTree = "<group>"; };
+		D321E2F6A5EDCADF47A07E886AA21975 /* IGListSectionMap.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListSectionMap.m; path = Source/Internal/IGListSectionMap.m; sourceTree = "<group>"; };
+		D3D51D714B49EF5A6EAFCD8826EABBBF /* ImageURLs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageURLs.swift; path = sources/SoundcloudSDK/model/ImageURLs.swift; sourceTree = "<group>"; };
+		D4A643F6EDE2B51A14CCCE3AEF0BEE90 /* IGListExperiments.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListExperiments.h; path = Source/Common/IGListExperiments.h; sourceTree = "<group>"; };
+		D4FA7023AAEE63610836CEB54B5E2833 /* IGListMoveIndexInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListMoveIndexInternal.h; path = Source/Common/Internal/IGListMoveIndexInternal.h; sourceTree = "<group>"; };
+		D7746E0F02EDAE75DE1310024353F988 /* NSString+IGListDiffable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+IGListDiffable.h"; path = "Source/Common/NSString+IGListDiffable.h"; sourceTree = "<group>"; };
+		D7F7257EFD62ADD8BE4F755416457EB6 /* IGListMoveIndexPath.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListMoveIndexPath.h; path = Source/Common/IGListMoveIndexPath.h; sourceTree = "<group>"; };
 		D8C2E63A1AE0300C8CA4E1C7126BE375 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC5A79C02C513BA7E57CAAAC909FB31D /* Soundcloud-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Soundcloud-prefix.pch"; sourceTree = "<group>"; };
-		DCE503E91C0E7D321DF605CC6BE5C3B5 /* OnePasswordExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OnePasswordExtension.framework; path = 1PasswordExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFFACF70C8A454E7AC020AA4F5E991A1 /* 1PasswordExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "1PasswordExtension-prefix.pch"; sourceTree = "<group>"; };
-		E1CAFCF9A925748299D2EE73C21748B1 /* OnePasswordExtensionResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = OnePasswordExtensionResources.bundle; path = OnePasswordExtensionResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		E306389E9DBDB6E226189896C188F2E0 /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = KeychainAccess.framework; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E388289451D53F4B0E0A151B2AB9C8DA /* ResourceBundle-OnePasswordExtensionResources-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-OnePasswordExtensionResources-Info.plist"; sourceTree = "<group>"; };
-		E5D86DBF513E39187AA3D9BE033CE787 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = sources/SoundcloudSDK/request/Request.swift; sourceTree = "<group>"; };
-		E6380FD67FEBED9E586B9090E1F36B77 /* Track.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Track.swift; path = sources/SoundcloudSDK/model/Track.swift; sourceTree = "<group>"; };
-		E7612ABF48324934358828E299C5BD0D /* PlaylistRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PlaylistRequest.swift; path = sources/SoundcloudSDK/request/PlaylistRequest.swift; sourceTree = "<group>"; };
-		E7CE57B2A89A427A323A961E02AE4834 /* 1PasswordExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "1PasswordExtension-umbrella.h"; sourceTree = "<group>"; };
-		EA73B39C5363D9A981555375FFC580A9 /* 1PasswordExtension.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = 1PasswordExtension.xcconfig; sourceTree = "<group>"; };
-		EE0D559E805FB2C9EC020F423DF06580 /* Soundcloud.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Soundcloud.swift; path = sources/SoundcloudSDK/soundcloud/Soundcloud.swift; sourceTree = "<group>"; };
+		DB0462B139007C9240CD0F010541262B /* IGListAdapterUpdater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListAdapterUpdater.m; path = Source/IGListAdapterUpdater.m; sourceTree = "<group>"; };
+		DD67EDE3F891A17B318A67E310A99369 /* Soundcloud-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Soundcloud-umbrella.h"; sourceTree = "<group>"; };
+		DDC93A4EFCC81594C399942506DBB06A /* UserRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UserRequest.swift; path = sources/SoundcloudSDK/request/UserRequest.swift; sourceTree = "<group>"; };
+		E2EC0AB2C558CB1DA467AF30BC3103A6 /* IGListAssert.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListAssert.h; path = Source/Common/IGListAssert.h; sourceTree = "<group>"; };
+		E3A3F3E2FB7DD94A98449D47E235E283 /* NSNumber+IGListDiffable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+IGListDiffable.m"; path = "Source/Common/NSNumber+IGListDiffable.m"; sourceTree = "<group>"; };
+		E743B8952C2D58BBA018B8F68AF32F64 /* IGListDisplayHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListDisplayHandler.m; path = Source/Internal/IGListDisplayHandler.m; sourceTree = "<group>"; };
+		E75E8CA0896E86403EA2677BC9F6B15C /* IGListDiffable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListDiffable.h; path = Source/Common/IGListDiffable.h; sourceTree = "<group>"; };
+		EA74E452CC214215AD63292A9A53BB31 /* Soundcloud-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Soundcloud-prefix.pch"; sourceTree = "<group>"; };
+		ED69C81D476CB6F6D3DF8F9650B87821 /* ResourceBundle-OnePasswordExtensionResources-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-OnePasswordExtensionResources-Info.plist"; sourceTree = "<group>"; };
+		EF9D8A359A012F6B4A642CC168BBE331 /* IGListCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListCompatibility.h; path = Source/Common/IGListCompatibility.h; sourceTree = "<group>"; };
 		F024C7D77FBAD36736AFFA230EDBBC28 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F19321C8BFA41B6484031E625245C887 /* ImageURLs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageURLs.swift; path = sources/SoundcloudSDK/model/ImageURLs.swift; sourceTree = "<group>"; };
+		F0E6B1D3DC099484ACE78FA7E038AF40 /* KeychainAccess.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KeychainAccess.xcconfig; sourceTree = "<group>"; };
+		F163D0FFD147D4AF6A94F7992CC6810B /* IGListDisplayDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IGListDisplayDelegate.h; path = Source/IGListDisplayDelegate.h; sourceTree = "<group>"; };
+		F1F96BE2EC79991929B4D0604A3E7E74 /* IGListAdapterProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IGListAdapterProxy.m; path = Source/Internal/IGListAdapterProxy.m; sourceTree = "<group>"; };
 		F6746DC7D4035B6D16C9C2515C46AC51 /* Pods-PodcastPlayer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PodcastPlayer-acknowledgements.markdown"; sourceTree = "<group>"; };
-		FA2B62ACA770D8988B67576AE3669CC2 /* 1PasswordExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "1PasswordExtension-dummy.m"; sourceTree = "<group>"; };
-		FA99ECF384C5690AA4304B93C25CFB5A /* DictionaryExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DictionaryExtension.swift; path = sources/SoundcloudSDK/extension/DictionaryExtension.swift; sourceTree = "<group>"; };
-		FCDD95EBD088D14BE8C063ACA999807E /* KeychainAccess-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainAccess-prefix.pch"; sourceTree = "<group>"; };
+		F9590F45E13F25B5D21198BB9D58D846 /* Activity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = sources/SoundcloudSDK/model/Activity.swift; sourceTree = "<group>"; };
+		FCDE2AD21C72665F5F1B8AFAB6ADE039 /* Playlist.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Playlist.swift; path = sources/SoundcloudSDK/model/Playlist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0C52B7DC527493A9B20768C4CBBB4BB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7AD829ABDC90B56F68FF987244ACB1A /* Foundation.framework in Frameworks */,
+				6C0A694BE4E0EFD543E8D286469DEC48 /* KeychainAccess.framework in Frameworks */,
+				42BBB7C4E03392ADD750B01F198AA45D /* OnePasswordExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2DDC844C06D46A3907C42C9964BC7434 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,21 +345,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3AC3075A880038959E4EFF70880A82CE /* Frameworks */ = {
+		529C79DB4001EC2B69F82FA017884CC1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D13B886B5E9900818504C52B54F5C09 /* Foundation.framework in Frameworks */,
+				16C035E478DAFEDDF480A07B00D25136 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CBDF869CFBF66C6F099EAA1DC28758F7 /* Frameworks */ = {
+		676279F9D230F11E09570AE3DA250FC3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2FEC9D569B69E900E517D96072140D8 /* Foundation.framework in Frameworks */,
-				4220B0DA4A9D97405B982A27409C9190 /* KeychainAccess.framework in Frameworks */,
-				1E9223E9F9F1B09710CA21ED6DACD4FD /* OnePasswordExtension.framework in Frameworks */,
+				10F9438B40D41F2BEDC9B5D474B4F184 /* Foundation.framework in Frameworks */,
+				C0265ABA36762C82F6338723A465F61E /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,20 +372,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		094D73158F22DC2AF29E03272BAD5681 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				4B5F9FD322C73221C52F47ED72A4CFCA /* Info.plist */,
-				0692C3C63CE9487DD6A405B2B705A528 /* KeychainAccess.modulemap */,
-				8DC09AAA2200EFC766B9538342DE5704 /* KeychainAccess.xcconfig */,
-				7694F1DFF123FDBC22E5DF9B21992EBB /* KeychainAccess-dummy.m */,
-				FCDD95EBD088D14BE8C063ACA999807E /* KeychainAccess-prefix.pch */,
-				828CDFCDEDEE8327EA85D8CBB9AB57FF /* KeychainAccess-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/KeychainAccess";
-			sourceTree = "<group>";
-		};
 		09562E1D9FF54D9C4FD123EECDA5782E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,88 +382,114 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		0B1A9052A0185A2F077D396F1D625285 /* Soundcloud */ = {
+		2A57F96FCA78C098BFC80F2574AA4F18 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				243A04751CD0FE61DB9699E39FAD446D /* Activity.swift */,
-				21BE20D055C3BEE8DE4C01AABCB2F139 /* APIResponse.swift */,
-				11EE1D527BA5F8E9D2F5A213011A832C /* App.swift */,
-				224AC70BF968FBE73DE7FDC83245E1C8 /* Comment.swift */,
-				6F3DE3EE49B0A0E4E93B101797C0A501 /* DataExtension.swift */,
-				FA99ECF384C5690AA4304B93C25CFB5A /* DictionaryExtension.swift */,
-				249FBE0E17B347FBAF7B8E8D48917447 /* Enums.swift */,
-				F19321C8BFA41B6484031E625245C887 /* ImageURLs.swift */,
-				8EB9ED76E281DFBBF3E9936F9E7CC886 /* Playlist.swift */,
-				E7612ABF48324934358828E299C5BD0D /* PlaylistRequest.swift */,
-				E5D86DBF513E39187AA3D9BE033CE787 /* Request.swift */,
-				44CF64FE94E94C91DA5E26A37D94F8E0 /* SearchQuery.swift */,
-				D43562C2B48B8C3DF01B90D6237D1FD8 /* SouncloudClient.swift */,
-				EE0D559E805FB2C9EC020F423DF06580 /* Soundcloud.swift */,
-				A9174CC8E6592617880F7F96194F4D0D /* SoundcloudWebViewController.swift */,
-				BCADBD43FACEDB5A4A273C60A3C63DB3 /* StringExtension.swift */,
-				E6380FD67FEBED9E586B9090E1F36B77 /* Track.swift */,
-				D64CE43B0F5AEA12E8ED19407A140B42 /* TrackRequest.swift */,
-				30E32DD20CFFFDE57CEDA3636598680D /* URLExtension.swift */,
-				D7C8195C15F169643F1AB90B5A99A8D2 /* User.swift */,
-				2BAF4BE1078530704E1075CD9DC10313 /* UserRequest.swift */,
-				7B69035F291B9CF148B61DFEBE13528B /* Support Files */,
+				BEB4833175E930622050480D62B68A25 /* Info.plist */,
+				7B7782C7D2A301A0DE7361C79EC36205 /* KeychainAccess.modulemap */,
+				F0E6B1D3DC099484ACE78FA7E038AF40 /* KeychainAccess.xcconfig */,
+				C6BF92DD7AD0F3CE18A3E5ADE0045383 /* KeychainAccess-dummy.m */,
+				1B529271EB773FCE46796B5B9E0A72E6 /* KeychainAccess-prefix.pch */,
+				9CA67228A81B17A241C7EBA0902EC75E /* KeychainAccess-umbrella.h */,
 			);
-			name = Soundcloud;
-			path = Soundcloud;
+			name = "Support Files";
+			path = "../Target Support Files/KeychainAccess";
 			sourceTree = "<group>";
 		};
-		0E50DD1A2E4E044E151E866E92B15837 /* Resources */ = {
+		2FA3DBEB326B7AAD7907FC3BA29BA1DD /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0C1DDDC801918D67F00590CCA1C528AB /* 1Password.xcassets */,
+				A614F3B05F7DCDEC06F653B9710044E3 /* IGListKit.modulemap */,
+				613DBCE4F180AA95EC155B90D7002A5F /* IGListKit.xcconfig */,
+				42416FE935DE333C24441723CFB6F069 /* IGListKit-dummy.m */,
+				BC98CF1857350ABAD27AA80014F66170 /* IGListKit-prefix.pch */,
+				8021EB28298A200DC728CC795603174F /* IGListKit-umbrella.h */,
+				C7A160B11F3E2128B969E4AEDD9055A8 /* Info.plist */,
 			);
-			name = Resources;
+			name = "Support Files";
+			path = "../Target Support Files/IGListKit";
 			sourceTree = "<group>";
 		};
-		38A7520C1EC9C6785CBA2925FFCE39CE /* Pods */ = {
+		3EBFA15031CD5B1D1F1A96C5FD338062 /* 1PasswordExtension */ = {
 			isa = PBXGroup;
 			children = (
-				FD2F33F3E973DC4B1B379C35683A9494 /* 1PasswordExtension */,
-				48CEAC6DF10D59B3637F1927A443F01F /* KeychainAccess */,
-				0B1A9052A0185A2F077D396F1D625285 /* Soundcloud */,
+				93B25D8E622460459B7ACE02BE1335D9 /* OnePasswordExtension.h */,
+				3E2768E941C9AC8458B5D6B9A889D327 /* OnePasswordExtension.m */,
+				EBD31F60737CA3BA193CD770664F7376 /* Resources */,
+				50D7D3F3C126F1C0E5E29BBC4608E77B /* Support Files */,
 			);
-			name = Pods;
+			name = 1PasswordExtension;
+			path = 1PasswordExtension;
 			sourceTree = "<group>";
 		};
-		48CEAC6DF10D59B3637F1927A443F01F /* KeychainAccess */ = {
+		427F49E9478984DF126E7CA731888104 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				D641023ACC084C7CD9D57420D5880FF3 /* Keychain.swift */,
-				094D73158F22DC2AF29E03272BAD5681 /* Support Files */,
-			);
-			name = KeychainAccess;
-			path = KeychainAccess;
-			sourceTree = "<group>";
-		};
-		4CAC1812C8A875C8FD2132635DACFC27 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E306389E9DBDB6E226189896C188F2E0 /* KeychainAccess.framework */,
-				DCE503E91C0E7D321DF605CC6BE5C3B5 /* OnePasswordExtension.framework */,
-				E1CAFCF9A925748299D2EE73C21748B1 /* OnePasswordExtensionResources.bundle */,
-				36A8CB69E5D258C37BEC0AB5782116CD /* Pods_PodcastPlayer.framework */,
-				299828809B036F4FEFD8671FB061A534 /* Soundcloud.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		7B69035F291B9CF148B61DFEBE13528B /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				2F0D4C3F3E4CF081EA4384C1EECDB3A0 /* Info.plist */,
-				D5AE653B565EA359B572148C8931345A /* Soundcloud.modulemap */,
-				55DBDC7F22B89AF76E8376F81A421C33 /* Soundcloud.xcconfig */,
-				C9FD539A187FF8028FF0824ABDC8C9EB /* Soundcloud-dummy.m */,
-				DC5A79C02C513BA7E57CAAAC909FB31D /* Soundcloud-prefix.pch */,
-				99D816DD3AA2CBB3E13059454C977FCE /* Soundcloud-umbrella.h */,
+				4BDC2CB47C1593988BCF0CB44E113B35 /* Info.plist */,
+				6322FEA8D08B01C09B48AB1A9267306A /* Soundcloud.modulemap */,
+				BB5ABA7CE965D7C9FBFF15B7EEFDA56D /* Soundcloud.xcconfig */,
+				BAB0D8A1AE442F9298B76F294BE241FB /* Soundcloud-dummy.m */,
+				EA74E452CC214215AD63292A9A53BB31 /* Soundcloud-prefix.pch */,
+				DD67EDE3F891A17B318A67E310A99369 /* Soundcloud-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Soundcloud";
+			sourceTree = "<group>";
+		};
+		50D7D3F3C126F1C0E5E29BBC4608E77B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5A1046193C2867782F161E4904E9A1C3 /* 1PasswordExtension.modulemap */,
+				65672449028F6FE86619B70084D68824 /* 1PasswordExtension.xcconfig */,
+				84BEF17CE81DF36B14576B70168F7E85 /* 1PasswordExtension-dummy.m */,
+				15D0B80740B30E0105654E3A41DC1D87 /* 1PasswordExtension-prefix.pch */,
+				AED72C0B59019082F6D7CAF4271832A8 /* 1PasswordExtension-umbrella.h */,
+				1736FC42042B1E7FF78EB651DC8C1305 /* Info.plist */,
+				ED69C81D476CB6F6D3DF8F9650B87821 /* ResourceBundle-OnePasswordExtensionResources-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/1PasswordExtension";
+			sourceTree = "<group>";
+		};
+		50F600392C5795E3C23641738DF969DA /* IGListKit */ = {
+			isa = PBXGroup;
+			children = (
+				99ECB878215AECA8BE36A6CF916A86F1 /* Default */,
+				9A21042A0256F8D168B01285905F0816 /* Diffing */,
+				2FA3DBEB326B7AAD7907FC3BA29BA1DD /* Support Files */,
+			);
+			name = IGListKit;
+			path = IGListKit;
+			sourceTree = "<group>";
+		};
+		69E8CA73730E24C5AF20255720AE099E /* Soundcloud */ = {
+			isa = PBXGroup;
+			children = (
+				F9590F45E13F25B5D21198BB9D58D846 /* Activity.swift */,
+				45B509B7D74C4494DB3F7EE45938958E /* APIResponse.swift */,
+				2DBE24D378B79D48F6A4C20CF06FEA72 /* App.swift */,
+				5B63CE8686D4C3976387978933081300 /* Comment.swift */,
+				7D41553E5B296E7F595B527C992719F7 /* DataExtension.swift */,
+				BF18EE03F07C1F6EF2E480B503AEE817 /* DictionaryExtension.swift */,
+				5E1F1FA7D1E5E87B9884C593D3833838 /* Enums.swift */,
+				D3D51D714B49EF5A6EAFCD8826EABBBF /* ImageURLs.swift */,
+				FCDE2AD21C72665F5F1B8AFAB6ADE039 /* Playlist.swift */,
+				A46A8FBB0A89575CA4DA6D5BBEE909B1 /* PlaylistRequest.swift */,
+				8F08F683B54CC05657C181FB944245C7 /* Request.swift */,
+				8D835D0521A05EAD884B4C1C9D27308E /* SearchQuery.swift */,
+				9796DA685D23AB188275FEA99E2B4258 /* SouncloudClient.swift */,
+				C3A33622116C6A9E92A58E921451E46E /* Soundcloud.swift */,
+				3EB94F23598FD294CDEACF85346BE0D3 /* SoundcloudWebViewController.swift */,
+				7DBB2F7168AC9EE0CBA4B53743F82352 /* StringExtension.swift */,
+				380E8FA766CC983265F8F8C6F1E770FC /* Track.swift */,
+				252D63EC920C22EDAC233DEDA9899F9D /* TrackRequest.swift */,
+				42C2330D1C6C00EA161983E3451DE2AE /* URLExtension.swift */,
+				847E98074BECB7748327A1003FCE90AF /* User.swift */,
+				DDC93A4EFCC81594C399942506DBB06A /* UserRequest.swift */,
+				427F49E9478984DF126E7CA731888104 /* Support Files */,
+			);
+			name = Soundcloud;
+			path = Soundcloud;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -324,25 +497,114 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				09562E1D9FF54D9C4FD123EECDA5782E /* Frameworks */,
-				38A7520C1EC9C6785CBA2925FFCE39CE /* Pods */,
-				4CAC1812C8A875C8FD2132635DACFC27 /* Products */,
+				DA17050179BD3537FFB6CEDA2A1CFA8A /* Pods */,
+				BF89E7A3BB120EEBCBD9BE374F3DEFF3 /* Products */,
 				FA6A149879BB81178E1CEB40CB6468A1 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		C3269BAC6652219EAACE110EB4AC3B4A /* Support Files */ = {
+		99ECB878215AECA8BE36A6CF916A86F1 /* Default */ = {
 			isa = PBXGroup;
 			children = (
-				B3C1F8E7302D7C144C148BADEC0D0208 /* 1PasswordExtension.modulemap */,
-				EA73B39C5363D9A981555375FFC580A9 /* 1PasswordExtension.xcconfig */,
-				FA2B62ACA770D8988B67576AE3669CC2 /* 1PasswordExtension-dummy.m */,
-				DFFACF70C8A454E7AC020AA4F5E991A1 /* 1PasswordExtension-prefix.pch */,
-				E7CE57B2A89A427A323A961E02AE4834 /* 1PasswordExtension-umbrella.h */,
-				5E20A4202EF87044894D69600A91B58C /* Info.plist */,
-				E388289451D53F4B0E0A151B2AB9C8DA /* ResourceBundle-OnePasswordExtensionResources-Info.plist */,
+				D1DD2944341EDF79531C12B4694B831F /* IGListAdapter.h */,
+				844C92CE4AC04262E765ADA0162CF11F /* IGListAdapter.m */,
+				75222668EC61680DE78E6F9E03D89A91 /* IGListAdapterDataSource.h */,
+				15623267F7F42F4F35C6695D8FDF0A63 /* IGListAdapterDelegate.h */,
+				5048ACF847EB824FDD6520C9B9EF4981 /* IGListAdapterInternal.h */,
+				2FB5F8C64A5217042F85B18242692F66 /* IGListAdapterProxy.h */,
+				F1F96BE2EC79991929B4D0604A3E7E74 /* IGListAdapterProxy.m */,
+				9AD6462533241208CA75BA3F3CB29498 /* IGListAdapterUpdater.h */,
+				DB0462B139007C9240CD0F010541262B /* IGListAdapterUpdater.m */,
+				776A213D13E81873E07F6D65CB67BDBE /* IGListAdapterUpdaterDelegate.h */,
+				2D217727C9D2067B8394D75E97AE8E88 /* IGListAdapterUpdaterInternal.h */,
+				E2EC0AB2C558CB1DA467AF30BC3103A6 /* IGListAssert.h */,
+				69DA93009FA9555B0490DF0545639148 /* IGListBatchUpdateData.h */,
+				1FD904D43DE4CF3B922B642F647406F9 /* IGListBatchUpdateData.mm */,
+				6A235165B5092C4AE412A4A3090D7D4C /* IGListCollectionContext.h */,
+				8257839DE106A5371E6F41D4ADB045C6 /* IGListCollectionView.h */,
+				B2F02E2B6815200EFFE3B4A34F2E4A2F /* IGListCollectionView.m */,
+				EF9D8A359A012F6B4A642CC168BBE331 /* IGListCompatibility.h */,
+				CF41A2975453D44539CC42B47CCCF7E1 /* IGListDiff.h */,
+				17E3EB15A5F4F20AEE46672221579666 /* IGListDiff.mm */,
+				E75E8CA0896E86403EA2677BC9F6B15C /* IGListDiffable.h */,
+				BAF6F78DA4454C8CBF20160CC8AFF4A5 /* IGListDiffKit.h */,
+				F163D0FFD147D4AF6A94F7992CC6810B /* IGListDisplayDelegate.h */,
+				8788C41E9760CA9D73528CDADBBA182E /* IGListDisplayHandler.h */,
+				E743B8952C2D58BBA018B8F68AF32F64 /* IGListDisplayHandler.m */,
+				D4A643F6EDE2B51A14CCCE3AEF0BEE90 /* IGListExperiments.h */,
+				321AA10FF3CCF74A975FDBB90BB003AF /* IGListGridCollectionViewLayout.h */,
+				77933B1A626B094ADA984E7214D78875 /* IGListGridCollectionViewLayout.m */,
+				BB7D4F00EDE124A393B56C1DBE547EF8 /* IGListIndexPathResult.h */,
+				354FED6C043FBD86A2C6FEDD27AF6D8C /* IGListIndexPathResult.m */,
+				CEE441DCB943D4AFBF45F13A3248E9AE /* IGListIndexPathResultInternal.h */,
+				8993A80A58A5C598C7BDD228E2A7CBFC /* IGListIndexSetResult.h */,
+				B3DB1657A8127A402777540F507506B7 /* IGListIndexSetResult.m */,
+				7B714C362FF32B713AEE7973612C1FC3 /* IGListIndexSetResultInternal.h */,
+				19A062DA84ECB34FCB33546CDEAF37C9 /* IGListKit.h */,
+				525E28F7918C93880868CFF870DEDC30 /* IGListMacros.h */,
+				A6623FF968F84A1871103440733C9F3B /* IGListMoveIndex.h */,
+				6E63B2D50DD6B29687108898AB99551B /* IGListMoveIndex.m */,
+				D4FA7023AAEE63610836CEB54B5E2833 /* IGListMoveIndexInternal.h */,
+				D7F7257EFD62ADD8BE4F755416457EB6 /* IGListMoveIndexPath.h */,
+				0070613565F96A7D672826819485C3A9 /* IGListMoveIndexPath.m */,
+				31F593BAD55B86E3BEEFF7BBF25D08BA /* IGListMoveIndexPathInternal.h */,
+				6C88E72FF951F14EA13005BF500FCC6A /* IGListReloadDataUpdater.h */,
+				361E85CE5FA1B66B2F414492C08C5975 /* IGListReloadDataUpdater.m */,
+				7ED85069C90AF6784864A2469BB4C36C /* IGListScrollDelegate.h */,
+				21D23BEC63ABCAB71773F8754E4527ED /* IGListSectionController.h */,
+				A022C489F06B27CF8F38EA1B91E502A3 /* IGListSectionController.m */,
+				BE85BCD0FD092A76D8F61F53F8ED4104 /* IGListSectionControllerInternal.h */,
+				052BE7A201177AD7CBEBEDDACE83A3DB /* IGListSectionMap.h */,
+				D321E2F6A5EDCADF47A07E886AA21975 /* IGListSectionMap.m */,
+				50D15F9606E15750803D718AA5041CA0 /* IGListSectionType.h */,
+				23227558DCB0FDF45527C9D64BAE497E /* IGListSingleSectionController.h */,
+				2A4FDB598DA487200BD2BA3995ABF46B /* IGListSingleSectionController.m */,
+				55FCFD4CE5B64BA5BA034653B09CD185 /* IGListStackedSectionController.h */,
+				70F92F4AF49F5DCF85DE2B05DB8C034D /* IGListStackedSectionController.m */,
+				3EC3EDFCB3C522D1E3AD73CB6F592923 /* IGListStackedSectionControllerInternal.h */,
+				3A35EDF4EB7C047FE46AC794C7C73586 /* IGListSupplementaryViewSource.h */,
+				416D629BC43220665E3AA6720060CB53 /* IGListUpdatingDelegate.h */,
+				81FCCE41C74F091E9A59655ED960F9D6 /* IGListWorkingRangeDelegate.h */,
+				602501E73F354B196C7C1A2E320DDB6C /* IGListWorkingRangeHandler.h */,
+				95D4761CFA25A30BDDFF5A6564171E59 /* IGListWorkingRangeHandler.mm */,
+				7894522C108A02E8EC35C60E8B5576EF /* NSNumber+IGListDiffable.h */,
+				E3A3F3E2FB7DD94A98449D47E235E283 /* NSNumber+IGListDiffable.m */,
+				D7746E0F02EDAE75DE1310024353F988 /* NSString+IGListDiffable.h */,
+				62C8A88A020309DA235F970E27A389D7 /* NSString+IGListDiffable.m */,
+				C9DBDFE80D2871AED10E4B11AC2EFDB5 /* UICollectionView+IGListBatchUpdateData.h */,
+				D1BB082E219E650C69CC33E43DDF6860 /* UICollectionView+IGListBatchUpdateData.m */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/1PasswordExtension";
+			name = Default;
+			sourceTree = "<group>";
+		};
+		9A21042A0256F8D168B01285905F0816 /* Diffing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Diffing;
+			sourceTree = "<group>";
+		};
+		B8BACE06D5496C50B63B003E68C60588 /* KeychainAccess */ = {
+			isa = PBXGroup;
+			children = (
+				981977FD3B13236482319D9E1E8A8794 /* Keychain.swift */,
+				2A57F96FCA78C098BFC80F2574AA4F18 /* Support Files */,
+			);
+			name = KeychainAccess;
+			path = KeychainAccess;
+			sourceTree = "<group>";
+		};
+		BF89E7A3BB120EEBCBD9BE374F3DEFF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25A04E6CDA63862DB546FA8663383843 /* IGListKit.framework */,
+				CDF9CCFF704215966046B1BA5C6C7522 /* KeychainAccess.framework */,
+				1A5CA5C320E91051A053E276F450679D /* OnePasswordExtension.framework */,
+				9C17AC2976A22228C99C7B239EAFB19B /* OnePasswordExtensionResources.bundle */,
+				39E4CC8070F84200A5E2DB2E616FDDFF /* Pods_PodcastPlayer.framework */,
+				601F0901055D1DB5A588F50EF9B220EE /* Soundcloud.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D125351BDE5783EE42FBF9B9C5F3689A /* Pods-PodcastPlayer */ = {
@@ -373,6 +635,25 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		DA17050179BD3537FFB6CEDA2A1CFA8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3EBFA15031CD5B1D1F1A96C5FD338062 /* 1PasswordExtension */,
+				50F600392C5795E3C23641738DF969DA /* IGListKit */,
+				B8BACE06D5496C50B63B003E68C60588 /* KeychainAccess */,
+				69E8CA73730E24C5AF20255720AE099E /* Soundcloud */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EBD31F60737CA3BA193CD770664F7376 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1BBE87A23BC734C7BF4508CA09F2854F /* 1Password.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		FA6A149879BB81178E1CEB40CB6468A1 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,27 +662,77 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		FD2F33F3E973DC4B1B379C35683A9494 /* 1PasswordExtension */ = {
-			isa = PBXGroup;
-			children = (
-				D3CE4DDDCDB2E1FAF1F451A78045B895 /* OnePasswordExtension.h */,
-				AFEC69B490C04056FDD6837ED166C451 /* OnePasswordExtension.m */,
-				0E50DD1A2E4E044E151E866E92B15837 /* Resources */,
-				C3269BAC6652219EAACE110EB4AC3B4A /* Support Files */,
-			);
-			name = 1PasswordExtension;
-			path = 1PasswordExtension;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		116C1332B587BDA8E78F716AD0FD4225 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B4E0AC02FB6C341F819083A9F80812E /* Pods-PodcastPlayer-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		218B0161933304F5B446D1E8C346DBD6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				377D4A936A6EC841AA6DD4C5998C4987 /* 1PasswordExtension-umbrella.h in Headers */,
 				7D5B99D8E7B0F7F66CAD2AF394A3817B /* OnePasswordExtension.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DCF84123E21FA17CC8B2B4DD3889838 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4595A94C05DA335670C4C339D3E8F18F /* IGListAdapter.h in Headers */,
+				5438615D1D8668DCE3ABC5F919128F9F /* IGListAdapterDataSource.h in Headers */,
+				77EE8338585D748347F6CA1249C27AB1 /* IGListAdapterDelegate.h in Headers */,
+				C53F0E50C23F032F4C8B1B40BA660200 /* IGListAdapterInternal.h in Headers */,
+				A15959B25AFDE97EC2EA5767D12F2F7A /* IGListAdapterProxy.h in Headers */,
+				C79BDF5389F4B9AD81E2C3B5A287EFA9 /* IGListAdapterUpdater.h in Headers */,
+				07CFFED3739668B8CDB6B7E2C50B9AC6 /* IGListAdapterUpdaterDelegate.h in Headers */,
+				14D8CC4DC6FE7B67AA3CBA0C6206F09B /* IGListAdapterUpdaterInternal.h in Headers */,
+				117EED0836A779372B15C3C7EA89BEBC /* IGListAssert.h in Headers */,
+				417E7733F3603B02A35B4779974999E1 /* IGListBatchUpdateData.h in Headers */,
+				D1E77053D0B0B25885B1943354910A28 /* IGListCollectionContext.h in Headers */,
+				F259C309F97DA818B0D54D98AD77FAA2 /* IGListCollectionView.h in Headers */,
+				745A5A905E4360E945F7DFEB1423B161 /* IGListCompatibility.h in Headers */,
+				0A3530212EF07C9859D099C193BE2E30 /* IGListDiff.h in Headers */,
+				90AB760B35956DA2016B4024B8F8912D /* IGListDiffable.h in Headers */,
+				75C5BADF0090FC6309B4561DBFD23EC1 /* IGListDiffKit.h in Headers */,
+				F2D8F4742BAF2B4EFA953359FE156D14 /* IGListDisplayDelegate.h in Headers */,
+				D909200FE75EF11A2A58F03EF4A54714 /* IGListDisplayHandler.h in Headers */,
+				5440478AFD733077C7912894075404E1 /* IGListExperiments.h in Headers */,
+				635CC8B77630D26AB0DE5AC7B8A148E1 /* IGListGridCollectionViewLayout.h in Headers */,
+				703A1896BD4B3CB3F73C4DAA410203A2 /* IGListIndexPathResult.h in Headers */,
+				2F2113E1C6D00DAC44F8D152487EDC4A /* IGListIndexPathResultInternal.h in Headers */,
+				36777A21A45EEBD796CA70FACCCDC3D5 /* IGListIndexSetResult.h in Headers */,
+				F82ECE6A6BC86560FDBDAEF374ACA751 /* IGListIndexSetResultInternal.h in Headers */,
+				9036CBEDCB02BA0067C051BF2EDAE8C7 /* IGListKit-umbrella.h in Headers */,
+				552F545AD1A7AA60B304B0C2E4D93402 /* IGListKit.h in Headers */,
+				14D9D1CBAEFD8BEA91166582129918AA /* IGListMacros.h in Headers */,
+				5CD9947BEA305F90CD98402293360819 /* IGListMoveIndex.h in Headers */,
+				E3E5BF4D653B35B2900929CF77FBE485 /* IGListMoveIndexInternal.h in Headers */,
+				834978BF35C41E7F71E8A636E0A91335 /* IGListMoveIndexPath.h in Headers */,
+				339BCF04EE714933721679C950AF7D84 /* IGListMoveIndexPathInternal.h in Headers */,
+				056C571AF8E633574D9550A0DFB51E2A /* IGListReloadDataUpdater.h in Headers */,
+				854AEAB2379C7AEFF1C779DF5309A3B9 /* IGListScrollDelegate.h in Headers */,
+				5FF42961704FA30D4705ED2FA979047E /* IGListSectionController.h in Headers */,
+				7F00048D3F693E301253F9A6CF52A0C5 /* IGListSectionControllerInternal.h in Headers */,
+				C64F37A6CB6F3349C0F7709387F088FA /* IGListSectionMap.h in Headers */,
+				C9003C07022E4D9E4C1408AC7CE919F2 /* IGListSectionType.h in Headers */,
+				811AF3AB5C1A965BF17E2B2476534860 /* IGListSingleSectionController.h in Headers */,
+				582174303410EA0F0354E43E3ACC9DBA /* IGListStackedSectionController.h in Headers */,
+				DD7E2AEC935E0F65FB77C3052870D8EB /* IGListStackedSectionControllerInternal.h in Headers */,
+				D930E442BDDBB93A63BDBC7F384ACD71 /* IGListSupplementaryViewSource.h in Headers */,
+				6075356DEB8120CA19F00C7093CD6A3F /* IGListUpdatingDelegate.h in Headers */,
+				E26BDE5212C83FCEF9B7B35D323DBC97 /* IGListWorkingRangeDelegate.h in Headers */,
+				63D05B8E96E508B3AD3F6CE743C8158F /* IGListWorkingRangeHandler.h in Headers */,
+				A481CB3C581E4AAD80D9CCDE3E28DF88 /* NSNumber+IGListDiffable.h in Headers */,
+				92E5B0A32A1CCE45FC6E9E40E5C5F516 /* NSString+IGListDiffable.h in Headers */,
+				8474B1DC6366E21E672DF3308E152B6F /* UICollectionView+IGListBatchUpdateData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,25 +744,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D6E5D5BEA5FE4A9C707451DF0D534BA1 /* Headers */ = {
+		C5CFC7DEFFEA45CA8E498FF7A6CEDC4D /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B18F120384B0442B945856E922A684A /* Soundcloud-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F3B9EAA91F87CA988CEEE26D39BCB3BC /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A9304A59047257A0C090138F32D510AE /* Pods-PodcastPlayer-umbrella.h in Headers */,
+				311660659F4D4D409ED0E0E952A4BA3E /* Soundcloud-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		536CBC3066612855C38EF63149A322CC /* Soundcloud */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25CE6BED049D01A1731A96504C5363CD /* Build configuration list for PBXNativeTarget "Soundcloud" */;
+			buildPhases = (
+				EB0959931A290D89E87B2E32B5ECF872 /* Sources */,
+				0C52B7DC527493A9B20768C4CBBB4BB1 /* Frameworks */,
+				C5CFC7DEFFEA45CA8E498FF7A6CEDC4D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA1BC4FEDFF982AC68A476C43D02233C /* PBXTargetDependency */,
+				022E574AD7034FEC2E760B12B5F5E29C /* PBXTargetDependency */,
+			);
+			name = Soundcloud;
+			productName = Soundcloud;
+			productReference = 601F0901055D1DB5A588F50EF9B220EE /* Soundcloud.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8905DB6521F8FDC34752B69DEE3FDEB7 /* KeychainAccess */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9FA048BBEA093CDB3F69C5B36929A5AF /* Build configuration list for PBXNativeTarget "KeychainAccess" */;
@@ -446,46 +788,45 @@
 			);
 			name = KeychainAccess;
 			productName = KeychainAccess;
-			productReference = E306389E9DBDB6E226189896C188F2E0 /* KeychainAccess.framework */;
+			productReference = CDF9CCFF704215966046B1BA5C6C7522 /* KeychainAccess.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		93F97ED259E7FCA3749F6BC0181D6041 /* Pods-PodcastPlayer */ = {
+		9CE1FC57ED556647A09C53464FF9EB5A /* IGListKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F5FDC1010C9A3FA1ED311C59AF7152E3 /* Build configuration list for PBXNativeTarget "Pods-PodcastPlayer" */;
+			buildConfigurationList = 8DADDAFB45D948BB78A504DFD61C6FB3 /* Build configuration list for PBXNativeTarget "IGListKit" */;
 			buildPhases = (
-				0DDF49DE106149BC4C5DB9E70E22BF2D /* Sources */,
-				3AC3075A880038959E4EFF70880A82CE /* Frameworks */,
-				F3B9EAA91F87CA988CEEE26D39BCB3BC /* Headers */,
+				D2B732627B2EA08CBA14FEAC96DBF7C8 /* Sources */,
+				676279F9D230F11E09570AE3DA250FC3 /* Frameworks */,
+				5DCF84123E21FA17CC8B2B4DD3889838 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9E464321183250FDD6D5DA111DE0B46A /* PBXTargetDependency */,
-				49A9D44D0F395CF07CE0B09904448E21 /* PBXTargetDependency */,
-				C979FCA1DD6D2F21B18EF1841E8E14B5 /* PBXTargetDependency */,
+			);
+			name = IGListKit;
+			productName = IGListKit;
+			productReference = 25A04E6CDA63862DB546FA8663383843 /* IGListKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CEB4C1DBD70F756E28B9E99BC7B84E98 /* Pods-PodcastPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98F4FF873D312C614B04DF0F5BD0BE03 /* Build configuration list for PBXNativeTarget "Pods-PodcastPlayer" */;
+			buildPhases = (
+				65E241DA1F19E243F5264D4743459C18 /* Sources */,
+				529C79DB4001EC2B69F82FA017884CC1 /* Frameworks */,
+				116C1332B587BDA8E78F716AD0FD4225 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				521A801480D000868C9E2E1E59D2B02E /* PBXTargetDependency */,
+				75CF498CB69D75A8BD26E0AB221FF0A6 /* PBXTargetDependency */,
+				2D2920E3A26862088C32AE4DCDB754ED /* PBXTargetDependency */,
+				31D4FA19371E90B3109E02872A1682FF /* PBXTargetDependency */,
 			);
 			name = "Pods-PodcastPlayer";
 			productName = "Pods-PodcastPlayer";
-			productReference = 36A8CB69E5D258C37BEC0AB5782116CD /* Pods_PodcastPlayer.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		A5ACA9630E5F9AB7F9E0D5937DD82083 /* Soundcloud */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DC4EDCD94BB6E889C1916ABBD1AFDE65 /* Build configuration list for PBXNativeTarget "Soundcloud" */;
-			buildPhases = (
-				35D78B96FDBA170759BAF5D517EB3D55 /* Sources */,
-				CBDF869CFBF66C6F099EAA1DC28758F7 /* Frameworks */,
-				D6E5D5BEA5FE4A9C707451DF0D534BA1 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5737B9E0BEBE47D1DD46E3C9BECD8E35 /* PBXTargetDependency */,
-				801EB94D0AD08810E7F384D0325800E1 /* PBXTargetDependency */,
-			);
-			name = Soundcloud;
-			productName = Soundcloud;
-			productReference = 299828809B036F4FEFD8671FB061A534 /* Soundcloud.framework */;
+			productReference = 39E4CC8070F84200A5E2DB2E616FDDFF /* Pods_PodcastPlayer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D228286947C78954173BBDCC39A652CD /* 1PasswordExtension-OnePasswordExtensionResources */ = {
@@ -502,7 +843,7 @@
 			);
 			name = "1PasswordExtension-OnePasswordExtensionResources";
 			productName = "1PasswordExtension-OnePasswordExtensionResources";
-			productReference = E1CAFCF9A925748299D2EE73C21748B1 /* OnePasswordExtensionResources.bundle */;
+			productReference = 9C17AC2976A22228C99C7B239EAFB19B /* OnePasswordExtensionResources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		E1B7EC9083F43091092793A096E99914 /* 1PasswordExtension */ = {
@@ -521,7 +862,7 @@
 			);
 			name = 1PasswordExtension;
 			productName = 1PasswordExtension;
-			productReference = DCE503E91C0E7D321DF605CC6BE5C3B5 /* OnePasswordExtension.framework */;
+			productReference = 1A5CA5C320E91051A053E276F450679D /* OnePasswordExtension.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -541,15 +882,16 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 4CAC1812C8A875C8FD2132635DACFC27 /* Products */;
+			productRefGroup = BF89E7A3BB120EEBCBD9BE374F3DEFF3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				E1B7EC9083F43091092793A096E99914 /* 1PasswordExtension */,
 				D228286947C78954173BBDCC39A652CD /* 1PasswordExtension-OnePasswordExtensionResources */,
+				9CE1FC57ED556647A09C53464FF9EB5A /* IGListKit */,
 				8905DB6521F8FDC34752B69DEE3FDEB7 /* KeychainAccess */,
-				93F97ED259E7FCA3749F6BC0181D6041 /* Pods-PodcastPlayer */,
-				A5ACA9630E5F9AB7F9E0D5937DD82083 /* Soundcloud */,
+				CEB4C1DBD70F756E28B9E99BC7B84E98 /* Pods-PodcastPlayer */,
+				536CBC3066612855C38EF63149A322CC /* Soundcloud */,
 			);
 		};
 /* End PBXProject section */
@@ -574,14 +916,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0DDF49DE106149BC4C5DB9E70E22BF2D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5486E17F4FA73471F7A0B0ABD0590180 /* Pods-PodcastPlayer-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3179A2C2A84947BB73D671345F2C1319 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -591,32 +925,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		35D78B96FDBA170759BAF5D517EB3D55 /* Sources */ = {
+		65E241DA1F19E243F5264D4743459C18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				369CA5935D410435E1EC667B089596CE /* Activity.swift in Sources */,
-				D195B000B2061E2C75CD25CC6D0A31E1 /* APIResponse.swift in Sources */,
-				36C9D6E8B894E5CAF5E2E9D3963C40B7 /* App.swift in Sources */,
-				424F4E5963CD43F2EFE80682A162E9AE /* Comment.swift in Sources */,
-				24888D66E5EAF4EB6E7E8D233E879DE8 /* DataExtension.swift in Sources */,
-				021A5067A757FA6D698F00CCCDD09720 /* DictionaryExtension.swift in Sources */,
-				0068518424BBECD5B17EE19447E0FE1A /* Enums.swift in Sources */,
-				08FC37D9251164A352494881C35FD4BD /* ImageURLs.swift in Sources */,
-				E674208D0877C088E3F581736B2F3A85 /* Playlist.swift in Sources */,
-				E1A0276755FC536CE8B02451B48E3099 /* PlaylistRequest.swift in Sources */,
-				C83E4FA068B53A78E41CA85AB39392AB /* Request.swift in Sources */,
-				C123714F5E49FC8724E2068F92A33C4F /* SearchQuery.swift in Sources */,
-				95E4B1080E18D7DF62E91FA9DD449FE1 /* SouncloudClient.swift in Sources */,
-				9ADBFD5621CA21C1F9095546AC2CF7F0 /* Soundcloud-dummy.m in Sources */,
-				9957A70EF3B84A0302E5725918D408BC /* Soundcloud.swift in Sources */,
-				147AEB5962C9236FECDA50FE2800E085 /* SoundcloudWebViewController.swift in Sources */,
-				2ABAB227FB255DD27A1693CFCC63743C /* StringExtension.swift in Sources */,
-				4354C5942EDE659E33F8FF72B39A7646 /* Track.swift in Sources */,
-				F2AAF26303894FAD3FF258A915EF4CB2 /* TrackRequest.swift in Sources */,
-				EF35548352B0EEE56CF82DB24579ABA9 /* URLExtension.swift in Sources */,
-				D8A939BD615FC8B0B2C914647ADC389E /* User.swift in Sources */,
-				7EF05A6961B8A4B335BE394744F10A0A /* UserRequest.swift in Sources */,
+				8056A5C8EB76BB3AC8A661DFF7E30DAF /* Pods-PodcastPlayer-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +939,64 @@
 			files = (
 				A967960EE4C1C1AF8A3FC3555BABDC58 /* Keychain.swift in Sources */,
 				D823270043210DD356225D7700FAF3E4 /* KeychainAccess-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2B732627B2EA08CBA14FEAC96DBF7C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78F143CF42A9035E838F2B900A4C3E80 /* IGListAdapter.m in Sources */,
+				F4BA9FA0BB119BF592CB48A0DFFC24D1 /* IGListAdapterProxy.m in Sources */,
+				6D1254500A5ED49C8D6A5A5F138F2DED /* IGListAdapterUpdater.m in Sources */,
+				126BA097C6A36EF900C81A2C232A6F9A /* IGListBatchUpdateData.mm in Sources */,
+				6CBEB65ADE55C8C28F8DFED2BE1E9697 /* IGListCollectionView.m in Sources */,
+				DCFE90D4EDC843123F66DFFBDCB18A7E /* IGListDiff.mm in Sources */,
+				3EDBFE34DEDB20D562AFD4CE4BB171EE /* IGListDisplayHandler.m in Sources */,
+				2FE82EE470FB27CD0532758F8007323B /* IGListGridCollectionViewLayout.m in Sources */,
+				905812102EDB02DF0D33367E4A4E2601 /* IGListIndexPathResult.m in Sources */,
+				D3E684A70A1C747CA914A277599E199C /* IGListIndexSetResult.m in Sources */,
+				BD9108B59C7A3C7B343FB6173BE4A0AD /* IGListKit-dummy.m in Sources */,
+				B8D1E1C695F9C1C48A6C4A22F1A0583A /* IGListMoveIndex.m in Sources */,
+				24F16C6148C7A2A8A84F15429C98E8EE /* IGListMoveIndexPath.m in Sources */,
+				BB0BC4C258123F13C9C25915A2DE9845 /* IGListReloadDataUpdater.m in Sources */,
+				B70CE294922D8F0FECF8B38F993EA788 /* IGListSectionController.m in Sources */,
+				121AB85E0D35FCC3991CB04548726803 /* IGListSectionMap.m in Sources */,
+				599FE90DFE5595F98E3EF9486914E928 /* IGListSingleSectionController.m in Sources */,
+				16A16FA729A86227A5EA9FC02CEAF130 /* IGListStackedSectionController.m in Sources */,
+				AAEEBAF87DA581C4B89F9B280EED196F /* IGListWorkingRangeHandler.mm in Sources */,
+				DF6D14394D19505EEAD6A24517CE4419 /* NSNumber+IGListDiffable.m in Sources */,
+				D7AF08A6B540404647B64F38B14E0C14 /* NSString+IGListDiffable.m in Sources */,
+				96430F594BFC145867C96B1AD5BF746E /* UICollectionView+IGListBatchUpdateData.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB0959931A290D89E87B2E32B5ECF872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				165C5AABDD2EEE6116ABE530E9B80B1E /* Activity.swift in Sources */,
+				FA75D9CA9287E6DC30CE095BA1674D2B /* APIResponse.swift in Sources */,
+				08187D5FAA766FE1AA3396169E34F453 /* App.swift in Sources */,
+				16E5F59CB1A79025A452208DF0635CE4 /* Comment.swift in Sources */,
+				DF109D9AFDA83F8383A25EFDBEBDABA6 /* DataExtension.swift in Sources */,
+				23EDB32217BA7836A9DCF0621CA2A7BC /* DictionaryExtension.swift in Sources */,
+				C3658435E913B1FD3A6FF4F77AA06612 /* Enums.swift in Sources */,
+				324C37D6EBD411C536422252ED276EC0 /* ImageURLs.swift in Sources */,
+				A68EAD390163A48DDC0277E17A48200B /* Playlist.swift in Sources */,
+				EB1A9A7913C95F95741B18970E8D4612 /* PlaylistRequest.swift in Sources */,
+				C61C350D22CF4239310015F391A41F32 /* Request.swift in Sources */,
+				078020D4632D6EBB3CC0108744B11435 /* SearchQuery.swift in Sources */,
+				7AD06D2B148ACE729DA93D38BE81FF78 /* SouncloudClient.swift in Sources */,
+				61E781CB00939739252B3BF830DF5433 /* Soundcloud-dummy.m in Sources */,
+				70A5FF7EFA7391CD45057A7CB1F47384 /* Soundcloud.swift in Sources */,
+				B84BA70B9C90E960E45851A3DD7C5E60 /* SoundcloudWebViewController.swift in Sources */,
+				B43B60C55BF231C5BA84B7E0A99C1FC6 /* StringExtension.swift in Sources */,
+				95C137A25605D9901AFC77BFA3619EB9 /* Track.swift in Sources */,
+				2B6A2EEDF97E68351DAC9E726BBE8B43 /* TrackRequest.swift in Sources */,
+				64A55DD167D9AE19EAE9763C5C46CB1B /* URLExtension.swift in Sources */,
+				9CE3DAB66A4E88312B5C907DD0B18571 /* User.swift in Sources */,
+				E25AA5D1F848507858471034AC879EA7 /* UserRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,41 +1010,47 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		022E574AD7034FEC2E760B12B5F5E29C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KeychainAccess;
+			target = 8905DB6521F8FDC34752B69DEE3FDEB7 /* KeychainAccess */;
+			targetProxy = 74E60072798624AF03201A198D13D1C4 /* PBXContainerItemProxy */;
+		};
 		247A975D210F256C88FAA21A84EC583F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "1PasswordExtension-OnePasswordExtensionResources";
 			target = D228286947C78954173BBDCC39A652CD /* 1PasswordExtension-OnePasswordExtensionResources */;
 			targetProxy = 45A2F739B699AB8EEE3A06EAD15EDDC5 /* PBXContainerItemProxy */;
 		};
-		49A9D44D0F395CF07CE0B09904448E21 /* PBXTargetDependency */ = {
+		2D2920E3A26862088C32AE4DCDB754ED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = KeychainAccess;
 			target = 8905DB6521F8FDC34752B69DEE3FDEB7 /* KeychainAccess */;
-			targetProxy = 4D574B6EDA2AD166E4BA46AD9D0E6496 /* PBXContainerItemProxy */;
+			targetProxy = DF8E3A8623F977637B28AED3754F28DE /* PBXContainerItemProxy */;
 		};
-		5737B9E0BEBE47D1DD46E3C9BECD8E35 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = 1PasswordExtension;
-			target = E1B7EC9083F43091092793A096E99914 /* 1PasswordExtension */;
-			targetProxy = 2C84CAF637C9F5F40FFF96D5CA554CA1 /* PBXContainerItemProxy */;
-		};
-		801EB94D0AD08810E7F384D0325800E1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = KeychainAccess;
-			target = 8905DB6521F8FDC34752B69DEE3FDEB7 /* KeychainAccess */;
-			targetProxy = 576D5BB9DF2D901D29107EF7CB0F317A /* PBXContainerItemProxy */;
-		};
-		9E464321183250FDD6D5DA111DE0B46A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = 1PasswordExtension;
-			target = E1B7EC9083F43091092793A096E99914 /* 1PasswordExtension */;
-			targetProxy = 2B8281B9A2E8C7C28C677A0583F63656 /* PBXContainerItemProxy */;
-		};
-		C979FCA1DD6D2F21B18EF1841E8E14B5 /* PBXTargetDependency */ = {
+		31D4FA19371E90B3109E02872A1682FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Soundcloud;
-			target = A5ACA9630E5F9AB7F9E0D5937DD82083 /* Soundcloud */;
-			targetProxy = B28BAC3D205D58DED47AD0C08C96B9BA /* PBXContainerItemProxy */;
+			target = 536CBC3066612855C38EF63149A322CC /* Soundcloud */;
+			targetProxy = 3D51E27F8D68397CA35CF266C4A2BD9E /* PBXContainerItemProxy */;
+		};
+		521A801480D000868C9E2E1E59D2B02E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = 1PasswordExtension;
+			target = E1B7EC9083F43091092793A096E99914 /* 1PasswordExtension */;
+			targetProxy = 162B759EB051966894392AF8DAF905D2 /* PBXContainerItemProxy */;
+		};
+		75CF498CB69D75A8BD26E0AB221FF0A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IGListKit;
+			target = 9CE1FC57ED556647A09C53464FF9EB5A /* IGListKit */;
+			targetProxy = B178C6EDA0C5E38E72F01284CC212462 /* PBXContainerItemProxy */;
+		};
+		CA1BC4FEDFF982AC68A476C43D02233C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = 1PasswordExtension;
+			target = E1B7EC9083F43091092793A096E99914 /* 1PasswordExtension */;
+			targetProxy = 7CA019CBBA2504712150F5A170EF06A0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -722,7 +1099,7 @@
 			};
 			name = Debug;
 		};
-		24077121D26A3076D3B2482ACCCA7108 /* Debug */ = {
+		1E10296C98F8F52A224A7CF1D529BE1B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7FE04A0C946682AA7680489402C5FB5 /* Pods-PodcastPlayer.debug.xcconfig */;
 			buildSettings = {
@@ -758,9 +1135,9 @@
 			};
 			name = Debug;
 		};
-		2E2B98A72C67BC4E22BB11E27141D8B7 /* Release */ = {
+		281D0695CF54ACC9B2F0B02FAB56CE33 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55DBDC7F22B89AF76E8376F81A421C33 /* Soundcloud.xcconfig */;
+			baseConfigurationReference = 613DBCE4F180AA95EC155B90D7002A5F /* IGListKit.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -773,14 +1150,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Soundcloud/Soundcloud-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Soundcloud/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/IGListKit/IGListKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/IGListKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Soundcloud/Soundcloud.modulemap";
+				MODULEMAP_FILE = "Target Support Files/IGListKit/IGListKit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = Soundcloud;
+				PRODUCT_NAME = IGListKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -790,9 +1167,41 @@
 			};
 			name = Release;
 		};
+		29A16AF1CB535D4EC742DDC35A56F5AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 613DBCE4F180AA95EC155B90D7002A5F /* IGListKit.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/IGListKit/IGListKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/IGListKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/IGListKit/IGListKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = IGListKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		3DF179FB9FD49558E5A05DDE95B2AD94 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DC09AAA2200EFC766B9538342DE5704 /* KeychainAccess.xcconfig */;
+			baseConfigurationReference = F0E6B1D3DC099484ACE78FA7E038AF40 /* KeychainAccess.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -825,7 +1234,7 @@
 		};
 		5C595895E7E787E32BD8CE7B552D6CC8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA73B39C5363D9A981555375FFC580A9 /* 1PasswordExtension.xcconfig */;
+			baseConfigurationReference = 65672449028F6FE86619B70084D68824 /* 1PasswordExtension.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/1PasswordExtension";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -840,9 +1249,9 @@
 			};
 			name = Release;
 		};
-		73FD37C4CEF216654D0B12EB98EA4153 /* Debug */ = {
+		81DC2C883A71CD9CC318B9DFE47C52C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55DBDC7F22B89AF76E8376F81A421C33 /* Soundcloud.xcconfig */;
+			baseConfigurationReference = BB5ABA7CE965D7C9FBFF15B7EEFDA56D /* Soundcloud.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -875,7 +1284,7 @@
 		};
 		83A2742AC32BC2E3AEB154627E10AF73 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DC09AAA2200EFC766B9538342DE5704 /* KeychainAccess.xcconfig */;
+			baseConfigurationReference = F0E6B1D3DC099484ACE78FA7E038AF40 /* KeychainAccess.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -907,7 +1316,7 @@
 		};
 		84B612E8C008A64E10DA73AC056A11A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA73B39C5363D9A981555375FFC580A9 /* 1PasswordExtension.xcconfig */;
+			baseConfigurationReference = 65672449028F6FE86619B70084D68824 /* 1PasswordExtension.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -979,7 +1388,7 @@
 		};
 		A32E899BCB8C20F3D4C3E6FAE50395BC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA73B39C5363D9A981555375FFC580A9 /* 1PasswordExtension.xcconfig */;
+			baseConfigurationReference = 65672449028F6FE86619B70084D68824 /* 1PasswordExtension.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1009,7 +1418,56 @@
 			};
 			name = Release;
 		};
-		B7183A6908EC7DB3F3A89369CBCB8280 /* Release */ = {
+		BC93B30DDCAF887A8DCA09F6A474E9F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB5ABA7CE965D7C9FBFF15B7EEFDA56D /* Soundcloud.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Soundcloud/Soundcloud-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Soundcloud/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Soundcloud/Soundcloud.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Soundcloud;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C5E07BA24795B767A1C2067A47874839 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65672449028F6FE86619B70084D68824 /* 1PasswordExtension.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/1PasswordExtension";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/1PasswordExtension/ResourceBundle-OnePasswordExtensionResources-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = OnePasswordExtensionResources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		ECB16922618966FC45E2ECA5B454B4C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2D66D02331D6C908E80D919EF2A7F9B2 /* Pods-PodcastPlayer.release.xcconfig */;
 			buildSettings = {
@@ -1044,31 +1502,41 @@
 			};
 			name = Release;
 		};
-		C5E07BA24795B767A1C2067A47874839 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA73B39C5363D9A981555375FFC580A9 /* 1PasswordExtension.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/1PasswordExtension";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/1PasswordExtension/ResourceBundle-OnePasswordExtensionResources-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = OnePasswordExtensionResources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		25CE6BED049D01A1731A96504C5363CD /* Build configuration list for PBXNativeTarget "Soundcloud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81DC2C883A71CD9CC318B9DFE47C52C4 /* Debug */,
+				BC93B30DDCAF887A8DCA09F6A474E9F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13E96A645A77DAD1FD4F541F18F5DDBF /* Debug */,
 				862AF3139CD84E18D34FAF2F43CD0DA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DADDAFB45D948BB78A504DFD61C6FB3 /* Build configuration list for PBXNativeTarget "IGListKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29A16AF1CB535D4EC742DDC35A56F5AC /* Debug */,
+				281D0695CF54ACC9B2F0B02FAB56CE33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		98F4FF873D312C614B04DF0F5BD0BE03 /* Build configuration list for PBXNativeTarget "Pods-PodcastPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E10296C98F8F52A224A7CF1D529BE1B /* Debug */,
+				ECB16922618966FC45E2ECA5B454B4C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1091,29 +1559,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC4EDCD94BB6E889C1916ABBD1AFDE65 /* Build configuration list for PBXNativeTarget "Soundcloud" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				73FD37C4CEF216654D0B12EB98EA4153 /* Debug */,
-				2E2B98A72C67BC4E22BB11E27141D8B7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E5F48615C67F85C0B1F4B17E09846E00 /* Build configuration list for PBXNativeTarget "1PasswordExtension-OnePasswordExtensionResources" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C5E07BA24795B767A1C2067A47874839 /* Debug */,
 				5C595895E7E787E32BD8CE7B552D6CC8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F5FDC1010C9A3FA1ED311C59AF7152E3 /* Build configuration list for PBXNativeTarget "Pods-PodcastPlayer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				24077121D26A3076D3B2482ACCCA7108 /* Debug */,
-				B7183A6908EC7DB3F3A89369CBCB8280 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -37,4 +37,11 @@ class PlayerToolbar:UIView{
         
     }
     
+    func sizeFit() -> CGSize{
+        var compressedSize = UILayoutFittingCompressedSize
+        compressedSize.width = UIScreen.main.bounds.width
+        let sized = self.systemLayoutSizeFitting(compressedSize)
+        return sized
+    }
+    
 }

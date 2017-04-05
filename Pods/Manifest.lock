@@ -1,18 +1,25 @@
 PODS:
   - 1PasswordExtension (1.8.4)
+  - IGListKit (2.1.0):
+    - IGListKit/Default (= 2.1.0)
+  - IGListKit/Default (2.1.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (2.1.0)
   - KeychainAccess (3.0.1)
   - Soundcloud (1.1.0):
     - 1PasswordExtension (~> 1.8.3)
     - KeychainAccess (~> 3.0)
 
 DEPENDENCIES:
+  - IGListKit
   - Soundcloud
 
 SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
+  IGListKit: b826c68ef7a4ae1626c09d4d3e1ea7a169e6c36e
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   Soundcloud: 476ba41826b4968a963048e76303056dbe529b64
 
-PODFILE CHECKSUM: 77e2b7dc291000b186742ca9da4d5382d7943230
+PODFILE CHECKSUM: e77687bd35675007e28a2f62bbe432fe3b80a6b9
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1.beta.1
