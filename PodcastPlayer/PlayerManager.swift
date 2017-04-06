@@ -46,6 +46,7 @@ class PlayerManager: NSObject {
     public static let BackgroundPolicy:String = "Background_Policy"
     var player:AVPlayer!
     var playerControls:BasePlayerControlView?
+    var scrubbingRate : Float!
     
     var currentPlayerItemDuration:CMTime{
         get{
@@ -55,10 +56,7 @@ class PlayerManager: NSObject {
             return self.player.currentItem!.duration
         }
     }
-    
-    
-   
-    
+
     
     required init(playerAttributes:Dictionary<String,Any>?){
         super.init()
@@ -90,6 +88,7 @@ class PlayerManager: NSObject {
     
     func addObservers(){
         self.playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+        
     }
     
     func removeObservers(){
@@ -101,7 +100,7 @@ class PlayerManager: NSObject {
     
     class func enableBackgroundPlay(){
         do{
-          try AVAudioSession.sharedInstance().setMode(AVAudioSessionModeMoviePlayback)
+          try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         }
         catch let avError{
             print(avError)
@@ -110,23 +109,26 @@ class PlayerManager: NSObject {
     
     func initTimeObserver(){
         
-        
+        var interval = 0.5
         //make the callback fire every half seconds
         let playerDuration = self.currentPlayerItemDuration
         
         if playerDuration == kCMTimeInvalid{
             return
         }
-        
         // fire every half second. Ideally, 0.5 * factor. Factor = seekWidth/itemDuration
-        let interval = 0.5
+        if let seekWidth = playerControls?.sizeFit().width{
+            if playerDuration.seconds.isFinite{
+                interval = 0.5 * playerDuration.seconds / Double(seekWidth)
+            }
+        }
         
-        timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: interval, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: _timeObserverQueue) { (time) in
+        timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: interval, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: timeObserverQueue) { (time) in
             self.playerControls?.updateTime(displayTime: formatTimeFromSeconds(seconds: CMTimeGetSeconds(time)))
             self.syncScrubber()
         }
+        
     }
-    
     
     func syncScrubber(){
         //update seeker position as music plays
@@ -146,7 +148,6 @@ class PlayerManager: NSObject {
             playerControls!.setScaleValue = Float((maximumValue - minimumValue) * currentTime/(durationSeconds + minimumValue))
         }
     }
-    
     
     func deinitTimeObserver(){
         if timeObserver != nil{
@@ -199,15 +200,84 @@ extension PlayerManager:PlayerControlActionProtocol{
         
     }
     
-    func didClickOnPlay(control: PlayerControlActionProtocol) {
-        
+    func didClickOnPlay(control: PlayerControlActionProtocol,isPlaying playingValue:@escaping (Bool) -> ()) {
+        if self.player.isPlaying{
+            playingValue(true)
+            self.player.pause()
+        }else{
+            playingValue(false)
+            self.player.play()
+        }
     }
     
     func didClickOnPrev(control: PlayerControlActionProtocol) {
         
     }
+    
+    /* The user is dragging the movie controller thumb to scrub through the movie. */
+    func beginScrubbing() {
+        scrubbingRate = self.player.rate
+        self.player.rate = 0.0
+        self.removeObservers()
+
+    }
+    
+    /* The user has released the movie thumb control to stop scrubbing through the movie. */
+    func endScrubbing() {
+        var tolerance: Double = 0.5
+        if let _ = timeObserver{
+            let playerItemDuration = self.currentPlayerItemDuration
+            if playerItemDuration == kCMTimeInvalid{
+                return
+            }
+            let durationSeconds = playerItemDuration.seconds
+            if durationSeconds.isFinite{
+                if let width = self.playerControls?.sizeFit().width{
+                    tolerance = 0.5 * durationSeconds/Double(width)
+                }
+            }
+            
+            timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: tolerance, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: timeObserverQueue, using: { (time) in
+                self.syncScrubber()
+            })
+            
+        }
+        if scrubbingRate != nil{
+            self.player.rate = scrubbingRate
+            scrubbingRate = 0.0
+        }
+    }
+
+    /* Set the player current time to match the scrubber position. */
+    func scrub(isSeeking seekValue:@escaping (Bool) -> ()) {
+        
+        let playerItemDuration = self.currentPlayerItemDuration
+        if playerItemDuration == kCMTimeInvalid{
+            return
+        }
+        let durationSeconds = playerItemDuration.seconds
+        if durationSeconds.isFinite{
+            let minimumValue = Float64(self.playerControls!.minimumScaleValue)
+            let maximumValue = Float64(self.playerControls!.maximumScaleValue)
+            let value = Float64(self.playerControls!.setScaleValue)
+            
+            let time = durationSeconds * (value - minimumValue)/(maximumValue - minimumValue)
+            self.player.seek(to: CMTimeMakeWithSeconds(time, CMTimeScale.init(NSEC_PER_SEC)), completionHandler: { (finished) in
+                self.timeObserverQueue.async {
+                    seekValue(false)
+                }
+            })
+        }
+        
+        
+    }
 }
 
+extension AVPlayer {
+    var isPlaying: Bool {
+        return rate != 0 && error == nil
+    }
+}
 
 
 

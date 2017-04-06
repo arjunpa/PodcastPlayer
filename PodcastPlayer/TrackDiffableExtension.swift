@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Soundcloud
 import IGListKit
 
 extension NSObject:IGListDiffable{
