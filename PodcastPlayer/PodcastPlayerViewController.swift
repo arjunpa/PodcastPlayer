@@ -12,13 +12,24 @@ import IGListKit
 
 
 class PodcastPlayerViewController: BaseViewController {
-
     
+    var tracks:[TrackWrapper] = []
+    @IBOutlet weak var collection_view:IGListCollectionView!
+    lazy var igAdaptor:IGListAdapter = {
+        return IGListAdapter.init(updater: IGListAdapterUpdater.init(), viewController: self, workingRangeSize: 0)
+    }()
     required init(_ qtObject:QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName:String?, bundle:Bundle?){
         super.init(qtObject, nibName: nibName, bundle: bundle)
         self.configureSCClient()
     }
     
+    
+    func configurCollectionView(){
+        self.collection_view.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).isActive = true
+        self.collection_view.collectionViewLayout = UICollectionViewFlowLayout()
+        igAdaptor.collectionView = self.collection_view
+        igAdaptor.dataSource = self
+    }
     
     func configureSCClient(){
         SoundcloudClient.clientSecret = "esv5NccmUd0wRgyFgUojqMiNBwM9nZhl"
@@ -29,8 +40,16 @@ class PodcastPlayerViewController: BaseViewController {
             .queryString("ed sheeran"),
             .types([TrackType.live, TrackType.demo])
         ]
-        Track.search(queries: queries) { (response:PaginatedAPIResponse<Track>) in
-            print(response.response.result)
+        Track.search(queries: queries) {[weak self] (response:PaginatedAPIResponse<Track>) in
+            
+            guard let weakSelf = self else{return}
+           let tracksd = response.response.result ?? []
+            weakSelf.tracks = tracksd.map({ (track:Track) -> TrackWrapper in
+                return TrackWrapper.init(track: track)
+            })
+            DispatchQueue.main.async(execute: { 
+                self?.igAdaptor.reloadData(completion: nil)
+            })
         }
     }
     
@@ -40,6 +59,7 @@ class PodcastPlayerViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configurCollectionView()
         // Do any additional setup after loading the view.
     }
 
@@ -66,4 +86,15 @@ class PodcastPlayerViewController: BaseViewController {
     }
     */
 
+}
+extension PodcastPlayerViewController:IGListAdapterDataSource{
+    func objects(for listAdapter: IGListAdapter) -> [IGListDiffable] {
+        return self.tracks
+    }
+    func listAdapter(_ listAdapter: IGListAdapter, sectionControllerFor object: Any) -> IGListSectionController {
+        return TracksSectionController.init()
+    }
+    func emptyView(for listAdapter: IGListAdapter) -> UIView? {
+        return nil
+    }
 }

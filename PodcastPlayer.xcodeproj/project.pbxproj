@@ -21,6 +21,12 @@
 		C204DC621E922C8E00972FDA /* QTGlobalInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */; };
 		C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */; };
 		C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */; };
+		C21C75631E94E7A900F1205C /* TrackDiffableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C75621E94E7A900F1205C /* TrackDiffableExtension.swift */; };
+		C21C75651E94E94200F1205C /* TrackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C75641E94E94200F1205C /* TrackWrapper.swift */; };
+		C21C75671E94F60900F1205C /* TracksSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C75661E94F60900F1205C /* TracksSectionController.swift */; };
+		C21C756A1E94FE0500F1205C /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C75681E94FE0400F1205C /* TrackCell.swift */; };
+		C21C756B1E94FE0500F1205C /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21C75691E94FE0400F1205C /* TrackCell.xib */; };
+		C21C756D1E9546A600F1205C /* PlayerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C756C1E9546A600F1205C /* PlayerUtils.swift */; };
 		C258E1D61E93608F00F5A22A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258E1D51E93608F00F5A22A /* BaseViewController.swift */; };
 		C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258E1D71E937D2700F5A22A /* PlayerControlsProtocol.swift */; };
 		C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */; };
@@ -44,6 +50,12 @@
 		C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QTGlobalInstance.swift; sourceTree = "<group>"; };
 		C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastPlayerViewController.swift; sourceTree = "<group>"; };
 		C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastPlayerViewController.xib; sourceTree = "<group>"; };
+		C21C75621E94E7A900F1205C /* TrackDiffableExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackDiffableExtension.swift; sourceTree = "<group>"; };
+		C21C75641E94E94200F1205C /* TrackWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackWrapper.swift; sourceTree = "<group>"; };
+		C21C75661E94F60900F1205C /* TracksSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksSectionController.swift; sourceTree = "<group>"; };
+		C21C75681E94FE0400F1205C /* TrackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		C21C75691E94FE0400F1205C /* TrackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
+		C21C756C1E9546A600F1205C /* PlayerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerUtils.swift; sourceTree = "<group>"; };
 		C258E1D51E93608F00F5A22A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C258E1D71E937D2700F5A22A /* PlayerControlsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControlsProtocol.swift; sourceTree = "<group>"; };
 		C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
@@ -117,11 +129,17 @@
 				C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */,
 				C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */,
 				C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */,
+				C21C75661E94F60900F1205C /* TracksSectionController.swift */,
 				C258E1D51E93608F00F5A22A /* BaseViewController.swift */,
 				C204DC5F1E921CA000972FDA /* PlayerManager.swift */,
+				C21C756C1E9546A600F1205C /* PlayerUtils.swift */,
 				C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */,
 				C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */,
 				C258E1D71E937D2700F5A22A /* PlayerControlsProtocol.swift */,
+				C21C75621E94E7A900F1205C /* TrackDiffableExtension.swift */,
+				C21C75641E94E94200F1205C /* TrackWrapper.swift */,
+				C21C75681E94FE0400F1205C /* TrackCell.swift */,
+				C21C75691E94FE0400F1205C /* TrackCell.xib */,
 				C204DC4E1E921B9500972FDA /* Main.storyboard */,
 				C204DC541E921B9500972FDA /* Assets.xcassets */,
 				C204DC561E921B9500972FDA /* LaunchScreen.storyboard */,
@@ -203,6 +221,7 @@
 				1D5D0FB11E92577D00B2DA32 /* PlayerToolbar.xib in Resources */,
 				C204DC581E921B9500972FDA /* LaunchScreen.storyboard in Resources */,
 				C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */,
+				C21C756B1E94FE0500F1205C /* TrackCell.xib in Resources */,
 				C204DC551E921B9500972FDA /* Assets.xcassets in Resources */,
 				C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */,
 				C204DC501E921B9500972FDA /* Main.storyboard in Resources */,
@@ -266,15 +285,20 @@
 			files = (
 				1D5D0FB31E92658F00B2DA32 /* PlayerToolbar.swift in Sources */,
 				1D5D0FBA1E92C2D400B2DA32 /* SecondController.swift in Sources */,
+				C21C75651E94E94200F1205C /* TrackWrapper.swift in Sources */,
 				C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */,
 				C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */,
+				C21C756A1E94FE0500F1205C /* TrackCell.swift in Sources */,
 				C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */,
 				C2AF50481E92E5720096DEAD /* PlayerControlsView.swift in Sources */,
 				C204DC4B1E921B9500972FDA /* AppDelegate.swift in Sources */,
 				C204DC601E921CA000972FDA /* PlayerManager.swift in Sources */,
+				C21C756D1E9546A600F1205C /* PlayerUtils.swift in Sources */,
 				C258E1D61E93608F00F5A22A /* BaseViewController.swift in Sources */,
 				C204DC621E922C8E00972FDA /* QTGlobalInstance.swift in Sources */,
+				C21C75631E94E7A900F1205C /* TrackDiffableExtension.swift in Sources */,
 				C204DC531E921B9500972FDA /* PodcastPlayer.xcdatamodeld in Sources */,
+				C21C75671E94F60900F1205C /* TracksSectionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

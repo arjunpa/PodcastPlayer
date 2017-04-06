@@ -57,6 +57,8 @@ class PlayerManager: NSObject {
     }
     
     
+   
+    
     
     required init(playerAttributes:Dictionary<String,Any>?){
         super.init()
@@ -87,13 +89,14 @@ class PlayerManager: NSObject {
     }
     
     func addObservers(){
+        self.playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+    }
+    
+    func removeObservers(){
         if self.playerItem != nil{
             self.playerItem?.removeObserver(self, forKeyPath: "status")
+            self.playerItem = nil
         }
-        
-        self.playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
-        
-
     }
     
     class func enableBackgroundPlay(){
@@ -115,10 +118,32 @@ class PlayerManager: NSObject {
             return
         }
         
+        // fire every half second. Ideally, 0.5 * factor. Factor = seekWidth/itemDuration
         let interval = 0.5
         
-        timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTimeMake(Int64(interval), Int32(NSEC_PER_SEC)), queue: _timeObserverQueue) { (time) in
-            
+        timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: interval, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: _timeObserverQueue) { (time) in
+            self.playerControls?.updateTime(displayTime: formatTimeFromSeconds(seconds: CMTimeGetSeconds(time)))
+            self.syncScrubber()
+        }
+    }
+    
+    
+    func syncScrubber(){
+        //update seeker position as music plays
+        if self.currentPlayerItemDuration == kCMTimeInvalid{
+            self.playerControls?.resetDisplay()
+            self.playerControls!.minimumScaleValue = 0.0
+            return
+        }
+        
+        let durationSeconds = CMTimeGetSeconds(self.currentPlayerItemDuration)
+        
+        // Make sure the duration is finite. A live stream for example doesn't quantitively have a finite duration.
+        if durationSeconds.isFinite{
+            let minimumValue = Float64(self.playerControls!.minimumScaleValue)
+            let maximumValue = Float64(self.playerControls!.maximumScaleValue)
+            let currentTime = Float64(CMTimeGetSeconds(self.player.currentTime()))
+            playerControls!.setScaleValue = Float((maximumValue - minimumValue) * currentTime/(durationSeconds + minimumValue))
         }
     }
     
@@ -131,11 +156,20 @@ class PlayerManager: NSObject {
     }
     
     func playWithURL(url:URL){
-        self.addObservers()
+        removeObservers()
         self.playerItem = AVPlayerItem.init(url: url)
+        self.addObservers()
         player.replaceCurrentItem(with: playerItem!)
+        self.playerControls?.resetDisplay()
     }
-
+    
+    
+    deinit {
+        deinitTimeObserver()
+        removeObservers()
+        timeObserver = nil
+        playerItem = nil
+    }
 }
 
 extension PlayerManager{
@@ -143,6 +177,7 @@ extension PlayerManager{
 }
 
 extension PlayerManager{
+    // The player is going to take some time to buffer the remote resource and prepare it for play. So, only play the music when the player is ready.
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath ?? "" == "status")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
             if player.status == AVPlayerStatus.readyToPlay{
