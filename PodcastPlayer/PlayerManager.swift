@@ -218,28 +218,20 @@ extension PlayerManager:PlayerControlActionProtocol{
     func beginScrubbing() {
         scrubbingRate = self.player.rate
         self.player.rate = 0.0
-        self.removeObservers()
+        //self.removeObservers()
+        self.deinitTimeObserver()
 
     }
     
     /* The user has released the movie thumb control to stop scrubbing through the movie. */
     func endScrubbing() {
         var tolerance: Double = 0.5
-        if let _ = timeObserver{
+        if timeObserver == nil{
             let playerItemDuration = self.currentPlayerItemDuration
             if playerItemDuration == kCMTimeInvalid{
                 return
             }
-            let durationSeconds = playerItemDuration.seconds
-            if durationSeconds.isFinite{
-                if let width = self.playerControls?.sizeFit().width{
-                    tolerance = 0.5 * durationSeconds/Double(width)
-                }
-            }
-            
-            timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: tolerance, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: timeObserverQueue, using: { (time) in
-                self.syncScrubber()
-            })
+          initTimeObserver()
             
         }
         if scrubbingRate != nil{
@@ -262,11 +254,15 @@ extension PlayerManager:PlayerControlActionProtocol{
             let value = Float64(self.playerControls!.setScaleValue)
             
             let time = durationSeconds * (value - minimumValue)/(maximumValue - minimumValue)
+            
+              self.playerControls?.updateTime(displayTime: formatTimeFromSeconds(seconds: time))
+            
             self.player.seek(to: CMTimeMakeWithSeconds(time, CMTimeScale.init(NSEC_PER_SEC)), completionHandler: { (finished) in
                 self.timeObserverQueue.async {
                     seekValue(false)
                 }
             })
+            
         }
         
         
