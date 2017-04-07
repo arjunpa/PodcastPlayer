@@ -11,10 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     
-    var toolbar:PlayerControlsView = {
-        let controlView = PlayerControlsView.loadFromNib()
-        return controlView
-    }()
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()

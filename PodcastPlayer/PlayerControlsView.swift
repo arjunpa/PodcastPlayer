@@ -12,6 +12,8 @@ public class BasePlayerControlView:UIView{
     
     weak var controlDelegate:PlayerControlActionProtocol?
     
+    @IBOutlet weak var playButton:UIButton! 
+    
     var minimumScaleValue:Float{
         get{return 0.0} set{}
     }
@@ -115,24 +117,24 @@ public class PlayerControlsView: BasePlayerControlView {
         self.seeker.value = 0.0
     }
     
-    @IBAction func scrub(_ sender: UISlider) {
-        if !isSeeking{
-            isSeeking = true
-            self.controlDelegate?.scrub(isSeeking: { (seekValue) in
-                self.isSeeking = seekValue
-            })
-        }
-    }
-    
-    
-    @IBAction func endScrubbing(_ sender: UISlider){
-        self.controlDelegate?.endScrubbing()
-    }
-    
-    
-    @IBAction func beginScrubbing(_ sender: UISlider){
-        self.controlDelegate?.beginScrubbing()
-    }
+//    @IBAction func scrub(_ sender: UISlider) {
+//        if !isSeeking{
+//            isSeeking = true
+//            self.controlDelegate?.scrub(isSeeking: { (seekValue) in
+//                self.isSeeking = seekValue
+//            })
+//        }
+//    }
+//    
+//    
+//    @IBAction func endScrubbing(_ sender: UISlider){
+//        self.controlDelegate?.endScrubbing()
+//    }
+//    
+//    
+//    @IBAction func beginScrubbing(_ sender: UISlider){
+//        self.controlDelegate?.beginScrubbing()
+//    }
     
     
     @IBAction func playPauseButtonPressed(_ sender:UIButton){

@@ -14,6 +14,7 @@ import IGListKit
 class PodcastPlayerViewController: BaseViewController {
     
     var tracks:[TrackWrapper] = []
+    fileprivate var _index:Int = 0
     @IBOutlet weak var collection_view:IGListCollectionView!
     lazy var igAdaptor:IGListAdapter = {
         return IGListAdapter.init(updater: IGListAdapterUpdater.init(), viewController: self, workingRangeSize: 0)
@@ -60,6 +61,7 @@ class PodcastPlayerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configurCollectionView()
+        self.qtObject.playerManager.dataSource = self
         // Do any additional setup after loading the view.
     }
 
@@ -81,9 +83,45 @@ extension PodcastPlayerViewController:IGListAdapterDataSource{
         return self.tracks
     }
     func listAdapter(_ listAdapter: IGListAdapter, sectionControllerFor object: Any) -> IGListSectionController {
-        return TracksSectionController.init()
+        
+        let controller = TracksSectionController.init()
+        controller.delegate = self
+        return controller
     }
     func emptyView(for listAdapter: IGListAdapter) -> UIView? {
         return nil
+    }
+}
+
+extension PodcastPlayerViewController:TracksSectionControllerDelegate{
+    func sectionIndexSelected(controller: IGListSectionController, index: Int) {
+        self._index = index
+    }
+}
+
+extension PodcastPlayerViewController:PlayerManagerDataSource{
+    func playerManagerDidReachEndOfCurrentItem(manager:PlayerManager){
+    
+    }
+    func playerManagerShoulMoveToNextItem(manager:PlayerManager) -> Bool{
+        if _index < self.tracks.count - 1{
+            return true
+        }
+        return false
+    }
+    
+     func playerManagerShoulMoveToPreviousItem(manager:PlayerManager) -> Bool{
+        
+        if _index > 0{
+            return true
+        }
+        return false
+    }
+    
+    func playerManagerDidAskForNextItem(manager:PlayerManager) -> URL?{
+        return tracks[_index + 1].track.streamURL
+    }
+    func playerManagerDidAskForPreviousItem(manager:PlayerManager) -> URL?{
+         return tracks[_index - 1].track.streamURL
     }
 }

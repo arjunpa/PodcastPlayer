@@ -27,6 +27,7 @@ class CMTimeWrapper:NSObject{
 protocol PlayerManagerDataSource:class{
     func playerManagerDidReachEndOfCurrentItem(manager:PlayerManager)
     func playerManagerShoulMoveToNextItem(manager:PlayerManager) -> Bool
+    func playerManagerShoulMoveToPreviousItem(manager:PlayerManager) -> Bool
     func playerManagerDidAskForNextItem(manager:PlayerManager) -> URL?
     func playerManagerDidAskForPreviousItem(manager:PlayerManager) -> URL?
 }
@@ -35,7 +36,10 @@ protocol PlayerManagerDataSource:class{
 
 
 protocol PlayerManagerDelegate:class{
-    func periodicTimeObserverEventDidOccur(time:CMTimeWrapper)
+    func playerManager(manager:PlayerManager,periodicTimeObserverEventDidOccur time:CMTimeWrapper)
+    func resetDisplayIfNecessary(manager:PlayerManager)
+    func durationDidBecomeInvalidWhileSyncingScrubber(manager:PlayerManager)
+    func playerManager(manager: PlayerManager, syncScrubberWithCurrent time: Double, duration:Double)
     
 }
 
@@ -76,6 +80,7 @@ class PlayerManager: NSObject {
         }
     }
 
+    var lastURL:URL?
     
     typealias NotificationBlock = (Notification) -> ()
     fileprivate var playerItemDIdPlayToItem:NotificationBlock?
@@ -86,28 +91,34 @@ class PlayerManager: NSObject {
     required init(playerAttributes:Dictionary<String,Any>?){
         super.init()
         commonInit()
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         configure(playerAttributes: playerAttributes)
     }
     
     
-    func configurePlayerItemDidEndBlock(){
+    fileprivate func configurePlayerItemDidEndBlock(){
         self.playerItemDIdPlayToItem = {notification in
             
-            guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
-            datasource.playerManagerDidReachEndOfCurrentItem(manager: self)
             
-            if datasource.playerManagerShoulMoveToNextItem(manager: self){
-                if let nextItemURL = datasource.playerManagerDidAskForNextItem(manager: self){
-                    self.playWithURL(url: nextItemURL)
-                    return
+            self.player.seek(to: kCMTimeZero, completionHandler: { (finished) in
+                guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
+                datasource.playerManagerDidReachEndOfCurrentItem(manager: self)
+                
+                if datasource.playerManagerShoulMoveToNextItem(manager: self){
+                    if let nextItemURL = datasource.playerManagerDidAskForNextItem(manager: self){
+                        self.playWithURL(url: nextItemURL)
+                        return
+                    }
                 }
-            }
+            })
+            
+          
             self.removeStatusObservers();
             
         }
     }
     
-    func configure(playerAttributes:Dictionary<String,Any>?){
+    fileprivate func configure(playerAttributes:Dictionary<String,Any>?){
         guard let attributes = playerAttributes else{return}
         
         if let bgPolicy = (attributes[PlayerManager.BackgroundPolicy] as? NSNumber)?.boolValue{
@@ -135,14 +146,14 @@ class PlayerManager: NSObject {
 
     
     
-    func addStatusObservers(){
+    fileprivate func addStatusObservers(){
         self.playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self, queue: OperationQueue.main, using: self.playerItemDIdPlayToItem!)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: OperationQueue.main, using: self.playerItemDIdPlayToItem!)
     }
     
-    func removeStatusObservers(){
+    fileprivate func removeStatusObservers(){
         if self.playerItem != nil{
             self.playerItem?.removeObserver(self, forKeyPath: "status")
             self.playerItem = nil
@@ -162,7 +173,7 @@ class PlayerManager: NSObject {
         }
     }
     
-    func initTimeObserver(){
+    fileprivate func initTimeObserver(){
         
         var interval = 0.5
         //make the callback fire every half seconds
@@ -172,19 +183,18 @@ class PlayerManager: NSObject {
             return
         }
         // fire every half second. Ideally, 0.5 * factor. Factor = seekWidth/itemDuration
-        if let seekWidth = playerControls?.sizeFit().width{
-            if playerDuration.seconds.isFinite{
-               // interval = 0.5 * playerDuration.seconds / Double(seekWidth)
-            }
-        }
+//        if let seekWidth = playerControls?.sizeFit().width{
+//            if playerDuration.seconds.isFinite{
+//               // interval = 0.5 * playerDuration.seconds / Double(seekWidth)
+//            }
+//        }
         
         timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: interval, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: timeObserverQueue) { (time) in
             
             self.multicastDelegate.invoke(invokation: { (delegate:PlayerManagerDelegate) in
-                delegate.periodicTimeObserverEventDidOccur(time: CMTimeWrapper.init(seconds: CMTimeGetSeconds(time), value: time.value, timeScale: time.timescale))
+                delegate.playerManager(manager: self, periodicTimeObserverEventDidOccur: CMTimeWrapper.init(seconds: CMTimeGetSeconds(time), value: time.value, timeScale: time.timescale))
             })
             
-            self.playerControls?.updateTime(displayTime: formatTimeFromSeconds(seconds: CMTimeGetSeconds(time)))
             self.syncScrubber()
         }
         
@@ -193,8 +203,10 @@ class PlayerManager: NSObject {
     func syncScrubber(){
         //update seeker position as music plays
         if self.currentPlayerItemDuration == kCMTimeInvalid{
-            self.playerControls?.resetDisplay()
-            self.playerControls!.minimumScaleValue = 0.0
+
+            self.multicastDelegate.invoke(invokation: { (delegate:PlayerManagerDelegate) in
+                delegate.durationDidBecomeInvalidWhileSyncingScrubber(manager: self)
+            })
             return
         }
         
@@ -202,14 +214,13 @@ class PlayerManager: NSObject {
         
         // Make sure the duration is finite. A live stream for example doesn't quantitively have a finite duration.
         if durationSeconds.isFinite{
-            let minimumValue = Float64(self.playerControls!.minimumScaleValue)
-            let maximumValue = Float64(self.playerControls!.maximumScaleValue)
-            let currentTime = Float64(CMTimeGetSeconds(self.player.currentTime()))
-            playerControls!.setScaleValue = Float((maximumValue - minimumValue) * currentTime/(durationSeconds + minimumValue))
+            self.multicastDelegate.invoke(invokation: { (delegate) in
+                delegate.playerManager(manager: self, syncScrubberWithCurrent: CMTimeGetSeconds(self.player.currentTime()), duration: durationSeconds)
+            })
         }
     }
     
-    func deinitTimeObserver(){
+    fileprivate func deinitTimeObserver(){
         if timeObserver != nil{
             self.player.removeTimeObserver(timeObserver!)
             timeObserver = nil
@@ -222,6 +233,15 @@ class PlayerManager: NSObject {
         self.addStatusObservers()
         player.replaceCurrentItem(with: playerItem!)
         self.playerControls?.resetDisplay()
+        self.lastURL = url
+    }
+    
+    func didClickOnPlay(){
+        if !self.player.isPlaying{
+            if let lastURL = self.lastURL{
+                self.playWithURL(url: lastURL)
+            }
+        }
     }
     
     
@@ -256,6 +276,10 @@ extension PlayerManager{
     }
 }
 extension PlayerManager:PlayerControlActionProtocol{
+    internal func scrub(isSeeking seekValue: @escaping (Bool) -> ()) {
+        
+    }
+
     func didClickOnNext(control: PlayerControlActionProtocol) {
         
     }
@@ -301,22 +325,48 @@ extension PlayerManager:PlayerControlActionProtocol{
     }
 
     /* Set the player current time to match the scrubber position. */
-    func scrub(isSeeking seekValue:@escaping (Bool) -> ()) {
-        
+//    func scrub(isSeeking seekValue:@escaping (Bool) -> ()) {
+//        
+//        let playerItemDuration = self.currentPlayerItemDuration
+//        if playerItemDuration == kCMTimeInvalid{
+//            return
+//        }
+//        let durationSeconds = playerItemDuration.seconds
+//        if durationSeconds.isFinite{
+//            let minimumValue = Float64(self.playerControls!.minimumScaleValue)
+//            let maximumValue = Float64(self.playerControls!.maximumScaleValue)
+//            let value = Float64(self.playerControls!.setScaleValue)
+//            
+//            let time = durationSeconds * (value - minimumValue)/(maximumValue - minimumValue)
+//            
+//              self.playerControls?.updateTime(displayTime: formatTimeFromSeconds(seconds: time))
+//            
+//            self.player.seek(to: CMTimeMakeWithSeconds(time, CMTimeScale.init(NSEC_PER_SEC)), completionHandler: { (finished) in
+//                self.timeObserverQueue.async {
+//                    seekValue(false)
+//                }
+//            })
+//            
+//        }
+//        
+//        
+//    }
+    
+    func scrub(value:Float,minValue:Float,maxValue:Float,isSeeking seekValue:@escaping (Bool) -> ()) {
         let playerItemDuration = self.currentPlayerItemDuration
         if playerItemDuration == kCMTimeInvalid{
             return
         }
         let durationSeconds = playerItemDuration.seconds
         if durationSeconds.isFinite{
-            let minimumValue = Float64(self.playerControls!.minimumScaleValue)
-            let maximumValue = Float64(self.playerControls!.maximumScaleValue)
-            let value = Float64(self.playerControls!.setScaleValue)
-            
-            let time = durationSeconds * (value - minimumValue)/(maximumValue - minimumValue)
-            
-              self.playerControls?.updateTime(displayTime: formatTimeFromSeconds(seconds: time))
-            
+            let minimumValue = Float64(minValue)
+            let maximumValue = Float64(maxValue)
+            let valued = Float64(value)
+            let time = durationSeconds * (valued - minimumValue)/(maximumValue - minimumValue)
+            let cmTime = CMTime.init(seconds: time, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+            self.multicastDelegate.invoke(invokation: { (delegate) in
+                delegate.playerManager(manager: self, periodicTimeObserverEventDidOccur: CMTimeWrapper.init(seconds: time, value: cmTime.value, timeScale: cmTime.timescale))
+            })
             self.player.seek(to: CMTimeMakeWithSeconds(time, CMTimeScale.init(NSEC_PER_SEC)), completionHandler: { (finished) in
                 self.timeObserverQueue.async {
                     seekValue(false)
@@ -324,8 +374,6 @@ extension PlayerManager:PlayerControlActionProtocol{
             })
             
         }
-        
-        
     }
 }
 

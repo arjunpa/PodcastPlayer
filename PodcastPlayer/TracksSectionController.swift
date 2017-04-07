@@ -9,10 +9,17 @@
 import Foundation
 import IGListKit
 
+protocol TracksSectionControllerDelegate:class{
+    
+    func sectionIndexSelected(controller:IGListSectionController, index:Int) -> Void
+}
+
+
 class TracksSectionController: IGListSectionController {
     var track:TrackWrapper!
     var sizingCell:TrackCell!
     fileprivate var qtObject:QTGlobalProtocol
+    var delegate:TracksSectionControllerDelegate?
     init(qtObjectParam:QTGlobalProtocol? = nil){
         if let para = qtObjectParam{
             qtObject = para
@@ -39,6 +46,11 @@ extension TracksSectionController:IGListSectionType{
     }
     
     public func didSelectItem(at index: Int){
+        
+        if let index = self.collectionContext?.section(for: self), self.collectionContext?.section(for: self) != NSNotFound{
+            self.delegate?.sectionIndexSelected(controller: self, index:index)
+        }
+        
         self.qtObject.playerManager.playWithURL(url: self.track.track.streamURL!)
     }
     
