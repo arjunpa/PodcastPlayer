@@ -10,16 +10,34 @@ import UIKit
 import AVFoundation
 
 
-private class AbstractPlayerManager:NSObject{
-    
-    
-//    private override init(){
-//        BackgroundPolicy = "Background_Policy"
-//        super.init()
-//    }
 
+class CMTimeWrapper:NSObject{
+    var seconds:Double
+    var value:Int64
+    var timeScale:Int32
+    
+    init(seconds:Double, value:Int64, timeScale:Int32) {
+        self.seconds = seconds
+        self.value = value
+        self.timeScale = timeScale
+        super.init()
+    }
 }
 
+protocol PlayerManagerDataSource:class{
+    func playerManagerDidReachEndOfCurrentItem(manager:PlayerManager)
+    func playerManagerShoulMoveToNextItem(manager:PlayerManager) -> Bool
+    func playerManagerDidAskForNextItem(manager:PlayerManager) -> URL?
+    func playerManagerDidAskForPreviousItem(manager:PlayerManager) -> URL?
+}
+
+
+
+
+protocol PlayerManagerDelegate:class{
+    func periodicTimeObserverEventDidOccur(time:CMTimeWrapper)
+    
+}
 
 class PlayerManager: NSObject {
     
@@ -28,6 +46,7 @@ class PlayerManager: NSObject {
     fileprivate var playerItem:AVPlayerItem?
     fileprivate var timeObserver:Any?
     fileprivate  var _timeObserverQueue:DispatchQueue?
+    weak var dataSource:PlayerManagerDataSource?
     fileprivate var timeObserverQueue:DispatchQueue{
         get{
             if _timeObserverQueue == nil{
@@ -58,10 +77,34 @@ class PlayerManager: NSObject {
     }
 
     
+    typealias NotificationBlock = (Notification) -> ()
+    fileprivate var playerItemDIdPlayToItem:NotificationBlock?
+    
+    var multicastDelegate:MulticastDelegate<PlayerManagerDelegate>!
+    
+    
     required init(playerAttributes:Dictionary<String,Any>?){
         super.init()
         commonInit()
         configure(playerAttributes: playerAttributes)
+    }
+    
+    
+    func configurePlayerItemDidEndBlock(){
+        self.playerItemDIdPlayToItem = {notification in
+            
+            guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
+            datasource.playerManagerDidReachEndOfCurrentItem(manager: self)
+            
+            if datasource.playerManagerShoulMoveToNextItem(manager: self){
+                if let nextItemURL = datasource.playerManagerDidAskForNextItem(manager: self){
+                    self.playWithURL(url: nextItemURL)
+                    return
+                }
+            }
+            self.removeStatusObservers();
+            
+        }
     }
     
     func configure(playerAttributes:Dictionary<String,Any>?){
@@ -83,20 +126,32 @@ class PlayerManager: NSObject {
     }
     
     private func commonInit(){
+        multicastDelegate = MulticastDelegate<PlayerManagerDelegate>()
         player = AVPlayer.init()
+        self.configurePlayerItemDidEndBlock()
     }
     
-    func addObservers(){
+    
+
+    
+    
+    func addStatusObservers(){
         self.playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
         
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self, queue: OperationQueue.main, using: self.playerItemDIdPlayToItem!)
     }
     
-    func removeObservers(){
+    func removeStatusObservers(){
         if self.playerItem != nil{
             self.playerItem?.removeObserver(self, forKeyPath: "status")
             self.playerItem = nil
         }
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
+    
+    
+    
     
     class func enableBackgroundPlay(){
         do{
@@ -119,11 +174,16 @@ class PlayerManager: NSObject {
         // fire every half second. Ideally, 0.5 * factor. Factor = seekWidth/itemDuration
         if let seekWidth = playerControls?.sizeFit().width{
             if playerDuration.seconds.isFinite{
-                interval = 0.5 * playerDuration.seconds / Double(seekWidth)
+               // interval = 0.5 * playerDuration.seconds / Double(seekWidth)
             }
         }
         
         timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: interval, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: timeObserverQueue) { (time) in
+            
+            self.multicastDelegate.invoke(invokation: { (delegate:PlayerManagerDelegate) in
+                delegate.periodicTimeObserverEventDidOccur(time: CMTimeWrapper.init(seconds: CMTimeGetSeconds(time), value: time.value, timeScale: time.timescale))
+            })
+            
             self.playerControls?.updateTime(displayTime: formatTimeFromSeconds(seconds: CMTimeGetSeconds(time)))
             self.syncScrubber()
         }
@@ -157,9 +217,9 @@ class PlayerManager: NSObject {
     }
     
     func playWithURL(url:URL){
-        removeObservers()
+        removeStatusObservers()
         self.playerItem = AVPlayerItem.init(url: url)
-        self.addObservers()
+        self.addStatusObservers()
         player.replaceCurrentItem(with: playerItem!)
         self.playerControls?.resetDisplay()
     }
@@ -167,7 +227,7 @@ class PlayerManager: NSObject {
     
     deinit {
         deinitTimeObserver()
-        removeObservers()
+        removeStatusObservers()
         timeObserver = nil
         playerItem = nil
     }

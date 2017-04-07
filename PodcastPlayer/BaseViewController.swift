@@ -47,8 +47,8 @@ class BaseViewController: UIViewController, BaseControllerProtocol {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if self.playerControls.superview == nil{
-            self.loadPlayerView()
-            self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.bounds.width, height: self.view.bounds.height - self.playerControls.sizeFit().height)
+//            self.loadPlayerView()
+//            self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.bounds.width, height: self.view.bounds.height - self.playerControls.sizeFit().height)
         }
     }
     

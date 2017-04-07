@@ -29,8 +29,11 @@
 		C21C756D1E9546A600F1205C /* PlayerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C756C1E9546A600F1205C /* PlayerUtils.swift */; };
 		C258E1D61E93608F00F5A22A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258E1D51E93608F00F5A22A /* BaseViewController.swift */; };
 		C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258E1D71E937D2700F5A22A /* PlayerControlsProtocol.swift */; };
+		C29317AF1E97A8C000EC03D4 /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29317AE1E97A8C000EC03D4 /* MulticastDelegate.swift */; };
 		C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */; };
 		C2AF50481E92E5720096DEAD /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */; };
+		C2D43DC31E97725500C161D1 /* MusicLayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D43DC11E97725500C161D1 /* MusicLayerController.swift */; };
+		C2D43DC41E97725500C161D1 /* MusicLayerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2D43DC21E97725500C161D1 /* MusicLayerController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,8 +61,11 @@
 		C21C756C1E9546A600F1205C /* PlayerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerUtils.swift; sourceTree = "<group>"; };
 		C258E1D51E93608F00F5A22A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C258E1D71E937D2700F5A22A /* PlayerControlsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControlsProtocol.swift; sourceTree = "<group>"; };
+		C29317AE1E97A8C000EC03D4 /* MulticastDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
 		C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
+		C2D43DC11E97725500C161D1 /* MusicLayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicLayerController.swift; sourceTree = "<group>"; };
+		C2D43DC21E97725500C161D1 /* MusicLayerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicLayerController.xib; sourceTree = "<group>"; };
 		D48A3EF9146C0E23B4A63F28 /* Pods-PodcastPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastPlayer/Pods-PodcastPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		F41A8632833E96FD680348F3 /* Pods-PodcastPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastPlayer/Pods-PodcastPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,12 +132,15 @@
 				1D5D0FAF1E92561B00B2DA32 /* PlayerToolbar */,
 				C204DC4A1E921B9500972FDA /* AppDelegate.swift */,
 				C204DC4C1E921B9500972FDA /* ViewController.swift */,
+				C2D43DC11E97725500C161D1 /* MusicLayerController.swift */,
+				C2D43DC21E97725500C161D1 /* MusicLayerController.xib */,
 				C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */,
 				C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */,
 				C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */,
 				C21C75661E94F60900F1205C /* TracksSectionController.swift */,
 				C258E1D51E93608F00F5A22A /* BaseViewController.swift */,
 				C204DC5F1E921CA000972FDA /* PlayerManager.swift */,
+				C29317AE1E97A8C000EC03D4 /* MulticastDelegate.swift */,
 				C21C756C1E9546A600F1205C /* PlayerUtils.swift */,
 				C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */,
 				C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */,
@@ -221,6 +230,7 @@
 				1D5D0FB11E92577D00B2DA32 /* PlayerToolbar.xib in Resources */,
 				C204DC581E921B9500972FDA /* LaunchScreen.storyboard in Resources */,
 				C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */,
+				C2D43DC41E97725500C161D1 /* MusicLayerController.xib in Resources */,
 				C21C756B1E94FE0500F1205C /* TrackCell.xib in Resources */,
 				C204DC551E921B9500972FDA /* Assets.xcassets in Resources */,
 				C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */,
@@ -288,6 +298,7 @@
 				C21C75651E94E94200F1205C /* TrackWrapper.swift in Sources */,
 				C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */,
 				C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */,
+				C2D43DC31E97725500C161D1 /* MusicLayerController.swift in Sources */,
 				C21C756A1E94FE0500F1205C /* TrackCell.swift in Sources */,
 				C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */,
 				C2AF50481E92E5720096DEAD /* PlayerControlsView.swift in Sources */,
@@ -299,6 +310,7 @@
 				C21C75631E94E7A900F1205C /* TrackDiffableExtension.swift in Sources */,
 				C204DC531E921B9500972FDA /* PodcastPlayer.xcdatamodeld in Sources */,
 				C21C75671E94F60900F1205C /* TracksSectionController.swift in Sources */,
+				C29317AF1E97A8C000EC03D4 /* MulticastDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,10 @@ import UIKit
 class ViewController: UIViewController {
 
     
+    var toolbar:PlayerControlsView = {
+        let controlView = PlayerControlsView.loadFromNib()
+        return controlView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +29,7 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.view.frame = CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height - 72)
+      //  self.view.frame = CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height - 72)
         
     }
     

@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
     var window: UIWindow?
+    var layerWindow:UIWindow?
     
     lazy var qtInstance:QTGlobalProtocol = {
         var attributes = QTGlobalAttributes()
@@ -31,9 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtInstance, nibName: "PodcastPlayerViewController", bundle: nil)
         window?.rootViewController = podController
        // self.loadPlayerView()
+        
+        createLayerWindow()
         return true
     }
-
+    
+    func createLayerWindow(){
+        let playerToolbarSize = PlayerControlsView.loadFromNib().sizeFit()
+        layerWindow = UIWindow.init(frame: CGRect.init(x: 0, y: UIScreen.main.bounds.size.height - playerToolbarSize.height, width: UIScreen.main.bounds.size.width, height: playerToolbarSize.height))
+        let layerController = MusicLayerController.init(qtInstance, nibName: "MusicLayerController", bundle: nil)
+        layerWindow?.rootViewController = layerController
+        layerWindow?.makeKeyAndVisible()
+    }
 
     
     func applicationWillResignActive(_ application: UIApplication) {
