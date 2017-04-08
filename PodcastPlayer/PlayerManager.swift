@@ -65,7 +65,7 @@ class PlayerManager: NSObject {
     }
     
     
-    
+    var bgTaskIdentifier = UIBackgroundTaskInvalid
     public static let BackgroundPolicy:String = "Background_Policy"
     var player:AVPlayer!
     var playerControls:BasePlayerControlView?
@@ -91,15 +91,13 @@ class PlayerManager: NSObject {
     required init(playerAttributes:Dictionary<String,Any>?){
         super.init()
         commonInit()
-        UIApplication.shared.beginReceivingRemoteControlEvents()
         configure(playerAttributes: playerAttributes)
     }
     
     
     fileprivate func configurePlayerItemDidEndBlock(){
         self.playerItemDIdPlayToItem = {notification in
-            
-            
+          self.beginBgTask()
             self.player.seek(to: kCMTimeZero, completionHandler: { (finished) in
                 guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
                 datasource.playerManagerDidReachEndOfCurrentItem(manager: self)
@@ -109,12 +107,31 @@ class PlayerManager: NSObject {
                         self.playWithURL(url: nextItemURL)
                         return
                     }
+                    self.removeStatusObservers();
                 }
+              //  self.endBgTask()
             })
             
-          
-            self.removeStatusObservers();
             
+        }
+    }
+    
+    func beginBgTask(){
+        if self.bgTaskIdentifier == UIBackgroundTaskInvalid{
+            self.bgTaskIdentifier = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+                UIApplication.shared.endBackgroundTask(self.bgTaskIdentifier)
+                self.bgTaskIdentifier = UIBackgroundTaskInvalid
+            })
+        }
+    }
+    
+    func endBgTask(){
+        if self.bgTaskIdentifier != UIBackgroundTaskInvalid{
+           DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5, execute: {
+                UIApplication.shared.endBackgroundTask(self.bgTaskIdentifier)
+                self.bgTaskIdentifier = UIBackgroundTaskInvalid
+           })
+          
         }
     }
     
@@ -148,6 +165,8 @@ class PlayerManager: NSObject {
     
     fileprivate func addStatusObservers(){
         self.playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+         self.playerItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+         self.playerItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: OperationQueue.main, using: self.playerItemDIdPlayToItem!)
@@ -156,6 +175,8 @@ class PlayerManager: NSObject {
     fileprivate func removeStatusObservers(){
         if self.playerItem != nil{
             self.playerItem?.removeObserver(self, forKeyPath: "status")
+            self.playerItem?.removeObserver(self, forKeyPath: "playbackBufferEmpty")
+            self.playerItem?.removeObserver(self, forKeyPath: "playbackLikelyToKeepUp")
             self.playerItem = nil
         }
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
@@ -167,6 +188,7 @@ class PlayerManager: NSObject {
     class func enableBackgroundPlay(){
         do{
           try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+          try AVAudioSession.sharedInstance().setActive(true)
         }
         catch let avError{
             print(avError)
@@ -264,12 +286,31 @@ extension PlayerManager{
             if player.status == AVPlayerStatus.readyToPlay{
                 initTimeObserver()
                 player.play()
+                self.endBgTask()
             }
             
             else if player.status == AVPlayerStatus.unknown{
                 deinitTimeObserver()
             }
         }
+        else if  (keyPath ?? "" == "playbackLikelyToKeepUp")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
+        
+            if self.playerItem?.isPlaybackLikelyToKeepUp ?? false{
+                if UIApplication.shared.applicationState == .background{
+                    self.player.play()
+                    self.endBgTask()
+                }
+            }
+        }
+        else if  (keyPath ?? "" == "playbackBufferEmpty")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
+            
+            if self.playerItem?.isPlaybackBufferEmpty ?? false{
+                if UIApplication.shared.applicationState == .background{
+                    self.beginBgTask()
+                }
+            }
+        }
+            
         else{
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }

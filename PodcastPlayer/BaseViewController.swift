@@ -22,7 +22,7 @@ class BaseViewController: UIViewController, BaseControllerProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         // Do any additional setup after loading the view.
     }
 
