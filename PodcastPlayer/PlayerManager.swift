@@ -109,7 +109,7 @@ class PlayerManager: NSObject {
                     }
                     self.removeStatusObservers();
                 }
-              //  self.endBgTask()
+                self.endBgTask()
             })
             
             
@@ -164,7 +164,7 @@ class PlayerManager: NSObject {
     
     
     fileprivate func addStatusObservers(){
-        self.playerItem?.addObserver(self, forKeyPath: "status", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+        self.playerItem?.addObserver(self, forKeyPath: "status", options: [.initial, .new], context: &PlayerManager.CURRENT_ITEM_CONTEXT)
          self.playerItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
          self.playerItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
         
@@ -285,8 +285,9 @@ extension PlayerManager{
         if (keyPath ?? "" == "status")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
             if player.status == AVPlayerStatus.readyToPlay{
                 initTimeObserver()
+                
                 player.play()
-                self.endBgTask()
+                
             }
             
             else if player.status == AVPlayerStatus.unknown{
@@ -300,6 +301,7 @@ extension PlayerManager{
                     self.player.play()
                     self.endBgTask()
                 }
+              //  self.player.play()
             }
         }
         else if  (keyPath ?? "" == "playbackBufferEmpty")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{

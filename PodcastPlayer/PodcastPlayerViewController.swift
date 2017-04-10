@@ -38,7 +38,7 @@ class PodcastPlayerViewController: BaseViewController {
         SoundcloudClient.redirectURI = ""
         
         let queries: [SearchQueryOptions] = [
-            .queryString("ed sheeran"),
+            .queryString("malayalam"),
             .types([TrackType.live, TrackType.demo])
         ]
         Track.search(queries: queries) {[weak self] (response:PaginatedAPIResponse<Track>) in
@@ -119,9 +119,11 @@ extension PodcastPlayerViewController:PlayerManagerDataSource{
     }
     
     func playerManagerDidAskForNextItem(manager:PlayerManager) -> URL?{
-        return tracks[_index + 1].track.streamURL
+        _index += 1
+        return tracks[_index].track.streamURL
     }
     func playerManagerDidAskForPreviousItem(manager:PlayerManager) -> URL?{
+        _index -= 1
          return tracks[_index - 1].track.streamURL
     }
 }
