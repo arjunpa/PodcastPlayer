@@ -22,6 +22,7 @@ class PodcastPlayerViewController: BaseViewController {
     required init(_ qtObject:QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName:String?, bundle:Bundle?){
         super.init(qtObject, nibName: nibName, bundle: bundle)
         self.configureSCClient()
+        
     }
     
     
@@ -62,6 +63,7 @@ class PodcastPlayerViewController: BaseViewController {
         super.viewDidLoad()
         self.configurCollectionView()
         self.qtObject.playerManager.dataSource = self
+        
         // Do any additional setup after loading the view.
     }
 

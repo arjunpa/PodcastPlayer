@@ -68,7 +68,6 @@ class PlayerManager: NSObject {
     var bgTaskIdentifier = UIBackgroundTaskInvalid
     public static let BackgroundPolicy:String = "Background_Policy"
     var player:AVPlayer!
-    var playerControls:BasePlayerControlView?
     var scrubbingRate : Float!
     
     var currentPlayerItemDuration:CMTime{
@@ -143,13 +142,6 @@ class PlayerManager: NSObject {
                 PlayerManager.enableBackgroundPlay()
             }
         }
-        
-    }
-    
-    func registerClassForPlayerControls(classd:BasePlayerControlView.Type){
-   
-        playerControls = classd.loadFromNib()
-        playerControls?.controlDelegate = self
         
     }
     
@@ -254,7 +246,6 @@ class PlayerManager: NSObject {
         self.playerItem = AVPlayerItem.init(url: url)
         self.addStatusObservers()
         player.replaceCurrentItem(with: playerItem!)
-        self.playerControls?.resetDisplay()
         self.lastURL = url
     }
     
@@ -318,28 +309,8 @@ extension PlayerManager{
         }
     }
 }
-extension PlayerManager:PlayerControlActionProtocol{
-    internal func scrub(isSeeking seekValue: @escaping (Bool) -> ()) {
-        
-    }
-
-    func didClickOnNext(control: PlayerControlActionProtocol) {
-        
-    }
-    
-    func didClickOnPlay(control: PlayerControlActionProtocol,isPlaying playingValue:@escaping (Bool) -> ()) {
-        if self.player.isPlaying{
-            playingValue(true)
-            self.player.pause()
-        }else{
-            playingValue(false)
-            self.player.play()
-        }
-    }
-    
-    func didClickOnPrev(control: PlayerControlActionProtocol) {
-        
-    }
+extension PlayerManager{
+   
     
     /* The user is dragging the movie controller thumb to scrub through the movie. */
     func beginScrubbing() {
@@ -352,7 +323,7 @@ extension PlayerManager:PlayerControlActionProtocol{
     
     /* The user has released the movie thumb control to stop scrubbing through the movie. */
     func endScrubbing() {
-        var tolerance: Double = 0.5
+        let tolerance: Double = 0.5
         if timeObserver == nil{
             let playerItemDuration = self.currentPlayerItemDuration
             if playerItemDuration == kCMTimeInvalid{
@@ -367,33 +338,7 @@ extension PlayerManager:PlayerControlActionProtocol{
         }
     }
 
-    /* Set the player current time to match the scrubber position. */
-//    func scrub(isSeeking seekValue:@escaping (Bool) -> ()) {
-//        
-//        let playerItemDuration = self.currentPlayerItemDuration
-//        if playerItemDuration == kCMTimeInvalid{
-//            return
-//        }
-//        let durationSeconds = playerItemDuration.seconds
-//        if durationSeconds.isFinite{
-//            let minimumValue = Float64(self.playerControls!.minimumScaleValue)
-//            let maximumValue = Float64(self.playerControls!.maximumScaleValue)
-//            let value = Float64(self.playerControls!.setScaleValue)
-//            
-//            let time = durationSeconds * (value - minimumValue)/(maximumValue - minimumValue)
-//            
-//              self.playerControls?.updateTime(displayTime: formatTimeFromSeconds(seconds: time))
-//            
-//            self.player.seek(to: CMTimeMakeWithSeconds(time, CMTimeScale.init(NSEC_PER_SEC)), completionHandler: { (finished) in
-//                self.timeObserverQueue.async {
-//                    seekValue(false)
-//                }
-//            })
-//            
-//        }
-//        
-//        
-//    }
+
     
     func scrub(value:Float,minValue:Float,maxValue:Float,isSeeking seekValue:@escaping (Bool) -> ()) {
         let playerItemDuration = self.currentPlayerItemDuration

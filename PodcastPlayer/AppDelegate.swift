@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var attributes = QTGlobalAttributes()
         attributes.playerAttributes =  [PlayerManager.BackgroundPolicy:NSNumber.init(value: true)]
         let instance = QTGlobalInstance.init(tdAttributes: attributes)
-        instance.playerManager.registerClassForPlayerControls(classd: PlayerControlsView.self)
         return instance
     }()
     

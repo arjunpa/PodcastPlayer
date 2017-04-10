@@ -18,11 +18,11 @@ protocol BaseControllerProtocol:class{
 
 class BaseViewController: UIViewController, BaseControllerProtocol {
     internal var qtObject: QTGlobalProtocol
-    var playerControls:BasePlayerControlView
-
+    weak var musicLayerController:MusicLayerController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.shared.beginReceivingRemoteControlEvents()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -30,8 +30,11 @@ class BaseViewController: UIViewController, BaseControllerProtocol {
         
     {
         self.qtObject = qtObject
-//        self.playerControls = PlayerControlsView.loadFromNib()
-        self.playerControls = qtObject.playerManager.playerControls!
+        if let appdelegate = UIApplication.shared.delegate as? AppDelegate{
+            let layerController = appdelegate.layerWindow?.rootViewController as? MusicLayerController
+            musicLayerController = layerController
+        }
+        
         super.init(nibName: nibName, bundle: bundle)
     }
     
@@ -46,20 +49,9 @@ class BaseViewController: UIViewController, BaseControllerProtocol {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if self.playerControls.superview == nil{
-//            self.loadPlayerView()
-//            self.view.frame = CGRect.init(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.bounds.width, height: self.view.bounds.height - self.playerControls.sizeFit().height)
-        }
+
     }
     
-    func loadPlayerView(){
-       
-        self.view.window?.addSubview(playerControls)
-        playerControls.trailingAnchor.constraint(equalTo: self.view.window!.trailingAnchor).isActive = true
-        playerControls.leadingAnchor.constraint(equalTo: self.view.window!.leadingAnchor).isActive = true
-        playerControls.bottomAnchor.constraint(equalTo: self.view.window!.bottomAnchor).isActive = true
-        
-    }
     
     
 

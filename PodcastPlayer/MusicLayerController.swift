@@ -28,7 +28,7 @@ class MusicLayerController: BaseViewController {
         super.viewDidLoad()
         self.qtObject.playerManager.multicastDelegate.addDelegate(delegate: self)
         self.loadPlayerView(toolbar: toolbar)
-
+        UIApplication.shared.beginReceivingRemoteControlEvents()
         // Do any additional setup after loading the view.
     }
     
@@ -46,7 +46,7 @@ class MusicLayerController: BaseViewController {
         super.init(qtObject, nibName: nibName, bundle: bundle)
         self.qtObject = qtObject
         //        self.playerControls = PlayerControlsView.loadFromNib()
-        self.playerControls = qtObject.playerManager.playerControls!
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -119,5 +119,24 @@ extension MusicLayerController{
     
     func didClickOnPlay(button:UIButton){
         self.qtObject.playerManager.didClickOnPlay()
+    }
+}
+
+extension MusicLayerController:UIViewControllerTransitioningDelegate{
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+        
+        return nil
+    }
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+    
+        return nil
+    }
+    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?{
+    
+        return nil
+    }
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?{
+    
+        return nil
     }
 }
