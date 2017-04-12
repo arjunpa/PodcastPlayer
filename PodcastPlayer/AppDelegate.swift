@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
 //        let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtInstance, nibName: "PodcastPlayerViewController", bundle: nil)
-        let tabBarVC = TabBarController.init(qtInstance, nibName: "TabBarController", bundle: nil)
+//        let tabBarVC = TabBarController.init(qtInstance, nibName: "TabBarController", bundle: nil)
         window?.rootViewController = LaunchController()
        // self.loadPlayerView()
         
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func createLayerWindow(tabBarVC:TabBarController){
         let playerToolbarSize = PlayerControlsView.loadFromNib().sizeFit()
-        layerWindow = UIWindow.init(frame: CGRect.init(x: 0, y: UIScreen.main.bounds.size.height - playerToolbarSize.height - tabBarVC.mytabBarController.tabBar.frame.height, width: UIScreen.main.bounds.size.width, height: playerToolbarSize.height))
+        layerWindow = UIWindow.init(frame: CGRect.init(x: 0, y: UIScreen.main.bounds.size.height - playerToolbarSize.height - tabBarVC.tabBar.frame.height, width: UIScreen.main.bounds.size.width, height: playerToolbarSize.height))
         let layerController = MusicLayerController.init(qtInstance, nibName: "MusicLayerController", bundle: nil)
         layerWindow?.rootViewController = layerController
         layerWindow?.makeKeyAndVisible()

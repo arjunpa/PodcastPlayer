@@ -8,26 +8,21 @@
 
 import UIKit
 
-class TabBarController: BaseViewController {
+class TabBarController: UITabBarController {
 
-    var mytabBarController: UITabBarController!
+//    var mytabBarController: UITabBarController!
     
     var qtobject : QTGlobalProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appdelegate = UIApplication.shared.delegate as? AppDelegate
+        qtobject = appdelegate?.qtInstance
+        
         launchTabBar()
         // Do any additional setup after loading the view.
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    required init(_ qtObject: QTGlobalProtocol, nibName: String?, bundle: Bundle?) {
-        super.init(qtObject, nibName: nibName, bundle: bundle)
-        qtobject = qtObject
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -35,7 +30,7 @@ class TabBarController: BaseViewController {
     }
     
     func launchTabBar(){
-        mytabBarController = UITabBarController()
+//        mytabBarController = UITabBarController()
         var viewControllers = [UINavigationController]()
         
         let itemsArray = ["Listen","Watch","Read","Dedication"]
@@ -56,27 +51,9 @@ class TabBarController: BaseViewController {
             
             
         }
-        mytabBarController.viewControllers = viewControllers
-        addViewController(anyController: mytabBarController)
+        self.viewControllers = viewControllers
+//        addViewController(anyController: mytabBarController)
         
     }
 
-}
-
-extension UIViewController {
-    func addViewController (anyController: AnyObject) {
-        if let viewController = anyController as? UIViewController {
-            addChildViewController(viewController)
-            view.addSubview(viewController.view)
-            viewController.didMove(toParentViewController: self)
-        }
-    }
-    
-    func removeViewController (anyController: AnyObject) {
-        if let viewController = anyController as? UIViewController {
-            viewController.willMove(toParentViewController: nil)
-            viewController.view.removeFromSuperview()
-            viewController.removeFromParentViewController()
-        }
-    }
 }

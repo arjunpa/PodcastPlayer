@@ -16,8 +16,8 @@ class TextElementCell: BaseCollectionCell {
     var textView: UITextView = {
        let view = UITextView()
         view.isEditable = false
-        view.isScrollEnabled = true
-     //   view.dataDetectorTypes = .link
+        view.isScrollEnabled = false
+        view.dataDetectorTypes = .link
         return view
     }()
     
@@ -37,13 +37,6 @@ class TextElementCell: BaseCollectionCell {
         if let html =  card?.text{
             textView.convert(toHtml: html, textOption: textOption.html)
         }
-        
-        
     }
-    
-    override func caculateSize(targetSize: CGSize) -> CGSize {
-        
-        
-        return CGSize.init(width: targetSize.width, height: 200)
-    }
+
 }

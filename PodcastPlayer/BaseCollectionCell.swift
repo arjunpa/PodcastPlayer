@@ -12,7 +12,7 @@ class BaseCollectionCell: UICollectionViewCell {
     
     required override init(frame: CGRect) {
         super.init(frame: frame)
-//        setupView()
+        setupView()
     }
     var hasLayouted:Bool = false
     
@@ -21,15 +21,15 @@ class BaseCollectionCell: UICollectionViewCell {
     }
     
     
-    override func updateConstraints() {
-        
-        if !hasLayouted{
-            self.setupView()
-            hasLayouted = !hasLayouted
-        }
-        
-        super.updateConstraints()
-    }
+//    override func updateConstraints() {
+//        
+//        if !hasLayouted{
+//            self.setupView()
+//            hasLayouted = !hasLayouted
+//        }
+//        
+//        super.updateConstraints()
+//    }
     
    func setupView(){
     

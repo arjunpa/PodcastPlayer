@@ -27,7 +27,7 @@ class HeaderSectionController : BaseIGListSectionController{
     var sizingCells:[String:BaseCollectionCell] = [:]
     override init(){
         super.init()
-        prepareSizingCells()
+//        prepareSizingCells()
         
         
     }
@@ -56,14 +56,14 @@ extension HeaderSectionController: IGListSectionType{
     func cellForItem(at index: Int) -> UICollectionViewCell {
         if data.type == Type.First{
             let cell = collectionContext?.dequeueReusableCell(of: HeaderImageElementCell.self, for: self, at: index) as!HeaderImageElementCell
-            cell.setNeedsUpdateConstraints()
-            cell.updateConstraintsIfNeeded()
+//            cell.setNeedsUpdateConstraints()
+//            cell.updateConstraintsIfNeeded()
             cell.configure(data: data.story)
             return cell
         }else{
             let cell = collectionContext?.dequeueReusableCell(of: DefaultStoryCell.self, for: self, at: index) as!DefaultStoryCell
-            cell.setNeedsUpdateConstraints()
-            cell.updateConstraintsIfNeeded()
+//            cell.setNeedsUpdateConstraints()
+//            cell.updateConstraintsIfNeeded()
             cell.configure(data: data.story)
             return cell
         }
@@ -75,16 +75,16 @@ extension HeaderSectionController: IGListSectionType{
         }
         if  data.type == Type.First{
             let targetSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat.greatestFiniteMagnitude)
-         //   let sizingCell = HeaderImageElementCell.init(frame:CGRect.zero)
-            let sizingCell = sizingCells["PodcastPlayer.HeaderImageElementCell"]!
+            let sizingCell = HeaderImageElementCell.init(frame:CGRect.zero)
+//            let sizingCell = sizingCells["PodcastPlayer.HeaderImageElementCell"]!
             sizingCell.configure(data: data.story)
             let size =  sizingCell.caculateSize(targetSize: targetSize)
             
             return size
         }else{
             let targetSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat.greatestFiniteMagnitude)
-        //    let sizingCell = DefaultStoryCell.init(frame:CGRect.zero)
-            let sizingCell = sizingCells["PodcastPlayer.DefaultStoryCell"]!
+            let sizingCell = DefaultStoryCell.init(frame:CGRect.zero)
+//            let sizingCell = sizingCells["PodcastPlayer.DefaultStoryCell"]!
             sizingCell.configure(data: data.story)
             let size =  sizingCell.caculateSize(targetSize: targetSize)
             

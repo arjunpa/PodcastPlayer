@@ -16,7 +16,7 @@ class LaunchController: UIViewController {
 
         Quintype.api.getPublisherConfig(cache: .cacheToDiskWithTime(min: 30), Success: { (configData) in
             let appdelegate = UIApplication.shared.delegate as? AppDelegate
-            let tabBarVC = TabBarController.init((appdelegate?.qtInstance)!, nibName: "TabBarController", bundle: nil)
+            let tabBarVC = TabBarController(nibName: "TabBarController", bundle: nil)
 
             appdelegate?.window?.rootViewController = tabBarVC
             appdelegate?.createLayerWindow(tabBarVC: tabBarVC)
