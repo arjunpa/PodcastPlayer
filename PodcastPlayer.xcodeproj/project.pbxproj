@@ -27,6 +27,10 @@
 		C21C756B1E94FE0500F1205C /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C21C75691E94FE0400F1205C /* TrackCell.xib */; };
 		C21C756D1E9546A600F1205C /* PlayerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21C756C1E9546A600F1205C /* PlayerUtils.swift */; };
 		C258E1D61E93608F00F5A22A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258E1D51E93608F00F5A22A /* BaseViewController.swift */; };
+		C267FCF01E9CC04D000F5C8B /* MiniToMusicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267FCEF1E9CC04D000F5C8B /* MiniToMusicAnimator.swift */; };
+		C267FCF31E9CE0B0000F5C8B /* NextControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267FCF11E9CE0B0000F5C8B /* NextControllerViewController.swift */; };
+		C267FCF41E9CE0B1000F5C8B /* NextControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C267FCF21E9CE0B0000F5C8B /* NextControllerViewController.xib */; };
+		C267FCF61E9CED18000F5C8B /* MiniToMusicInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267FCF51E9CED18000F5C8B /* MiniToMusicInteractor.swift */; };
 		C29317AF1E97A8C000EC03D4 /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29317AE1E97A8C000EC03D4 /* MulticastDelegate.swift */; };
 		C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */; };
 		C2AF50481E92E5720096DEAD /* PlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */; };
@@ -58,6 +62,10 @@
 		C21C75691E94FE0400F1205C /* TrackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		C21C756C1E9546A600F1205C /* PlayerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerUtils.swift; sourceTree = "<group>"; };
 		C258E1D51E93608F00F5A22A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C267FCEF1E9CC04D000F5C8B /* MiniToMusicAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniToMusicAnimator.swift; sourceTree = "<group>"; };
+		C267FCF11E9CE0B0000F5C8B /* NextControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextControllerViewController.swift; sourceTree = "<group>"; };
+		C267FCF21E9CE0B0000F5C8B /* NextControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NextControllerViewController.xib; sourceTree = "<group>"; };
+		C267FCF51E9CED18000F5C8B /* MiniToMusicInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniToMusicInteractor.swift; sourceTree = "<group>"; };
 		C29317AE1E97A8C000EC03D4 /* MulticastDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		C2AF50451E92D26F0096DEAD /* PlayerControlsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerControlsView.xib; sourceTree = "<group>"; };
 		C2AF50471E92E5720096DEAD /* PlayerControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerControlsView.swift; sourceTree = "<group>"; };
@@ -176,6 +184,8 @@
 				C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */,
 				C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */,
 				C258E1D51E93608F00F5A22A /* BaseViewController.swift */,
+				C267FCF11E9CE0B0000F5C8B /* NextControllerViewController.swift */,
+				C267FCF21E9CE0B0000F5C8B /* NextControllerViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -184,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				C2CB99191E9B601A0006E7B2 /* BaseAnimator.swift */,
+				C267FCEF1E9CC04D000F5C8B /* MiniToMusicAnimator.swift */,
+				C267FCF51E9CED18000F5C8B /* MiniToMusicInteractor.swift */,
 			);
 			name = Animator;
 			sourceTree = "<group>";
@@ -259,6 +271,7 @@
 				1D5D0FB11E92577D00B2DA32 /* PlayerToolbar.xib in Resources */,
 				C204DC581E921B9500972FDA /* LaunchScreen.storyboard in Resources */,
 				C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */,
+				C267FCF41E9CE0B1000F5C8B /* NextControllerViewController.xib in Resources */,
 				C2D43DC41E97725500C161D1 /* MusicLayerController.xib in Resources */,
 				C21C756B1E94FE0500F1205C /* TrackCell.xib in Resources */,
 				C204DC551E921B9500972FDA /* Assets.xcassets in Resources */,
@@ -334,6 +347,9 @@
 				C204DC601E921CA000972FDA /* PlayerManager.swift in Sources */,
 				C21C756D1E9546A600F1205C /* PlayerUtils.swift in Sources */,
 				C258E1D61E93608F00F5A22A /* BaseViewController.swift in Sources */,
+				C267FCF31E9CE0B0000F5C8B /* NextControllerViewController.swift in Sources */,
+				C267FCF01E9CC04D000F5C8B /* MiniToMusicAnimator.swift in Sources */,
+				C267FCF61E9CED18000F5C8B /* MiniToMusicInteractor.swift in Sources */,
 				C204DC621E922C8E00972FDA /* QTGlobalInstance.swift in Sources */,
 				C21C75631E94E7A900F1205C /* TrackDiffableExtension.swift in Sources */,
 				C204DC531E921B9500972FDA /* PodcastPlayer.xcdatamodeld in Sources */,

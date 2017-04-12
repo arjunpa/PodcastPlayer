@@ -18,13 +18,20 @@ class MusicLayerController: BaseViewController {
         controlView.seeker.addTarget(self, action: #selector(MusicLayerController.scrub(slider:)), for: .touchDragInside)
         controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpInside)
               controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpOutside)
+        controlView.playButton.addTarget(self, action: #selector(MusicLayerController.presented(button:)), for: .touchUpInside)
         
         controlView.playButton.addTarget(self, action: #selector(MusicLayerController.didClickOnPlay(button:)), for: .touchUpInside)
         return controlView
     }()
     var isSeeking:Bool = false
     
+    func presented(button:UIButton){
+        let nextViewController = NextControllerViewController.init(nibName: "NextControllerViewController", bundle:nil)
+        self.present(nextViewController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
+        self.view.backgroundColor = UIColor.clear
         super.viewDidLoad()
         self.qtObject.playerManager.multicastDelegate.addDelegate(delegate: self)
         self.loadPlayerView(toolbar: toolbar)
@@ -122,21 +129,3 @@ extension MusicLayerController{
     }
 }
 
-extension MusicLayerController:UIViewControllerTransitioningDelegate{
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-        
-        return nil
-    }
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-    
-        return nil
-    }
-    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?{
-    
-        return nil
-    }
-    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?{
-    
-        return nil
-    }
-}

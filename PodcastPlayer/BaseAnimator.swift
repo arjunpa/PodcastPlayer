@@ -15,6 +15,7 @@ enum ModalAnimatedTransitioningType{
 }
 class BaseAnimator:NSObject{
     
+    var initialY:CGFloat = 0
     var transitionType:ModalAnimatedTransitioningType = .Present
     
     

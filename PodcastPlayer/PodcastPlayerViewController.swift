@@ -13,6 +13,14 @@ import IGListKit
 
 class PodcastPlayerViewController: BaseViewController {
     
+    var presentInteractor:MiniToMusicInteractor = {
+       let interactor = MiniToMusicInteractor.init()
+       return interactor
+    }()
+    var dismissInteractor:MiniToMusicInteractor = {
+        let interactor = MiniToMusicInteractor.init()
+        return interactor
+    }()
     var tracks:[TrackWrapper] = []
     fileprivate var _index:Int = 0
     @IBOutlet weak var collection_view:IGListCollectionView!
@@ -61,9 +69,10 @@ class PodcastPlayerViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         self.configurCollectionView()
         self.qtObject.playerManager.dataSource = self
-        
+          self.prepare()
         // Do any additional setup after loading the view.
     }
 
@@ -75,6 +84,19 @@ class PodcastPlayerViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+    }
+    
+    
+    func prepare(){
+        let nextViewController = NextControllerViewController.init(nibName:"NextControllerViewController", bundle:nil)
+        nextViewController.rootViewController = self
+        nextViewController.transitioningDelegate = self
+        nextViewController.modalPresentationStyle = .fullScreen
+        
+        presentInteractor = MiniToMusicInteractor()
+        presentInteractor.attachToViewController(viewController: self, withView: self.musicLayerController!.view, presentViewController: nextViewController)
+//        dismissInteractor = MiniToMusicInteractor()
+//        dismissInteractor.attachToViewController(nextViewController, withView: nextViewController.view, presentViewController: nil)
     }
     
 
@@ -129,3 +151,53 @@ extension PodcastPlayerViewController:PlayerManagerDataSource{
          return tracks[_index - 1].track.streamURL
     }
 }
+extension PodcastPlayerViewController:UIViewControllerTransitioningDelegate{
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+        
+        let animator = MiniToMusicAnimator.init()
+        let snapshotView = snapShot()
+        animator.initialY = self.musicLayerController?.toolbar.sizeFit().height ?? 0
+        animator.transitionType = .Present
+        animator.snapshotCompletion = {(animator) -> UIView in
+            return snapshotView
+        }
+        return animator
+    }
+    
+    func snapShot()->UIView{
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, UIScreen.main.scale)
+        self.musicLayerController!.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        let imageView:UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.musicLayerController?.toolbar.sizeFit().height ?? 0))
+        imageView.image = image
+        return imageView
+    }
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning?{
+        let animator = MiniToMusicAnimator.init()
+        animator.initialY = self.musicLayerController?.toolbar.sizeFit().height ?? 0
+        animator.transitionType = .Dismiss
+        animator.snapshotCompletion = {(animator) -> UIView in
+            UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, false, UIScreen.main.scale)
+            self.musicLayerController!.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: true)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            let imageView:UIImageView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.musicLayerController?.toolbar.sizeFit().height ?? 0))
+            imageView.image = image
+            return imageView
+        }
+        return animator
+        
+    }
+    public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?{
+        
+        presentInteractor.layerWindow = self.musicLayerController!.view.window!
+        presentInteractor.toolbar = self.musicLayerController!.toolbar
+        return presentInteractor
+    }
+    public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning?{
+        
+        return nil
+    }
+}
+

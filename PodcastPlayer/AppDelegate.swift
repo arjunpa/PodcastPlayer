@@ -28,11 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
+        createLayerWindow()
         let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtInstance, nibName: "PodcastPlayerViewController", bundle: nil)
         window?.rootViewController = podController
        // self.loadPlayerView()
         
-        createLayerWindow()
+        
         return true
     }
     
@@ -42,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let layerController = MusicLayerController.init(qtInstance, nibName: "MusicLayerController", bundle: nil)
         layerWindow?.rootViewController = layerController
         layerWindow?.makeKeyAndVisible()
+        layerWindow?.backgroundColor = UIColor.clear
     }
 
     
