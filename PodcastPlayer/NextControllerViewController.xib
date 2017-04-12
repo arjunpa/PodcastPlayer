@@ -19,16 +19,56 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UP4-e7-xJZ">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UP4-e7-xJZ">
                     <rect key="frame" x="16" y="20" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="46" id="QKn-tt-RZU"/>
+                        <constraint firstAttribute="height" constant="30" id="RML-UB-lgm"/>
+                    </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
                         <action selector="dismiss:" destination="-1" eventType="touchUpInside" id="sU2-Qf-3ZA"/>
                     </connections>
                 </button>
+                <visualEffectView opaque="NO" alpha="0.55000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N2y-AY-3c2">
+                    <rect key="frame" x="16" y="228" width="343" height="210"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FYL-TM-QPB">
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="210"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REO-wD-KpX">
+                                <rect key="frame" x="0.0" y="0.0" width="343" height="210"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="8Ts-Z2-Tgj">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="210"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="210" id="3Q2-6J-LGx"/>
+                    </constraints>
+                    <vibrancyEffect>
+                        <blurEffect style="dark"/>
+                    </vibrancyEffect>
+                </visualEffectView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="N2y-AY-3c2" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="5Zb-Nt-u6X"/>
+                <constraint firstItem="UP4-e7-xJZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="JHb-Vo-JI0"/>
+                <constraint firstItem="N2y-AY-3c2" firstAttribute="leading" secondItem="UP4-e7-xJZ" secondAttribute="leading" id="mSm-8P-Ydz"/>
+                <constraint firstItem="UP4-e7-xJZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="pbB-mF-x6K"/>
+                <constraint firstItem="N2y-AY-3c2" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rEj-I8-Y1T"/>
+                <constraint firstItem="N2y-AY-3c2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="tgl-cA-Dim"/>
+            </constraints>
+            <point key="canvasLocation" x="-228.5" y="-80.5"/>
         </view>
     </objects>
 </document>

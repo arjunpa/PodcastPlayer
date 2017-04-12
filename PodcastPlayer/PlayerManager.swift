@@ -78,7 +78,7 @@ class PlayerManager: NSObject {
             return self.player.currentItem!.duration
         }
     }
-
+    
     var lastURL:URL?
     
     typealias NotificationBlock = (Notification) -> ()
@@ -96,7 +96,8 @@ class PlayerManager: NSObject {
     
     fileprivate func configurePlayerItemDidEndBlock(){
         self.playerItemDIdPlayToItem = {notification in
-          self.beginBgTask()
+            //handling this from playWithURL
+            //   self.beginBgTask()
             self.player.seek(to: kCMTimeZero, completionHandler: { (finished) in
                 guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
                 datasource.playerManagerDidReachEndOfCurrentItem(manager: self)
@@ -108,7 +109,8 @@ class PlayerManager: NSObject {
                     }
                     self.removeStatusObservers();
                 }
-                self.endBgTask()
+                //handling this from playWithURL
+                //       self.endBgTask()
             })
             
             
@@ -126,11 +128,11 @@ class PlayerManager: NSObject {
     
     func endBgTask(){
         if self.bgTaskIdentifier != UIBackgroundTaskInvalid{
-           DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5, execute: {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5, execute: {
                 UIApplication.shared.endBackgroundTask(self.bgTaskIdentifier)
                 self.bgTaskIdentifier = UIBackgroundTaskInvalid
-           })
-          
+            })
+            
         }
     }
     
@@ -152,13 +154,13 @@ class PlayerManager: NSObject {
     }
     
     
-
+    
     
     
     fileprivate func addStatusObservers(){
         self.playerItem?.addObserver(self, forKeyPath: "status", options: [.initial, .new], context: &PlayerManager.CURRENT_ITEM_CONTEXT)
-         self.playerItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
-         self.playerItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+        self.playerItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+        self.playerItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: OperationQueue.main, using: self.playerItemDIdPlayToItem!)
@@ -179,8 +181,8 @@ class PlayerManager: NSObject {
     
     class func enableBackgroundPlay(){
         do{
-          try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-          try AVAudioSession.sharedInstance().setActive(true)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
         }
         catch let avError{
             print(avError)
@@ -197,11 +199,11 @@ class PlayerManager: NSObject {
             return
         }
         // fire every half second. Ideally, 0.5 * factor. Factor = seekWidth/itemDuration
-//        if let seekWidth = playerControls?.sizeFit().width{
-//            if playerDuration.seconds.isFinite{
-//               // interval = 0.5 * playerDuration.seconds / Double(seekWidth)
-//            }
-//        }
+        //        if let seekWidth = playerControls?.sizeFit().width{
+        //            if playerDuration.seconds.isFinite{
+        //               // interval = 0.5 * playerDuration.seconds / Double(seekWidth)
+        //            }
+        //        }
         
         timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: interval, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: timeObserverQueue) { (time) in
             
@@ -217,7 +219,7 @@ class PlayerManager: NSObject {
     func syncScrubber(){
         //update seeker position as music plays
         if self.currentPlayerItemDuration == kCMTimeInvalid{
-
+            
             self.multicastDelegate.invoke(invokation: { (delegate:PlayerManagerDelegate) in
                 delegate.durationDidBecomeInvalidWhileSyncingScrubber(manager: self)
             })
@@ -242,6 +244,7 @@ class PlayerManager: NSObject {
     }
     
     func playWithURL(url:URL){
+        self.beginBgTask()
         removeStatusObservers()
         self.playerItem = AVPlayerItem.init(url: url)
         self.addStatusObservers()
@@ -278,21 +281,21 @@ extension PlayerManager{
                 initTimeObserver()
                 
                 player.play()
-                
+                self.endBgTask()
             }
-            
+                
             else if player.status == AVPlayerStatus.unknown{
                 deinitTimeObserver()
             }
         }
         else if  (keyPath ?? "" == "playbackLikelyToKeepUp")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
-        
+            
             if self.playerItem?.isPlaybackLikelyToKeepUp ?? false{
                 if UIApplication.shared.applicationState == .background{
                     self.player.play()
                     self.endBgTask()
                 }
-              //  self.player.play()
+                //  self.player.play()
             }
         }
         else if  (keyPath ?? "" == "playbackBufferEmpty")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
@@ -310,7 +313,7 @@ extension PlayerManager{
     }
 }
 extension PlayerManager{
-   
+    
     
     /* The user is dragging the movie controller thumb to scrub through the movie. */
     func beginScrubbing() {
@@ -318,7 +321,7 @@ extension PlayerManager{
         self.player.rate = 0.0
         //self.removeObservers()
         self.deinitTimeObserver()
-
+        
     }
     
     /* The user has released the movie thumb control to stop scrubbing through the movie. */
@@ -329,7 +332,7 @@ extension PlayerManager{
             if playerItemDuration == kCMTimeInvalid{
                 return
             }
-          initTimeObserver()
+            initTimeObserver()
             
         }
         if scrubbingRate != nil{
@@ -337,8 +340,8 @@ extension PlayerManager{
             scrubbingRate = 0.0
         }
     }
-
-
+    
+    
     
     func scrub(value:Float,minValue:Float,maxValue:Float,isSeeking seekValue:@escaping (Bool) -> ()) {
         let playerItemDuration = self.currentPlayerItemDuration
