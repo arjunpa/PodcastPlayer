@@ -1,25 +1,97 @@
 PODS:
   - 1PasswordExtension (1.8.4)
+  - DTCoreText (1.6.20):
+    - DTCoreText/Core (= 1.6.20)
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTCoreText/Core (1.6.20):
+    - DTFoundation/Core (~> 1.7.5)
+    - DTFoundation/DTAnimatedGIF (~> 1.7.5)
+    - DTFoundation/DTHTMLParser (~> 1.7.5)
+    - DTFoundation/UIKit (~> 1.7.5)
+  - DTFoundation/Core (1.7.12)
+  - DTFoundation/DTAnimatedGIF (1.7.12)
+  - DTFoundation/DTHTMLParser (1.7.12):
+    - DTFoundation/Core
+  - DTFoundation/UIKit (1.7.12):
+    - DTFoundation/Core
   - IGListKit (2.1.0):
     - IGListKit/Default (= 2.1.0)
   - IGListKit/Default (2.1.0):
     - IGListKit/Diffing
   - IGListKit/Diffing (2.1.0)
   - KeychainAccess (3.0.1)
+  - Kingfisher (3.6.1)
+  - KingfisherWebP (0.2.0):
+    - Kingfisher (~> 3.0)
+    - libwebp
+  - libwebp (0.5.1):
+    - libwebp/core (= 0.5.1)
+    - libwebp/dec (= 0.5.1)
+    - libwebp/demux (= 0.5.1)
+    - libwebp/dsp (= 0.5.1)
+    - libwebp/enc (= 0.5.1)
+    - libwebp/mux (= 0.5.1)
+    - libwebp/utils (= 0.5.1)
+    - libwebp/webp (= 0.5.1)
+  - libwebp/core (0.5.1):
+    - libwebp/webp
+  - libwebp/dec (0.5.1):
+    - libwebp/core
+  - libwebp/demux (0.5.1):
+    - libwebp/core
+  - libwebp/dsp (0.5.1):
+    - libwebp/core
+  - libwebp/enc (0.5.1):
+    - libwebp/core
+  - libwebp/mux (0.5.1):
+    - libwebp/core
+  - libwebp/utils (0.5.1):
+    - libwebp/core
+  - libwebp/webp (0.5.1)
+  - Quintype (0.0.7)
   - Soundcloud (1.1.0):
     - 1PasswordExtension (~> 1.8.3)
     - KeychainAccess (~> 3.0)
 
 DEPENDENCIES:
+  - DTCoreText
   - IGListKit
+  - Kingfisher (~> 3.0)
+  - KingfisherWebP (from `https://github.com/yeatse/KingfisherWebP.git`, tag `0.2.0`)
+  - Quintype (from `https://github.com/Albinzr/Quintype.git`, tag `0.60`)
   - Soundcloud
+
+EXTERNAL SOURCES:
+  KingfisherWebP:
+    :git: https://github.com/yeatse/KingfisherWebP.git
+    :tag: 0.2.0
+  Quintype:
+    :git: https://github.com/Albinzr/Quintype.git
+    :tag: '0.60'
+
+CHECKOUT OPTIONS:
+  KingfisherWebP:
+    :git: https://github.com/yeatse/KingfisherWebP.git
+    :tag: 0.2.0
+  Quintype:
+    :git: https://github.com/Albinzr/Quintype.git
+    :tag: '0.60'
 
 SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
+  DTCoreText: 51904f2374af443e0d270d6fdc76035ab6f9ef8a
+  DTFoundation: 26a164ef510877387906fb92bff524a792db4bf8
   IGListKit: b826c68ef7a4ae1626c09d4d3e1ea7a169e6c36e
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
+  Kingfisher: 2f31cb75f3e98d3d4c406cbdcd9b263e956cfa67
+  KingfisherWebP: 2cd15fbb1e1b54decda5914b886dbbcf9ba246e5
+  libwebp: b9126f8982a95370cf4eaad9bb3fefd57f052c15
+  Quintype: d451338e5157ae662aef0df15f40997c2ac7ab5d
   Soundcloud: 476ba41826b4968a963048e76303056dbe529b64
 
-PODFILE CHECKSUM: e77687bd35675007e28a2f62bbe432fe3b80a6b9
+PODFILE CHECKSUM: e3bb71b7810a94c8f4b0061ed7af736454af59b7
 
 COCOAPODS: 1.2.0

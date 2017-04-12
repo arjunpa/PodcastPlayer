@@ -10,6 +10,29 @@
 		1D5D0FB11E92577D00B2DA32 /* PlayerToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB01E92577D00B2DA32 /* PlayerToolbar.xib */; };
 		1D5D0FB31E92658F00B2DA32 /* PlayerToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB21E92658F00B2DA32 /* PlayerToolbar.swift */; };
 		1D5D0FBA1E92C2D400B2DA32 /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB91E92C2D400B2DA32 /* SecondController.swift */; };
+		1D64D48B1E9CCC5C00B4F64F /* DefaultStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D64D48A1E9CCC5C00B4F64F /* DefaultStoryCell.swift */; };
+		1D64D48F1E9D023700B4F64F /* StoryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D64D48E1E9D023700B4F64F /* StoryDetailController.swift */; };
+		1D64D4911E9D4B6600B4F64F /* DetailSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D64D4901E9D4B6600B4F64F /* DetailSectionController.swift */; };
+		1D64D4931E9D4FE700B4F64F /* TextElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D64D4921E9D4FE700B4F64F /* TextElementCell.swift */; };
+		1D6FFC851E9B8A9100295921 /* DedicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC831E9B8A9100295921 /* DedicationViewController.swift */; };
+		1D6FFC861E9B8A9100295921 /* DedicationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D6FFC841E9B8A9100295921 /* DedicationViewController.xib */; };
+		1D6FFC881E9B8D0F00295921 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC871E9B8D0F00295921 /* LaunchController.swift */; };
+		1D6FFC8B1E9B94A100295921 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC8A1E9B94A100295921 /* ApiManager.swift */; };
+		1D6FFC8F1E9BA56300295921 /* HeaderImageElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC8E1E9BA56300295921 /* HeaderImageElementCell.swift */; };
+		1D6FFC931E9BA61B00295921 /* BaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC921E9BA61B00295921 /* BaseCollectionCell.swift */; };
+		1D6FFCA31E9BAF5A00295921 /* Ancher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC981E9BAF5A00295921 /* Ancher.swift */; };
+		1D6FFCA41E9BAF5A00295921 /* BorderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC991E9BAF5A00295921 /* BorderExtension.swift */; };
+		1D6FFCA51E9BAF5A00295921 /* CoreTextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC9A1E9BAF5A00295921 /* CoreTextExtension.swift */; };
+		1D6FFCA61E9BAF5A00295921 /* dateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC9B1E9BAF5A00295921 /* dateExtension.swift */; };
+		1D6FFCA71E9BAF5A00295921 /* enumExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC9C1E9BAF5A00295921 /* enumExtension.swift */; };
+		1D6FFCA81E9BAF5A00295921 /* HtmlRender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC9D1E9BAF5A00295921 /* HtmlRender.swift */; };
+		1D6FFCA91E9BAF5A00295921 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFC9E1E9BAF5A00295921 /* NavigationExtension.swift */; };
+		1D6FFCAB1E9BAF5A00295921 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFCA01E9BAF5A00295921 /* UIColorExtension.swift */; };
+		1D6FFCAC1E9BAF5A00295921 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFCA11E9BAF5A00295921 /* UIImageViewExtension.swift */; };
+		1D6FFCAD1E9BAF5A00295921 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFCA21E9BAF5A00295921 /* UILabelExtension.swift */; };
+		1D6FFCB01E9BEC1600295921 /* HeaderSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FFCAF1E9BEC1600295921 /* HeaderSectionController.swift */; };
+		1D8AEC251E9B59870026BBB0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AEC231E9B59870026BBB0 /* TabBarController.swift */; };
+		1D8AEC261E9B59870026BBB0 /* TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D8AEC241E9B59870026BBB0 /* TabBarController.xib */; };
 		8EFB841893B96DEB668533A6 /* Pods_PodcastPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DFC7CB9287ED36916B2FB6 /* Pods_PodcastPlayer.framework */; };
 		C204DC4B1E921B9500972FDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC4A1E921B9500972FDA /* AppDelegate.swift */; };
 		C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C204DC4C1E921B9500972FDA /* ViewController.swift */; };
@@ -41,6 +64,29 @@
 		1D5D0FB01E92577D00B2DA32 /* PlayerToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerToolbar.xib; sourceTree = "<group>"; };
 		1D5D0FB21E92658F00B2DA32 /* PlayerToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerToolbar.swift; sourceTree = "<group>"; };
 		1D5D0FB91E92C2D400B2DA32 /* SecondController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
+		1D64D48A1E9CCC5C00B4F64F /* DefaultStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultStoryCell.swift; sourceTree = "<group>"; };
+		1D64D48E1E9D023700B4F64F /* StoryDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryDetailController.swift; sourceTree = "<group>"; };
+		1D64D4901E9D4B6600B4F64F /* DetailSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSectionController.swift; sourceTree = "<group>"; };
+		1D64D4921E9D4FE700B4F64F /* TextElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextElementCell.swift; sourceTree = "<group>"; };
+		1D6FFC831E9B8A9100295921 /* DedicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DedicationViewController.swift; sourceTree = "<group>"; };
+		1D6FFC841E9B8A9100295921 /* DedicationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DedicationViewController.xib; sourceTree = "<group>"; };
+		1D6FFC871E9B8D0F00295921 /* LaunchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
+		1D6FFC8A1E9B94A100295921 /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		1D6FFC8E1E9BA56300295921 /* HeaderImageElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderImageElementCell.swift; sourceTree = "<group>"; };
+		1D6FFC921E9BA61B00295921 /* BaseCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionCell.swift; sourceTree = "<group>"; };
+		1D6FFC981E9BAF5A00295921 /* Ancher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ancher.swift; sourceTree = "<group>"; };
+		1D6FFC991E9BAF5A00295921 /* BorderExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderExtension.swift; sourceTree = "<group>"; };
+		1D6FFC9A1E9BAF5A00295921 /* CoreTextExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreTextExtension.swift; sourceTree = "<group>"; };
+		1D6FFC9B1E9BAF5A00295921 /* dateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dateExtension.swift; sourceTree = "<group>"; };
+		1D6FFC9C1E9BAF5A00295921 /* enumExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enumExtension.swift; sourceTree = "<group>"; };
+		1D6FFC9D1E9BAF5A00295921 /* HtmlRender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlRender.swift; sourceTree = "<group>"; };
+		1D6FFC9E1E9BAF5A00295921 /* NavigationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
+		1D6FFCA01E9BAF5A00295921 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		1D6FFCA11E9BAF5A00295921 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		1D6FFCA21E9BAF5A00295921 /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		1D6FFCAF1E9BEC1600295921 /* HeaderSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderSectionController.swift; sourceTree = "<group>"; };
+		1D8AEC231E9B59870026BBB0 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		1D8AEC241E9B59870026BBB0 /* TabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarController.xib; sourceTree = "<group>"; };
 		C204DC471E921B9500972FDA /* PodcastPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcastPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C204DC4A1E921B9500972FDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C204DC4C1E921B9500972FDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +137,89 @@
 			name = PlayerToolbar;
 			sourceTree = "<group>";
 		};
+		1D6FFC821E9B8A7300295921 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FFCAE1E9BEBE600295921 /* SectionControllers */,
+				1D6FFC8C1E9BA40A00295921 /* Dedication */,
+				1D64D48E1E9D023700B4F64F /* StoryDetailController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1D6FFC891E9B947700295921 /* ApiManager */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FFC8A1E9B94A100295921 /* ApiManager.swift */,
+			);
+			name = ApiManager;
+			sourceTree = "<group>";
+		};
+		1D6FFC8C1E9BA40A00295921 /* Dedication */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FFC831E9B8A9100295921 /* DedicationViewController.swift */,
+				1D6FFC841E9B8A9100295921 /* DedicationViewController.xib */,
+			);
+			name = Dedication;
+			sourceTree = "<group>";
+		};
+		1D6FFC8D1E9BA4EF00295921 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FFC8E1E9BA56300295921 /* HeaderImageElementCell.swift */,
+				1D64D48A1E9CCC5C00B4F64F /* DefaultStoryCell.swift */,
+				1D64D4921E9D4FE700B4F64F /* TextElementCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		1D6FFC941E9BAA8D00295921 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FFC971E9BAF4200295921 /* Extension */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		1D6FFC971E9BAF4200295921 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FFC981E9BAF5A00295921 /* Ancher.swift */,
+				1D6FFC991E9BAF5A00295921 /* BorderExtension.swift */,
+				1D6FFC9A1E9BAF5A00295921 /* CoreTextExtension.swift */,
+				1D6FFC9B1E9BAF5A00295921 /* dateExtension.swift */,
+				1D6FFC9C1E9BAF5A00295921 /* enumExtension.swift */,
+				1D6FFC9D1E9BAF5A00295921 /* HtmlRender.swift */,
+				1D6FFC9E1E9BAF5A00295921 /* NavigationExtension.swift */,
+				1D6FFCA01E9BAF5A00295921 /* UIColorExtension.swift */,
+				1D6FFCA11E9BAF5A00295921 /* UIImageViewExtension.swift */,
+				1D6FFCA21E9BAF5A00295921 /* UILabelExtension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		1D6FFCAE1E9BEBE600295921 /* SectionControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FFCAF1E9BEC1600295921 /* HeaderSectionController.swift */,
+				1D64D4901E9D4B6600B4F64F /* DetailSectionController.swift */,
+			);
+			name = SectionControllers;
+			sourceTree = "<group>";
+		};
+		1D8AEC221E9B58A40026BBB0 /* TabbarController */ = {
+			isa = PBXGroup;
+			children = (
+				1D6FFC921E9BA61B00295921 /* BaseCollectionCell.swift */,
+				1D6FFC8D1E9BA4EF00295921 /* Cells */,
+				1D6FFC821E9B8A7300295921 /* Controllers */,
+				1D8AEC231E9B59870026BBB0 /* TabBarController.swift */,
+				1D8AEC241E9B59870026BBB0 /* TabBarController.xib */,
+			);
+			name = TabbarController;
+			sourceTree = "<group>";
+		};
 		382F093B9399B35EDA083296 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +258,9 @@
 		C204DC491E921B9500972FDA /* PodcastPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				1D6FFC941E9BAA8D00295921 /* Helper */,
+				1D6FFC891E9B947700295921 /* ApiManager */,
+				1D8AEC221E9B58A40026BBB0 /* TabbarController */,
 				1D5D0FAF1E92561B00B2DA32 /* PlayerToolbar */,
 				C204DC4A1E921B9500972FDA /* AppDelegate.swift */,
 				C204DC4C1E921B9500972FDA /* ViewController.swift */,
@@ -155,6 +287,7 @@
 				C204DC591E921B9500972FDA /* Info.plist */,
 				C204DC511E921B9500972FDA /* PodcastPlayer.xcdatamodeld */,
 				1D5D0FB91E92C2D400B2DA32 /* SecondController.swift */,
+				1D6FFC871E9B8D0F00295921 /* LaunchController.swift */,
 			);
 			path = PodcastPlayer;
 			sourceTree = "<group>";
@@ -231,7 +364,9 @@
 				C204DC581E921B9500972FDA /* LaunchScreen.storyboard in Resources */,
 				C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */,
 				C2D43DC41E97725500C161D1 /* MusicLayerController.xib in Resources */,
+				1D8AEC261E9B59870026BBB0 /* TabBarController.xib in Resources */,
 				C21C756B1E94FE0500F1205C /* TrackCell.xib in Resources */,
+				1D6FFC861E9B8A9100295921 /* DedicationViewController.xib in Resources */,
 				C204DC551E921B9500972FDA /* Assets.xcassets in Resources */,
 				C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */,
 				C204DC501E921B9500972FDA /* Main.storyboard in Resources */,
@@ -293,23 +428,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D6FFCA41E9BAF5A00295921 /* BorderExtension.swift in Sources */,
+				1D6FFCA91E9BAF5A00295921 /* NavigationExtension.swift in Sources */,
+				1D6FFCA31E9BAF5A00295921 /* Ancher.swift in Sources */,
+				1D6FFCA71E9BAF5A00295921 /* enumExtension.swift in Sources */,
+				1D64D48F1E9D023700B4F64F /* StoryDetailController.swift in Sources */,
+				1D6FFC931E9BA61B00295921 /* BaseCollectionCell.swift in Sources */,
 				1D5D0FB31E92658F00B2DA32 /* PlayerToolbar.swift in Sources */,
 				1D5D0FBA1E92C2D400B2DA32 /* SecondController.swift in Sources */,
 				C21C75651E94E94200F1205C /* TrackWrapper.swift in Sources */,
+				1D64D4931E9D4FE700B4F64F /* TextElementCell.swift in Sources */,
 				C204DC691E92409B00972FDA /* PodcastPlayerViewController.swift in Sources */,
+				1D64D4911E9D4B6600B4F64F /* DetailSectionController.swift in Sources */,
 				C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */,
+				1D6FFCA61E9BAF5A00295921 /* dateExtension.swift in Sources */,
+				1D6FFC8F1E9BA56300295921 /* HeaderImageElementCell.swift in Sources */,
 				C2D43DC31E97725500C161D1 /* MusicLayerController.swift in Sources */,
+				1D6FFC8B1E9B94A100295921 /* ApiManager.swift in Sources */,
+				1D6FFCAC1E9BAF5A00295921 /* UIImageViewExtension.swift in Sources */,
+				1D6FFCAD1E9BAF5A00295921 /* UILabelExtension.swift in Sources */,
 				C21C756A1E94FE0500F1205C /* TrackCell.swift in Sources */,
+				1D6FFCA51E9BAF5A00295921 /* CoreTextExtension.swift in Sources */,
+				1D6FFCAB1E9BAF5A00295921 /* UIColorExtension.swift in Sources */,
 				C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */,
+				1D6FFCA81E9BAF5A00295921 /* HtmlRender.swift in Sources */,
 				C2AF50481E92E5720096DEAD /* PlayerControlsView.swift in Sources */,
 				C204DC4B1E921B9500972FDA /* AppDelegate.swift in Sources */,
+				1D64D48B1E9CCC5C00B4F64F /* DefaultStoryCell.swift in Sources */,
+				1D8AEC251E9B59870026BBB0 /* TabBarController.swift in Sources */,
 				C204DC601E921CA000972FDA /* PlayerManager.swift in Sources */,
 				C21C756D1E9546A600F1205C /* PlayerUtils.swift in Sources */,
 				C258E1D61E93608F00F5A22A /* BaseViewController.swift in Sources */,
 				C204DC621E922C8E00972FDA /* QTGlobalInstance.swift in Sources */,
 				C21C75631E94E7A900F1205C /* TrackDiffableExtension.swift in Sources */,
+				1D6FFCB01E9BEC1600295921 /* HeaderSectionController.swift in Sources */,
+				1D6FFC851E9B8A9100295921 /* DedicationViewController.swift in Sources */,
 				C204DC531E921B9500972FDA /* PodcastPlayer.xcdatamodeld in Sources */,
 				C21C75671E94F60900F1205C /* TracksSectionController.swift in Sources */,
+				1D6FFC881E9B8D0F00295921 /* LaunchController.swift in Sources */,
 				C29317AF1E97A8C000EC03D4 /* MulticastDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

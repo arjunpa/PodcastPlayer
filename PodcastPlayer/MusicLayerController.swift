@@ -17,11 +17,12 @@ class MusicLayerController: BaseViewController {
         controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchCancel)
         controlView.seeker.addTarget(self, action: #selector(MusicLayerController.scrub(slider:)), for: .touchDragInside)
         controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpInside)
-              controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpOutside)
+        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpOutside)
         
         controlView.playButton.addTarget(self, action: #selector(MusicLayerController.didClickOnPlay(button:)), for: .touchUpInside)
         return controlView
     }()
+    
     var isSeeking:Bool = false
     
     override func viewDidLoad() {
@@ -40,13 +41,14 @@ class MusicLayerController: BaseViewController {
         toolbar.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         toolbar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
+    
     required init(_ qtObject: QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName: String?, bundle: Bundle?)
         
     {
         super.init(qtObject, nibName: nibName, bundle: bundle)
         self.qtObject = qtObject
         //        self.playerControls = PlayerControlsView.loadFromNib()
-        self.playerControls = qtObject.playerManager.playerControls!
+//        self.playerControls = qtObject.playerManager.playerControls!
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,16 +68,6 @@ class MusicLayerController: BaseViewController {
         self.toolbar.displayTime.text = "00:00:00"
         self.toolbar.seeker.value = 0.0
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

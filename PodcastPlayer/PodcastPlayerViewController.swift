@@ -15,10 +15,13 @@ class PodcastPlayerViewController: BaseViewController {
     
     var tracks:[TrackWrapper] = []
     fileprivate var _index:Int = 0
+    let kTabBarHeight:CGFloat = 50
     @IBOutlet weak var collection_view:IGListCollectionView!
+    
     lazy var igAdaptor:IGListAdapter = {
         return IGListAdapter.init(updater: IGListAdapterUpdater.init(), viewController: self, workingRangeSize: 0)
     }()
+    
     required init(_ qtObject:QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName:String?, bundle:Bundle?){
         super.init(qtObject, nibName: nibName, bundle: bundle)
         self.configureSCClient()
@@ -27,7 +30,16 @@ class PodcastPlayerViewController: BaseViewController {
     
     func configurCollectionView(){
         self.collection_view.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).isActive = true
+        self.automaticallyAdjustsScrollViewInsets = false
         self.collection_view.collectionViewLayout = UICollectionViewFlowLayout()
+        
+        let appdelegate = UIApplication.shared.delegate as? AppDelegate
+        if let musicLayerController = appdelegate?.layerWindow?.rootViewController as? MusicLayerController{
+            let size = musicLayerController.toolbar.sizeFit()
+            self.collection_view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: size.height + kTabBarHeight, right: 0)
+            self.collection_view.scrollIndicatorInsets = self.collection_view.contentInset
+        }
+        
         igAdaptor.collectionView = self.collection_view
         igAdaptor.dataSource = self
     }
@@ -103,6 +115,7 @@ extension PodcastPlayerViewController:PlayerManagerDataSource{
     func playerManagerDidReachEndOfCurrentItem(manager:PlayerManager){
     
     }
+    
     func playerManagerShoulMoveToNextItem(manager:PlayerManager) -> Bool{
         if _index < self.tracks.count - 1{
             return true

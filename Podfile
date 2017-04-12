@@ -6,6 +6,14 @@ target 'PodcastPlayer' do
   use_frameworks!
   pod 'Soundcloud'
   pod 'IGListKit'
+  pod 'Quintype', git: 'https://github.com/Albinzr/Quintype.git', :tag => '0.60’
+
+pod 'Kingfisher', '~> 3.0'
+
+pod 'KingfisherWebP', git: 'https://github.com/yeatse/KingfisherWebP.git', :tag => '0.2.0'
+
+
+pod 'DTCoreText'
   # Pods for PodcastPlayer
 
 end

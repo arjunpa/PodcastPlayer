@@ -8,6 +8,7 @@
 
 import Foundation
 import Soundcloud
+import IGListKit
 
 class TrackWrapper:NSObject{
     var track:Track
@@ -16,4 +17,10 @@ class TrackWrapper:NSObject{
         self.track = track
         super.init()
     }
+//    public func diffIdentifier() -> NSObjectProtocol{
+//        return self
+//    }
+//    public func isEqual(toDiffableObject object: IGListDiffable?) -> Bool{
+//        return isEqual(object)
+//    }
 }

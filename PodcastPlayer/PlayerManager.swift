@@ -68,7 +68,7 @@ class PlayerManager: NSObject {
     var bgTaskIdentifier = UIBackgroundTaskInvalid
     public static let BackgroundPolicy:String = "Background_Policy"
     var player:AVPlayer!
-    var playerControls:BasePlayerControlView?
+   // var playerControls:BasePlayerControlView?
     var scrubbingRate : Float!
     
     var currentPlayerItemDuration:CMTime{
@@ -146,12 +146,12 @@ class PlayerManager: NSObject {
         
     }
     
-    func registerClassForPlayerControls(classd:BasePlayerControlView.Type){
-   
-        playerControls = classd.loadFromNib()
-        playerControls?.controlDelegate = self
-        
-    }
+//    func registerClassForPlayerControls(classd:BasePlayerControlView.Type){
+//   
+//        playerControls = classd.loadFromNib()
+//        playerControls?.controlDelegate = self
+//        
+//    }
     
     private func commonInit(){
         multicastDelegate = MulticastDelegate<PlayerManagerDelegate>()
@@ -254,7 +254,7 @@ class PlayerManager: NSObject {
         self.playerItem = AVPlayerItem.init(url: url)
         self.addStatusObservers()
         player.replaceCurrentItem(with: playerItem!)
-        self.playerControls?.resetDisplay()
+       // self.playerControls?.resetDisplay()
         self.lastURL = url
     }
     
@@ -318,6 +318,7 @@ extension PlayerManager{
         }
     }
 }
+
 extension PlayerManager:PlayerControlActionProtocol{
     internal func scrub(isSeeking seekValue: @escaping (Bool) -> ()) {
         

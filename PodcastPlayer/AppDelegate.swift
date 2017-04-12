@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Quintype
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,29 +21,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var attributes = QTGlobalAttributes()
         attributes.playerAttributes =  [PlayerManager.BackgroundPolicy:NSNumber.init(value: true)]
         let instance = QTGlobalInstance.init(tdAttributes: attributes)
-        instance.playerManager.registerClassForPlayerControls(classd: PlayerControlsView.self)
+      //  instance.playerManager.registerClassForPlayerControls(classd: PlayerControlsView.self)
         return instance
     }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        Quintype.initWithBaseUrl(baseURL: "https://hindi.thequint.com")
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
-        let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtInstance, nibName: "PodcastPlayerViewController", bundle: nil)
-        window?.rootViewController = podController
+//        let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtInstance, nibName: "PodcastPlayerViewController", bundle: nil)
+        let tabBarVC = TabBarController.init(qtInstance, nibName: "TabBarController", bundle: nil)
+        window?.rootViewController = LaunchController()
        // self.loadPlayerView()
         
-        createLayerWindow()
+//        createLayerWindow(tabBarVC:tabBarVC)
         return true
     }
     
-    func createLayerWindow(){
+    func createLayerWindow(tabBarVC:TabBarController){
         let playerToolbarSize = PlayerControlsView.loadFromNib().sizeFit()
-        layerWindow = UIWindow.init(frame: CGRect.init(x: 0, y: UIScreen.main.bounds.size.height - playerToolbarSize.height, width: UIScreen.main.bounds.size.width, height: playerToolbarSize.height))
+        layerWindow = UIWindow.init(frame: CGRect.init(x: 0, y: UIScreen.main.bounds.size.height - playerToolbarSize.height - tabBarVC.mytabBarController.tabBar.frame.height, width: UIScreen.main.bounds.size.width, height: playerToolbarSize.height))
         let layerController = MusicLayerController.init(qtInstance, nibName: "MusicLayerController", bundle: nil)
         layerWindow?.rootViewController = layerController
         layerWindow?.makeKeyAndVisible()
+        
     }
 
     

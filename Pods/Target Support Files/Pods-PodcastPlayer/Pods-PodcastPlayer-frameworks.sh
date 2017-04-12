@@ -90,15 +90,27 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/1PasswordExtension/OnePasswordExtension.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DTCoreText/DTCoreText.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DTFoundation/DTFoundation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IGListKit/IGListKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/KingfisherWebP/KingfisherWebP.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Quintype/Quintype.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Soundcloud/Soundcloud.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/libwebp/libwebp.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/1PasswordExtension/OnePasswordExtension.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DTCoreText/DTCoreText.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/DTFoundation/DTFoundation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/IGListKit/IGListKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/KingfisherWebP/KingfisherWebP.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Quintype/Quintype.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Soundcloud/Soundcloud.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/libwebp/libwebp.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
