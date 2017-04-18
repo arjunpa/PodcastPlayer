@@ -82,16 +82,16 @@ extension DetailSectionController: IGListSectionType{
         let sizingCell = sizingCells["PodcastPlayer.HeaderImageElementCell"]!
         sizingCell.configure(data: data.story)
         let size =  sizingCell.caculateSize(targetSize: targetSize)
-        
         return size
 //              return CGSize.init(width: UIScreen.main.bounds.width, height: 200)
         }else{
             let targetSize = CGSize(width: UIScreen.main.bounds.width, height: CGFloat.greatestFiniteMagnitude)
            // let sizingCell = TextElementCell.init(frame:CGRect.zero)
-             let sizingCell = sizingCells["PodcastPlayer.TextElementCell"]!
-            sizingCell.configure(data: data.storyElements[index])
-            let size =  sizingCell.caculateSize(targetSize: targetSize)
+//             let sizingCell = sizingCells["PodcastPlayer.TextElementCell"]!
+//            sizingCell.configure(data: data.storyElements[index])
+//            let size =  sizingCell.caculateSize(targetSize: targetSize)
 //            return CGSize.init(width: UIScreen.main.bounds.width, height: 200)
+            let size = TextElementCell.calcHeight(data:  data.storyElements[index], targetSize: targetSize)
             return size
         }
         
@@ -105,6 +105,8 @@ extension DetailSectionController: IGListSectionType{
     func didSelectItem(at index: Int) {
         print(index)
     }
+    
+    
     
     
 }
