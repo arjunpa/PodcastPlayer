@@ -24,8 +24,8 @@ class ApiManager {
         
     }
     
-   func getStories(){
-        Quintype.api.getStories(options: .topStories, fields: nil, offset: 0, limit: 10, storyGroup: nil, cache: .cacheToDiskWithTime(min: 10), Success: { (stories) in
+    func getStories(offset:Int,limit:Int){
+        Quintype.api.getStories(options: .topStories, fields: nil, offset: offset, limit: 50, storyGroup: nil, cache: .cacheToDiskWithTime(min: 10), Success: { (stories) in
             self.delegate?.didloadStories(stories: stories)
             
         }) { (errorMessage) in
@@ -38,6 +38,23 @@ class ApiManager {
         Quintype.api.getStoryFromId(storyId: id, cache: .cacheToDiskWithTime(min: 10), Success: { (story) in
             self.delegate?.didloadStory(story: story)
         }){(errorMessage) in
+            self.delegate?.handleError(message: errorMessage)
+        }
+    }
+    
+    
+    func getStoriesBySection(sectionName:String,offset:Int,limit:Int){
+            Quintype.api.getStories(options: .section(sectionName: sectionName), fields: nil, offset: offset, limit: limit, storyGroup: nil, cache: .cacheToDiskWithTime(min: 10), Success: { (stories) in
+                self.delegate?.didloadStories(stories: stories)
+            }) { (errorMessage) in
+                self.delegate?.handleError(message: errorMessage)
+        }
+    }
+    
+    func getStoriesWithSearchString(text:String,offset:Int,limit:Int){
+        Quintype.api.search(searchBy: .key(string: text), fields: nil, offset: offset, limit: limit, cache: .cacheToDiskWithTime(min: 10), Success: { (data) in
+            self.delegate?.didloadStories(stories: data?.stories)
+        }) { (errorMessage) in
             self.delegate?.handleError(message: errorMessage)
         }
     }

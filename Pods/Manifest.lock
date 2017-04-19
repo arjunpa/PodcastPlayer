@@ -17,11 +17,13 @@ PODS:
     - DTFoundation/Core
   - DTFoundation/UIKit (1.7.12):
     - DTFoundation/Core
+  - Fabric (1.6.11)
   - IGListKit (2.1.0):
     - IGListKit/Default (= 2.1.0)
   - IGListKit/Default (2.1.0):
     - IGListKit/Diffing
   - IGListKit/Diffing (2.1.0)
+  - JWPlayer-SDK (2.7.2)
   - KeychainAccess (3.0.1)
   - Kingfisher (3.6.1)
   - KingfisherWebP (0.2.0):
@@ -55,14 +57,22 @@ PODS:
   - Soundcloud (1.1.0):
     - 1PasswordExtension (~> 1.8.3)
     - KeychainAccess (~> 3.0)
+  - TwitterCore (2.8.0):
+    - Fabric
+  - TwitterKit (2.8.1):
+    - TwitterCore (>= 2.8)
+  - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
   - DTCoreText
   - IGListKit
+  - JWPlayer-SDK (~> 2.0)
   - Kingfisher (~> 3.0)
   - KingfisherWebP (from `https://github.com/yeatse/KingfisherWebP.git`, tag `0.2.0`)
   - Quintype (from `https://github.com/Albinzr/Quintype.git`, tag `0.60`)
   - Soundcloud
+  - TwitterKit
+  - YouTubePlayer
 
 EXTERNAL SOURCES:
   KingfisherWebP:
@@ -84,14 +94,19 @@ SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
   DTCoreText: 51904f2374af443e0d270d6fdc76035ab6f9ef8a
   DTFoundation: 26a164ef510877387906fb92bff524a792db4bf8
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   IGListKit: b826c68ef7a4ae1626c09d4d3e1ea7a169e6c36e
+  JWPlayer-SDK: c5dd9078b3016369d5a8aeeec0e177e23bbccb8f
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   Kingfisher: 2f31cb75f3e98d3d4c406cbdcd9b263e956cfa67
   KingfisherWebP: 2cd15fbb1e1b54decda5914b886dbbcf9ba246e5
   libwebp: b9126f8982a95370cf4eaad9bb3fefd57f052c15
   Quintype: d451338e5157ae662aef0df15f40997c2ac7ab5d
   Soundcloud: 476ba41826b4968a963048e76303056dbe529b64
+  TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
+  TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
+  YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: e3bb71b7810a94c8f4b0061ed7af736454af59b7
+PODFILE CHECKSUM: d119c5903e2dac65c9c5e1b0a37efe00948fb370
 
 COCOAPODS: 1.2.0

@@ -12,6 +12,11 @@ pod 'Kingfisher', '~> 3.0'
 
 pod 'KingfisherWebP', git: 'https://github.com/yeatse/KingfisherWebP.git', :tag => '0.2.0'
 
+pod 'TwitterKit'
+
+pod 'YouTubePlayer'
+
+pod 'JWPlayer-SDK', '~> 2.0'
 
 pod 'DTCoreText'
   # Pods for PodcastPlayer

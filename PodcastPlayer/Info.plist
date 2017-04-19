@@ -2,6 +2,47 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>c9dd9b7dd2e06ac71037a115b25b2b23b7fc9902</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>ogrDIqbCvTIkhTvCOaJ5HDkNr</string>
+					<key>consumerSecret</key>
+					<string>7ErLYjmR5mBdjFlDMykvAMQDWkE0KCrfBgfymvXgXNXdkatdZg</string>
+				</dict>
+				<key>KitName</key>
+				<string>Twitter</string>
+			</dict>
+		</array>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Merriweather-Regular.ttf</string>
+		<string>Merriweather-LightItalic.ttf</string>
+		<string>Merriweather-Light.ttf</string>
+		<string>Merriweather-Italic.ttf</string>
+		<string>Merriweather-BoldItalic.ttf</string>
+		<string>Merriweather-Bold.ttf</string>
+		<string>OpenSans-Regular.ttf</string>
+		<string>OpenSans-Bold.ttf</string>
+		<string>OpenSans-Semibold.ttf</string>
+		<string></string>
+		<string></string>
+	</array>
+	<key>JWPlayerKey</key>
+	<string>DQ8JrudCkUXyavq6sh+P5IdYwtnDnffp/TlPmQ==</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

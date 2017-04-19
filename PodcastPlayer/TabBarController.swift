@@ -36,14 +36,24 @@ class TabBarController: UITabBarController {
         let itemsArray = ["Listen","Watch","Read","Dedication"]
         
         for (index,item) in itemsArray.enumerated(){
-            
-            if index == 3{
+            switch index {
+            case 0:
+                let listenVc = SearchController.init(qtobject,nibName:nil,bundle:nil)
+                let nc = UINavigationController(rootViewController: listenVc)
+                nc.title = item
+                viewControllers.append(nc)
+            case 1:
+                let watchVC = WatchViewController.init(qtobject, nibName: nil, bundle: nil)
+                let nc = UINavigationController(rootViewController: watchVC)
+                nc.title = item
+                viewControllers.append(nc)
+            case 3:
                 let decicationVc = DedicationViewController.newInstance()
                 let nc = UINavigationController(rootViewController: decicationVc)
                 nc.title = item
                 viewControllers.append(nc)
-            }else{
-            let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtobject, nibName: "PodcastPlayerViewController", bundle: nil)
+            default:
+                let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtobject, nibName: "PodcastPlayerViewController", bundle: nil)
                 let nc = UINavigationController(rootViewController: podController)
                 nc.title = item
                 viewControllers.append(nc)

@@ -24,7 +24,7 @@ class PodcastPlayerViewController: BaseViewController {
     
     required init(_ qtObject:QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName:String?, bundle:Bundle?){
         super.init(qtObject, nibName: nibName, bundle: bundle)
-        self.configureSCClient()
+     
     }
     
     
@@ -53,6 +53,7 @@ class PodcastPlayerViewController: BaseViewController {
             .queryString("malayalam"),
             .types([TrackType.live, TrackType.demo])
         ]
+        
         Track.search(queries: queries) {[weak self] (response:PaginatedAPIResponse<Track>) in
             
             guard let weakSelf = self else{return}
@@ -72,6 +73,7 @@ class PodcastPlayerViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureSCClient()
         self.configurCollectionView()
         self.qtObject.playerManager.dataSource = self
         // Do any additional setup after loading the view.

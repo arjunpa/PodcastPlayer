@@ -34,30 +34,14 @@ class DefaultStoryCell: BaseCollectionCell {
         label.numberOfLines = 4
         return label
     }()
-    
-    var _imageHeightConstraint : NSLayoutConstraint!
-    var imageHeightConstraint : NSLayoutConstraint {
-        get{
-            if _imageHeightConstraint == nil{
-             _imageHeightConstraint = NSLayoutConstraint(item: self.imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
-                self._imageHeightConstraint.priority = 999
-                self.imageView.addConstraint(_imageHeightConstraint)
-            }
-            return _imageHeightConstraint
-        }
-        set{
-            _imageHeightConstraint = newValue
-        }
-    }
-    
+
     override func setupView() {
         let view = self.contentView
         view.addSubview(imageView)
         view.addSubview(headerLabel)
         view.addSubview(descriptionLabel)
         
-        imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, topConstant: kmarginPadding, leftConstant: kmarginPadding, bottomConstant: kmarginPadding, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        imageView.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width/2) - kmarginPadding).isActive = true
+        imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, topConstant: kmarginPadding, leftConstant: kmarginPadding, bottomConstant: kmarginPadding, rightConstant: 0, widthConstant: 200, heightConstant: 100)
         
         headerLabel.anchor(view.topAnchor, left: imageView.rightAnchor, bottom: nil, right: view.rightAnchor, topConstant: kmarginPadding, leftConstant: kinterElementSpacing, bottomConstant: 0, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
         descriptionLabel.anchor(headerLabel.bottomAnchor, left: imageView.rightAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: kmarginPadding, leftConstant: kinterElementSpacing, bottomConstant: kmarginPadding, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
@@ -70,9 +54,8 @@ class DefaultStoryCell: BaseCollectionCell {
         descriptionLabel.text = story?.headline
         
        if let imageKey = story?.hero_image_s3_key{
-            let imageSize = calculateImageSize(metadata: story?.hero_image_metadata, width: (UIScreen.main.bounds.width/2) - kmarginPadding)
-        imageHeightConstraint.constant = imageSize.height
-        self.imageView.loadImage(url: self.imageBaseUrl + imageKey + "?w=\(imageSize.width)", targetSize: imageSize, imageMetaData: story?.hero_image_metadata)
+        self.imageView.loadImage(url:  self.imageBaseUrl + imageKey + "?w=\(200)", targetSize: CGSize.init(width: 200, height: 100), imageMetaData: nil)
+        
         }
         
     }

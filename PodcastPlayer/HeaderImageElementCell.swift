@@ -12,10 +12,12 @@ import Quintype
 
 class HeaderImageElementCell: BaseCollectionCell {
     
+    let s = UIScreen.main.bounds.size.width - 32
+    
     let kinterElementSpacing:CGFloat = 8
     let kmarginPadding:CGFloat = 16
     let imageBaseUrl = "https://" + (Quintype.publisherConfig?.cdn_image)! + "/"
-
+    
     
     var imageView : UIImageView = {
         let imageView = UIImageView()
@@ -71,15 +73,16 @@ class HeaderImageElementCell: BaseCollectionCell {
         
     }
     
-  
+    
     
     override func configure(data:Any?){
         let story = data as? Story
         bottomTitleTextLabel.text = story?.sections.first?.display_name
         bottomDescriptionTextLabel.text = story?.headline
+        //        self.imageView.image = UIImage()
         
         if let image = story?.hero_image_s3_key{
-            let imageSize = calculateImageSize(metadata: story?.hero_image_metadata,width: UIScreen.main.bounds.size.width - 32)
+            let imageSize = calculateImageSize(metadata: story?.hero_image_metadata,width: s)
             imageViewHeightConstraint.constant = imageSize.height
             self.imageView.loadImage(url: imageBaseUrl + image + "?w=\(imageSize.width)", targetSize: imageSize,imageMetaData:(story?.hero_image_metadata))
         }
@@ -87,7 +90,7 @@ class HeaderImageElementCell: BaseCollectionCell {
 }
 
 func calculateImageSize(metadata:ImageMetaData?,width:CGFloat) -> CGSize{
-    let widthDimension2 = width 
+    let widthDimension2 = width
     
     guard metadata != nil else {
         return CGSize.init(width: widthDimension2, height: widthDimension2 * 3.0/4.0)
