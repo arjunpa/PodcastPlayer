@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NextControllerViewController" customModule="PodcastPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="forwardButton" destination="H8N-h5-HHi" id="cWi-K1-Oc0"/>
+                <outlet property="rewindButton" destination="k05-QM-lw6" id="abA-Hy-vBk"/>
+                <outlet property="slider" destination="cXj-mw-I7l" id="Nyw-9M-fwD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VnO-4r-vu4">
+                    <rect key="frame" x="16" y="270" width="343" height="128"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k05-QM-lw6">
+                            <rect key="frame" x="37" y="86" width="16" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="XqT-KT-yxQ"/>
+                                <constraint firstAttribute="height" constant="22" id="yuw-bq-jcq"/>
+                            </constraints>
+                            <state key="normal" image="Rewind"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8N-h5-HHi">
+                            <rect key="frame" x="297" y="86" width="16" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="SSc-Rg-4ye"/>
+                                <constraint firstAttribute="height" constant="22" id="wBU-Eg-S2c"/>
+                            </constraints>
+                            <state key="normal" image="Forward"/>
+                        </button>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="cXj-mw-I7l">
+                            <rect key="frame" x="6" y="21" width="331" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="G1e-2Y-iwN"/>
+                            </constraints>
+                        </slider>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgI-ZR-U9N">
+                            <rect key="frame" x="163" y="86" width="16" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="jMS-kV-z1f"/>
+                                <constraint firstAttribute="width" constant="16" id="noW-Lw-2oT"/>
+                            </constraints>
+                            <state key="normal" image="Play"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.58431372550000005" green="0.28235294119999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="cXj-mw-I7l" firstAttribute="leading" secondItem="VnO-4r-vu4" secondAttribute="leading" constant="8" id="0gU-0V-Hdm"/>
+                        <constraint firstItem="jgI-ZR-U9N" firstAttribute="top" secondItem="cXj-mw-I7l" secondAttribute="bottom" constant="35" id="B1s-MN-Etd"/>
+                        <constraint firstItem="jgI-ZR-U9N" firstAttribute="centerX" secondItem="cXj-mw-I7l" secondAttribute="centerX" id="M9W-mH-FpZ"/>
+                        <constraint firstAttribute="width" constant="343" id="SOu-fI-Fx6"/>
+                        <constraint firstAttribute="height" constant="128" id="ZFJ-yh-jR0"/>
+                        <constraint firstItem="k05-QM-lw6" firstAttribute="leading" secondItem="VnO-4r-vu4" secondAttribute="leadingMargin" constant="29" id="dva-9W-gTU"/>
+                        <constraint firstAttribute="trailing" secondItem="cXj-mw-I7l" secondAttribute="trailing" constant="8" id="f9k-9e-ZR9"/>
+                        <constraint firstAttribute="bottom" secondItem="jgI-ZR-U9N" secondAttribute="bottom" constant="20" id="gzA-8M-9hc"/>
+                        <constraint firstItem="k05-QM-lw6" firstAttribute="top" secondItem="cXj-mw-I7l" secondAttribute="bottom" constant="35" id="lqh-MW-fl4"/>
+                        <constraint firstAttribute="trailing" secondItem="H8N-h5-HHi" secondAttribute="trailing" constant="30" id="lzN-X0-BI2"/>
+                        <constraint firstItem="H8N-h5-HHi" firstAttribute="top" secondItem="cXj-mw-I7l" secondAttribute="bottom" constant="35" id="nUC-76-GyB"/>
+                        <constraint firstItem="cXj-mw-I7l" firstAttribute="top" secondItem="VnO-4r-vu4" secondAttribute="top" constant="21" id="tWH-FS-7kH"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="VnO-4r-vu4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6tk-80-BeT"/>
+                <constraint firstItem="VnO-4r-vu4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="7zv-ug-Gv0"/>
+            </constraints>
+            <point key="canvasLocation" x="-228.5" y="-80.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Forward" width="16" height="16"/>
+        <image name="Play" width="16" height="16"/>
+        <image name="Rewind" width="16" height="16"/>
+    </resources>
+</document>

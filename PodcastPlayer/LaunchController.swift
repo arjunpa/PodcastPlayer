@@ -13,13 +13,13 @@ class LaunchController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         Quintype.api.getPublisherConfig(cache: .cacheToDiskWithTime(min: 30), Success: { (configData) in
             let appdelegate = UIApplication.shared.delegate as? AppDelegate
-            let tabBarVC = TabBarController(nibName: "TabBarController", bundle: nil)
+            let viewContoller = ViewController((appdelegate?.qtInstance)!, nibName: nil, bundle: nil)
 
-            appdelegate?.window?.rootViewController = tabBarVC
-            appdelegate?.createLayerWindow(tabBarVC: tabBarVC)
+            appdelegate?.window?.rootViewController = viewContoller
+            
             print(configData)
         }) { (error) in
             print(error)

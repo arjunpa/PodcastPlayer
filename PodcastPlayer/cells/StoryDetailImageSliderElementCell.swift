@@ -69,7 +69,7 @@ class StoryDetailImageSliderElementCell:BaseCollectionCell,CAAnimationDelegate{
     
     
     
-    let imageBaseUrl = "http://" + (Quintype.publisherConfig?.cdn_image)! + "/"
+    let imageBaseUrl = "https://" + (Quintype.publisherConfig?.cdn_image)! + "/"
     
     let screenWidth = UIScreen.main.bounds.width
     

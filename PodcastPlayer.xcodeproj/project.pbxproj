@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D5D0FB11E92577D00B2DA32 /* PlayerToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB01E92577D00B2DA32 /* PlayerToolbar.xib */; };
-		1D5D0FB31E92658F00B2DA32 /* PlayerToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB21E92658F00B2DA32 /* PlayerToolbar.swift */; };
 		1D5D0FBA1E92C2D400B2DA32 /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D0FB91E92C2D400B2DA32 /* SecondController.swift */; };
+		1D5D75D41EAA2974003DBA70 /* BaseAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D75D11EAA2974003DBA70 /* BaseAnimator.swift */; };
+		1D5D75D51EAA2974003DBA70 /* MiniToLargeViewInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D75D21EAA2974003DBA70 /* MiniToLargeViewInteractive.swift */; };
+		1D5D75D61EAA2974003DBA70 /* MiniToMusicAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D75D31EAA2974003DBA70 /* MiniToMusicAnimator.swift */; };
+		1D5D75DA1EAA2995003DBA70 /* NextControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5D75D81EAA2995003DBA70 /* NextControllerViewController.swift */; };
+		1D5D75DB1EAA2995003DBA70 /* NextControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D5D75D91EAA2995003DBA70 /* NextControllerViewController.xib */; };
 		1D64D48B1E9CCC5C00B4F64F /* DefaultStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D64D48A1E9CCC5C00B4F64F /* DefaultStoryCell.swift */; };
 		1D64D48F1E9D023700B4F64F /* StoryDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D64D48E1E9D023700B4F64F /* StoryDetailController.swift */; };
 		1D64D4911E9D4B6600B4F64F /* DetailSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D64D4901E9D4B6600B4F64F /* DetailSectionController.swift */; };
@@ -121,9 +124,12 @@
 
 /* Begin PBXFileReference section */
 		00DFC7CB9287ED36916B2FB6 /* Pods_PodcastPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodcastPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D5D0FB01E92577D00B2DA32 /* PlayerToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerToolbar.xib; sourceTree = "<group>"; };
-		1D5D0FB21E92658F00B2DA32 /* PlayerToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerToolbar.swift; sourceTree = "<group>"; };
 		1D5D0FB91E92C2D400B2DA32 /* SecondController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
+		1D5D75D11EAA2974003DBA70 /* BaseAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseAnimator.swift; sourceTree = "<group>"; };
+		1D5D75D21EAA2974003DBA70 /* MiniToLargeViewInteractive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniToLargeViewInteractive.swift; sourceTree = "<group>"; };
+		1D5D75D31EAA2974003DBA70 /* MiniToMusicAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniToMusicAnimator.swift; sourceTree = "<group>"; };
+		1D5D75D81EAA2995003DBA70 /* NextControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextControllerViewController.swift; sourceTree = "<group>"; };
+		1D5D75D91EAA2995003DBA70 /* NextControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NextControllerViewController.xib; sourceTree = "<group>"; };
 		1D64D48A1E9CCC5C00B4F64F /* DefaultStoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultStoryCell.swift; sourceTree = "<group>"; };
 		1D64D48E1E9D023700B4F64F /* StoryDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryDetailController.swift; sourceTree = "<group>"; };
 		1D64D4901E9D4B6600B4F64F /* DetailSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSectionController.swift; sourceTree = "<group>"; };
@@ -249,13 +255,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D5D0FAF1E92561B00B2DA32 /* PlayerToolbar */ = {
+		1D5D75D71EAA297A003DBA70 /* Animate Transition */ = {
 			isa = PBXGroup;
 			children = (
-				1D5D0FB01E92577D00B2DA32 /* PlayerToolbar.xib */,
-				1D5D0FB21E92658F00B2DA32 /* PlayerToolbar.swift */,
+				1D5D75D11EAA2974003DBA70 /* BaseAnimator.swift */,
+				1D5D75D21EAA2974003DBA70 /* MiniToLargeViewInteractive.swift */,
+				1D5D75D31EAA2974003DBA70 /* MiniToMusicAnimator.swift */,
 			);
-			name = PlayerToolbar;
+			name = "Animate Transition";
 			sourceTree = "<group>";
 		};
 		1D6FFC821E9B8A7300295921 /* Controllers */ = {
@@ -467,11 +474,13 @@
 				1D6FFC941E9BAA8D00295921 /* Helper */,
 				1D6FFC891E9B947700295921 /* ApiManager */,
 				1D8AEC221E9B58A40026BBB0 /* TabbarController */,
-				1D5D0FAF1E92561B00B2DA32 /* PlayerToolbar */,
 				C204DC4A1E921B9500972FDA /* AppDelegate.swift */,
 				C204DC4C1E921B9500972FDA /* ViewController.swift */,
+				1D5D75D71EAA297A003DBA70 /* Animate Transition */,
 				C2D43DC11E97725500C161D1 /* MusicLayerController.swift */,
 				C2D43DC21E97725500C161D1 /* MusicLayerController.xib */,
+				1D5D75D81EAA2995003DBA70 /* NextControllerViewController.swift */,
+				1D5D75D91EAA2995003DBA70 /* NextControllerViewController.xib */,
 				C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */,
 				C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */,
 				C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */,
@@ -567,7 +576,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D5D0FB11E92577D00B2DA32 /* PlayerToolbar.xib in Resources */,
 				1D8A30BD1EA3F1D5000151C3 /* Colors.plist in Resources */,
 				1D8A30C41EA3F1D5000151C3 /* Merriweather-LightItalic.ttf in Resources */,
 				C204DC581E921B9500972FDA /* LaunchScreen.storyboard in Resources */,
@@ -575,6 +583,7 @@
 				1D8A30C91EA3F1D5000151C3 /* SourceSansPro-Bold.ttf in Resources */,
 				C2AF50461E92D26F0096DEAD /* PlayerControlsView.xib in Resources */,
 				C2D43DC41E97725500C161D1 /* MusicLayerController.xib in Resources */,
+				1D5D75DB1EAA2995003DBA70 /* NextControllerViewController.xib in Resources */,
 				1D8A30CB1EA3F1D5000151C3 /* SourceSansPro-Regular.ttf in Resources */,
 				1D8AEC261E9B59870026BBB0 /* TabBarController.xib in Resources */,
 				1D8A30C01EA3F1D5000151C3 /* Merriweather-Bold.ttf in Resources */,
@@ -658,8 +667,9 @@
 				1D6FFCA71E9BAF5A00295921 /* enumExtension.swift in Sources */,
 				1D64D48F1E9D023700B4F64F /* StoryDetailController.swift in Sources */,
 				1D6FFC931E9BA61B00295921 /* BaseCollectionCell.swift in Sources */,
-				1D5D0FB31E92658F00B2DA32 /* PlayerToolbar.swift in Sources */,
 				1D8A30981EA3EE29000151C3 /* StoryDetailSocialShareElementCell.swift in Sources */,
+				1D5D75D51EAA2974003DBA70 /* MiniToLargeViewInteractive.swift in Sources */,
+				1D5D75DA1EAA2995003DBA70 /* NextControllerViewController.swift in Sources */,
 				1D8A308C1EA3EE29000151C3 /* StoryDetailBackQuoteCell.swift in Sources */,
 				1D8A30BE1EA3F1D5000151C3 /* Fonts.swift in Sources */,
 				1D5D0FBA1E92C2D400B2DA32 /* SecondController.swift in Sources */,
@@ -670,6 +680,7 @@
 				1DAC400F1E9E58A300A3F719 /* SpinnerSectionController.swift in Sources */,
 				1D8A30BF1EA3F1D5000151C3 /* HomePageCells.swift in Sources */,
 				1D64D4911E9D4B6600B4F64F /* DetailSectionController.swift in Sources */,
+				1D5D75D61EAA2974003DBA70 /* MiniToMusicAnimator.swift in Sources */,
 				C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */,
 				1D876F321EA61C64001326D1 /* SearchDefaultCell.swift in Sources */,
 				1D6FFCA61E9BAF5A00295921 /* dateExtension.swift in Sources */,
@@ -677,6 +688,7 @@
 				1D8A30961EA3EE29000151C3 /* StoryDetailQuestionElementCell.swift in Sources */,
 				1D6FFC8F1E9BA56300295921 /* HeaderImageElementCell.swift in Sources */,
 				C2D43DC31E97725500C161D1 /* MusicLayerController.swift in Sources */,
+				1D5D75D41EAA2974003DBA70 /* BaseAnimator.swift in Sources */,
 				1D6FFC8B1E9B94A100295921 /* ApiManager.swift in Sources */,
 				1D8A30921EA3EE29000151C3 /* StoryDetailImageElementCell.swift in Sources */,
 				1D6FFCAC1E9BAF5A00295921 /* UIImageViewExtension.swift in Sources */,

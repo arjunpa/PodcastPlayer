@@ -27,13 +27,6 @@ class ImageViewController: BaseViewController {
         
     }()
     
-    
-//    convenience init(imageUrl:String,imageMeta:ImageMetaData?){
-//        self.init()
-//        self.url = imageUrl
-////        self.imageMeta = imageMeta
-//        
-//    }
     override func loadView() {
         super.loadView()
         self.view = UIView.init(frame: screenBounds)

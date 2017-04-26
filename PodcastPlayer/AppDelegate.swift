@@ -18,41 +18,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     var window: UIWindow?
-    var layerWindow:UIWindow?
+    var defaults = UserDefaults.standard
     
     lazy var qtInstance:QTGlobalProtocol = {
         var attributes = QTGlobalAttributes()
         attributes.playerAttributes =  [PlayerManager.BackgroundPolicy:NSNumber.init(value: true)]
         let instance = QTGlobalInstance.init(tdAttributes: attributes)
-        //  instance.playerManager.registerClassForPlayerControls(classd: PlayerControlsView.self)
         return instance
     }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         //        Quintype.initWithBaseUrl(baseURL: "https://hindi.thequint.com")
         //        Quintype.initWithBaseUrl(baseURL: "http://gaonconnection-web.staging.quintype.io")
         Quintype.initWithBaseUrl(baseURL: "https://www.thequint.com")
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         Fabric.with([Twitter.self])
-        //        let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtInstance, nibName: "PodcastPlayerViewController", bundle: nil)
-        //        let tabBarVC = TabBarController.init(qtInstance, nibName: "TabBarController", bundle: nil)
-        window?.rootViewController = LaunchController()
-        // self.loadPlayerView()
         
-        //        createLayerWindow(tabBarVC:tabBarVC)
+        window?.rootViewController = LaunchController()
+        
         return true
     }
     
-    func createLayerWindow(tabBarVC:TabBarController){
-        let playerToolbarSize = PlayerControlsView.loadFromNib().sizeFit()
-        layerWindow = UIWindow.init(frame: CGRect.init(x: 0, y: UIScreen.main.bounds.size.height - playerToolbarSize.height - tabBarVC.tabBar.frame.height, width: UIScreen.main.bounds.size.width, height: playerToolbarSize.height))
-        let layerController = MusicLayerController.init(qtInstance, nibName: "MusicLayerController", bundle: nil)
-        layerWindow?.rootViewController = layerController
-        layerWindow?.makeKeyAndVisible()
-        
-    }
     
     
     func applicationWillResignActive(_ application: UIApplication) {

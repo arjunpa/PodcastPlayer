@@ -38,8 +38,9 @@ class TabBarController: UITabBarController {
         for (index,item) in itemsArray.enumerated(){
             switch index {
             case 0:
-                let listenVc = SearchController.init(qtobject,nibName:nil,bundle:nil)
-                let nc = UINavigationController(rootViewController: listenVc)
+
+                let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtobject, nibName: "PodcastPlayerViewController", bundle: nil)
+                let nc = UINavigationController(rootViewController: podController)
                 nc.title = item
                 viewControllers.append(nc)
             case 1:
@@ -53,13 +54,11 @@ class TabBarController: UITabBarController {
                 nc.title = item
                 viewControllers.append(nc)
             default:
-                let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtobject, nibName: "PodcastPlayerViewController", bundle: nil)
-                let nc = UINavigationController(rootViewController: podController)
+                let listenVc = SearchController.init(qtobject,nibName:nil,bundle:nil)
+                let nc = UINavigationController(rootViewController: listenVc)
                 nc.title = item
                 viewControllers.append(nc)
             }
-            
-            
         }
         self.viewControllers = viewControllers
 //        addViewController(anyController: mytabBarController)

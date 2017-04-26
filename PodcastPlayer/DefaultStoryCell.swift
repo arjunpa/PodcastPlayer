@@ -26,6 +26,9 @@ class DefaultStoryCell: BaseCollectionCell {
     var headerLabel : UILabel = {
        let label = UILabel()
         label.numberOfLines = 1
+        
+        label.textColor = UIColor(hexString: "#f95f00")
+        
         return label
     }()
     
@@ -41,20 +44,21 @@ class DefaultStoryCell: BaseCollectionCell {
         view.addSubview(headerLabel)
         view.addSubview(descriptionLabel)
         
-        imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, topConstant: kmarginPadding, leftConstant: kmarginPadding, bottomConstant: kmarginPadding, rightConstant: 0, widthConstant: 200, heightConstant: 100)
+        imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, topConstant: kmarginPadding, leftConstant: kmarginPadding, bottomConstant: kmarginPadding, rightConstant: 0, widthConstant: 120, heightConstant: 90)
         
         headerLabel.anchor(view.topAnchor, left: imageView.rightAnchor, bottom: nil, right: view.rightAnchor, topConstant: kmarginPadding, leftConstant: kinterElementSpacing, bottomConstant: 0, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
-        descriptionLabel.anchor(headerLabel.bottomAnchor, left: imageView.rightAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: kmarginPadding, leftConstant: kinterElementSpacing, bottomConstant: kmarginPadding, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
+        
+        descriptionLabel.anchor(headerLabel.bottomAnchor, left: imageView.rightAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: kinterElementSpacing, leftConstant: kinterElementSpacing, bottomConstant: kmarginPadding, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
     }
     
     override func configure(data: Any?) {
         let story = data as? Story
         
-        headerLabel.text = story?.sections.first?.display_name
+        headerLabel.text = story?.sections.first?.display_name?.uppercased()
         descriptionLabel.text = story?.headline
         
        if let imageKey = story?.hero_image_s3_key{
-        self.imageView.loadImage(url:  self.imageBaseUrl + imageKey + "?w=\(200)", targetSize: CGSize.init(width: 200, height: 100), imageMetaData: nil)
+        self.imageView.loadImage(url:  self.imageBaseUrl + imageKey + "?w=\(250)", targetSize: CGSize.init(width: 250, height: 250), imageMetaData: nil)
         
         }
         

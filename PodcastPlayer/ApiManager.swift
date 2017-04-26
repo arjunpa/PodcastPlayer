@@ -25,7 +25,7 @@ class ApiManager {
     }
     
     func getStories(offset:Int,limit:Int){
-        Quintype.api.getStories(options: .topStories, fields: nil, offset: offset, limit: 50, storyGroup: nil, cache: .cacheToDiskWithTime(min: 10), Success: { (stories) in
+        Quintype.api.getStories(options: .topStories, fields: nil, offset: offset, limit: 10, storyGroup: nil, cache: .cacheToDiskWithTime(min: 10), Success: { (stories) in
             self.delegate?.didloadStories(stories: stories)
             
         }) { (errorMessage) in

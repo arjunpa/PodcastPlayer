@@ -9,20 +9,21 @@
 import UIKit
 
 
+//Global protocol manager
 @objc protocol QTGlobalProtocol{
     var playerManager:PlayerManager{
         get set
     }
 }
 
+//Global attributes manager
 struct QTGlobalAttributes{
-
-    
     var player:PlayerManager?
     var playerAttributes:Dictionary<String, Any>?
     
 }
 
+//Global instance of player
 class QTGlobalInstance: NSObject, QTGlobalProtocol {
     internal var playerManager: PlayerManager
 

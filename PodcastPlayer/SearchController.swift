@@ -42,7 +42,10 @@ class SearchController: BaseViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         searchBar.anchor(self.topLayoutGuide.bottomAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
-        collectionView.anchor(self.searchBar.bottomAnchor, left: self.view.leftAnchor, bottom: self.bottomLayoutGuide.topAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 100, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        collectionView.anchor(self.searchBar.bottomAnchor, left: self.view.leftAnchor, bottom: self.bottomLayoutGuide.topAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        
         
         adaptor.collectionView = self.collectionView
         adaptor.dataSource = self

@@ -10,9 +10,7 @@ import UIKit
 
 public class BasePlayerControlView:UIView{
     
-    weak var controlDelegate:PlayerControlActionProtocol?
     
-    @IBOutlet weak var playButton:UIButton! 
     
     var minimumScaleValue:Float{
         get{return 0.0} set{}
@@ -41,26 +39,29 @@ public class BasePlayerControlView:UIView{
         fatalError("Override this")
     }
     
-//    public func minimumScaleValue() -> Float{
-//        return 0.0
-//    }
-//    public func maximumScaleValue() -> Float{
-//        return 0.0
-//    }
+    public func configurePLayerUI(){
+        fatalError("Override this")
+    }
+    
 }
 
 
 public class PlayerControlsView: BasePlayerControlView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    @IBOutlet weak var authorlabel: UILabel!
+
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var displayTime:UILabel!
     @IBOutlet weak var seeker:UISlider!
+    @IBOutlet weak var playerTappableArea: UIView!
+    
+    @IBOutlet weak var durationTimeLabel: UILabel!
+    
+    @IBOutlet weak var forwardButton: UIButton!
+    
+    @IBOutlet weak var playButton:UIButton!
+
+    @IBOutlet weak var musicArtWorkImageView: UIImageView!
     
     var isSeeking:Bool = false
     var playing:Bool = false
@@ -69,8 +70,10 @@ public class PlayerControlsView: BasePlayerControlView {
     public override class func loadFromNib() -> PlayerControlsView{
         let nib = UINib.init(nibName: "PlayerControlsView", bundle: nil)
         let view = nib.instantiate(withOwner: nil, options: nil)[0] as! PlayerControlsView
+        
+        view.configurePLayerUI()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.resetDisplay()
+        
         return view
     }
 
@@ -113,49 +116,17 @@ public class PlayerControlsView: BasePlayerControlView {
     }
     
     override public func resetDisplay() {
-        self.displayTime.text = "00:00:00"
+        self.displayTime.text = "00:00"
         self.seeker.value = 0.0
+        self.durationTimeLabel.text = "00:00"
     }
-    
-//    @IBAction func scrub(_ sender: UISlider) {
-//        if !isSeeking{
-//            isSeeking = true
-//            self.controlDelegate?.scrub(isSeeking: { (seekValue) in
-//                self.isSeeking = seekValue
-//            })
-//        }
-//    }
-//    
-//    
-//    @IBAction func endScrubbing(_ sender: UISlider){
-//        self.controlDelegate?.endScrubbing()
-//    }
-//    
-//    
-//    @IBAction func beginScrubbing(_ sender: UISlider){
-//        self.controlDelegate?.beginScrubbing()
-//    }
-    
-    
-    @IBAction func playPauseButtonPressed(_ sender:UIButton){
-     self.controlDelegate?.didClickOnPlay(control: self.controlDelegate!, isPlaying: { (isPlaying) in
-        if isPlaying{
-            UIView.transition(with: sender, duration: 0.5, options: UIViewAnimationOptions .curveLinear, animations: {
-                sender.setImage(UIImage(named: "Play"), for: .normal)
-            }, completion: nil)
-        }else{
-            UIView.transition(with: sender, duration: 0.5, options: UIViewAnimationOptions .curveLinear, animations: {
-                sender.setImage(UIImage(named: "Pause"), for: .normal)
-            }, completion: nil)
-        }
-     })
+
+    override public func configurePLayerUI() {
+        self.resetDisplay()
+        self.seeker.setThumbImage(UIImage(named:"thumb"), for: .normal)
+        self.seeker.setThumbImage(UIImage(named:"thumbH"), for: .highlighted)
+        
     }
-    
-    
-    
-    
-    
-    
     
     
     

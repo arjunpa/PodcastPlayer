@@ -9,10 +9,11 @@
 import Foundation
 
 
-func formatTimeFromSeconds(seconds:Double) -> String{
-    let date = Date.init(timeIntervalSinceReferenceDate: seconds)
-    let formatter:DateFormatter = DateFormatter.init()
-    formatter.dateFormat = "HH:mm:ss"
-    formatter.timeZone = TimeZone.init(secondsFromGMT: 0)
-    return formatter.string(from: date)
+func formatTimeFromSeconds(seconds : Double) -> String
+{
+    let formatter = DateComponentsFormatter()
+    formatter.allowedUnits = [.second, .minute, .hour]
+    formatter.zeroFormattingBehavior = .pad
+    let output = formatter.string(from: TimeInterval(seconds))!
+    return seconds < 3600 ? output.substring(from: output.range(of: ":")!.upperBound) : output
 }

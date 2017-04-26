@@ -16,29 +16,32 @@ class PodcastPlayerViewController: BaseViewController {
     var tracks:[TrackWrapper] = []
     fileprivate var _index:Int = 0
     let kTabBarHeight:CGFloat = 50
-    @IBOutlet weak var collection_view:IGListCollectionView!
+    
+    var collection_view:IGListCollectionView = {
+       let view = IGListCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        return view
+    }()
     
     lazy var igAdaptor:IGListAdapter = {
         return IGListAdapter.init(updater: IGListAdapterUpdater.init(), viewController: self, workingRangeSize: 0)
     }()
     
-    required init(_ qtObject:QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName:String?, bundle:Bundle?){
-        super.init(qtObject, nibName: nibName, bundle: bundle)
-     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.configureSCClient()
+        self.configurCollectionView()
+        self.qtObject.playerManager.dataSource = self
     }
-    
-    
+
     func configurCollectionView(){
-        self.collection_view.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).isActive = true
-        self.automaticallyAdjustsScrollViewInsets = false
-        self.collection_view.collectionViewLayout = UICollectionViewFlowLayout()
+        self.view.addSubview(collection_view)
         
-        let appdelegate = UIApplication.shared.delegate as? AppDelegate
-        if let musicLayerController = appdelegate?.layerWindow?.rootViewController as? MusicLayerController{
-            let size = musicLayerController.toolbar.sizeFit()
-            self.collection_view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: size.height + kTabBarHeight, right: 0)
-            self.collection_view.scrollIndicatorInsets = self.collection_view.contentInset
-        }
+        collection_view.anchor(self.view.topAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        collection_view.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        
+        collection_view.backgroundColor = UIColor.lightGray
         
         igAdaptor.collectionView = self.collection_view
         igAdaptor.dataSource = self
@@ -57,41 +60,18 @@ class PodcastPlayerViewController: BaseViewController {
         Track.search(queries: queries) {[weak self] (response:PaginatedAPIResponse<Track>) in
             
             guard let weakSelf = self else{return}
-           let tracksd = response.response.result ?? []
+            let tracksd = response.response.result ?? []
             weakSelf.tracks = tracksd.map({ (track:Track) -> TrackWrapper in
                 return TrackWrapper.init(track: track)
             })
-            DispatchQueue.main.async(execute: { 
+            DispatchQueue.main.async(execute: {
                 self?.igAdaptor.reloadData(completion: nil)
             })
         }
     }
-    
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.configureSCClient()
-        self.configurCollectionView()
-        self.qtObject.playerManager.dataSource = self
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-    }
-    
-
 
 }
+
 extension PodcastPlayerViewController:IGListAdapterDataSource{
     func objects(for listAdapter: IGListAdapter) -> [IGListDiffable] {
         return self.tracks
@@ -109,11 +89,14 @@ extension PodcastPlayerViewController:IGListAdapterDataSource{
 
 extension PodcastPlayerViewController:TracksSectionControllerDelegate{
     func sectionIndexSelected(controller: IGListSectionController, index: Int) {
+        
         self._index = index
     }
 }
 
 extension PodcastPlayerViewController:PlayerManagerDataSource{
+    
+
     func playerManagerDidReachEndOfCurrentItem(manager:PlayerManager){
     
     }
@@ -137,8 +120,19 @@ extension PodcastPlayerViewController:PlayerManagerDataSource{
         _index += 1
         return tracks[_index].track.streamURL
     }
+    
     func playerManagerDidAskForPreviousItem(manager:PlayerManager) -> URL?{
         _index -= 1
          return tracks[_index - 1].track.streamURL
+    }
+    
+    func playerManagerDidAskForArtWorksImageUrl(manager:PlayerManager) -> URL?{
+        return tracks[self._index].track.artworkImageURL.largeURL
+    }
+    
+    func playerManagerDidAskForTrackNameDetails(manager:PlayerManager) -> (String,String){
+        let trackD = tracks[self._index].track
+        
+        return (trackD.title,trackD.createdBy.fullname)
     }
 }

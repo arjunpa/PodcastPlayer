@@ -11,6 +11,8 @@ import Quintype
 
 class StoryDetailHeaderImageElementCell: BaseCollectionCell {
     
+    let imageBaseUrl = "https://" + (Quintype.publisherConfig?.cdn_image)! + "/"
+    
     var coverImageView:UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
@@ -60,7 +62,7 @@ class StoryDetailHeaderImageElementCell: BaseCollectionCell {
         
     }()
     
-    let imageBaseUrl = "http://" + (Quintype.publisherConfig?.cdn_image)! + "/"
+    
     
     override func configure(data: Any?) {
         super.configure(data: data)

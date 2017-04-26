@@ -19,34 +19,22 @@ protocol BaseControllerProtocol:class{
 class BaseViewController: UIViewController, BaseControllerProtocol {
     internal var qtObject: QTGlobalProtocol
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.beginReceivingRemoteControlEvents()
-        // Do any additional setup after loading the view.
     }
 
     required init(_ qtObject: QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName: String?, bundle: Bundle?)
         
     {
         self.qtObject = qtObject
-//        self.playerControls = PlayerControlsView.loadFromNib()
-//        self.playerControls = qtObject.playerManager.playerControls!
         super.init(nibName: nibName, bundle: bundle)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
     }
    
 }

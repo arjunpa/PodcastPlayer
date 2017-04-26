@@ -34,7 +34,7 @@ class DedicationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(collectionView)
-        collectionView.anchor(self.view.topAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 100, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        collectionView.anchor(self.view.topAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         adaptor.collectionView = self.collectionView
         adaptor.dataSource = self
         adaptor.scrollViewDelegate = self
