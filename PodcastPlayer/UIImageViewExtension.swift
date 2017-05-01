@@ -109,6 +109,7 @@ extension UIImageView{
                     
                     
                 })
+                
                 break
                 
             default:
@@ -165,6 +166,8 @@ extension UIImageView{
             }
         }
     }
+    
+    
 }
 
 

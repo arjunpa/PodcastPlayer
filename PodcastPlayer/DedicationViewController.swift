@@ -39,7 +39,9 @@ class DedicationViewController: BaseViewController {
         adaptor.dataSource = self
         adaptor.scrollViewDelegate = self
         manager = ApiManager.init(delegate: self)
-        manager.getStories(offset: offset, limit: limit)
+//        manager.getStories(offset: offset, limit: limit)
+        manager.getStoriesWithSearchString(text: "gif", offset: offset, limit: limit)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -47,12 +49,7 @@ class DedicationViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    class func newInstance() -> DedicationViewController{
-        let dedicationVc = DedicationViewController(nibName: "DedicationViewController", bundle: nil)
-        
-        return dedicationVc
-    }
+
 }
 
 extension DedicationViewController : UIScrollViewDelegate{

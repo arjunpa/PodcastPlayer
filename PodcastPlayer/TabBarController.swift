@@ -49,7 +49,7 @@ class TabBarController: UITabBarController {
                 nc.title = item
                 viewControllers.append(nc)
             case 3:
-                let decicationVc = DedicationViewController.newInstance()
+                let decicationVc = DedicationViewController.init(qtobject, nibName: "DedicationViewController", bundle: nil)
                 let nc = UINavigationController(rootViewController: decicationVc)
                 nc.title = item
                 viewControllers.append(nc)

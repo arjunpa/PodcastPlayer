@@ -8,6 +8,7 @@
 
 import UIKit
 import Quintype
+import Kingfisher
 
 class MusicLayerController: BaseViewController {
     
@@ -30,11 +31,13 @@ class MusicLayerController: BaseViewController {
     var isSeeking:Bool = false
     var isPlayerShown = false
     
+    var activityIndicator = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.qtObject.playerManager.multicastDelegate.addDelegate(delegate: self)
         self.loadPlayerView(toolbar: toolbar)
-        UIApplication.shared.beginReceivingRemoteControlEvents()
+//        UIApplication.shared.beginReceivingRemoteControlEvents()
         // Do any additional setup after loading the view.
         
     }
@@ -99,29 +102,53 @@ extension MusicLayerController:PlayerManagerDelegate{
         toolbar.setScaleValue = Float((maximumValue - minimumValue) * currentTime/(duration + minimumValue))
     }
     
-    func setPlayButton(isPlaying:Bool){
-        if isPlaying{
+    func setPlayButton(state:PlayerState){
+        switch state {
+        case .Playing:
+            
+            hideActivityIndicator()
             UIView.transition(with: self.toolbar.playButton, duration: 0.5, options: UIViewAnimationOptions .curveLinear, animations: {
                 self.toolbar.playButton.setImage(UIImage(named: "Pause"), for: .normal)
             }, completion: nil)
-        }else{
+            
+        case .Paused:
+            
+            hideActivityIndicator()
             UIView.transition(with: self.toolbar.playButton, duration: 0.5, options: UIViewAnimationOptions .curveLinear, animations: {
                 self.toolbar.playButton.setImage(UIImage(named: "Play"), for: .normal)
             }, completion: nil)
+            
+        case .Buffering:
+            
+            self.toolbar.playButton.setImage(nil, for: .normal)
+            showActivityIndicator()
+            break
+            
+        case .ReadyToPlay:
+            
+            self.toolbar.playButton.setImage(nil, for: .normal)
+            showActivityIndicator()
+            break
+            
+        case .Interrupted:
+            
+            break
+        default:
+            break
         }
     }
     
     
     func setPlayeritemDuration(duration: Double) {
         let displayTime = formatTimeFromSeconds(seconds: duration)
-
+        
         self.toolbar.durationTimeLabel.text = displayTime
     }
     
     
     func didsetArtWorkWithUrl(url:URL?){
         if let unwrappedUrl = url{
-        self.toolbar.musicArtWorkImageView.loadImage(url: unwrappedUrl.absoluteString, targetSize: CGSize(width: 100, height: 100))
+            self.toolbar.musicArtWorkImageView.loadImage(url: unwrappedUrl.absoluteString, targetSize: CGSize(width: 100, height: 100))
         }else{
             self.toolbar.musicArtWorkImageView.image = UIImage.init(named: "author")
         }
@@ -170,6 +197,39 @@ extension MusicLayerController:PlayerManagerDelegate{
             }
         }
     }
+    
+    func showActivityIndicator(){
+        
+        //create only if not created before
+        if  let unwrappedActivityIndicator = self.toolbar.playButton.subviews.filter({$0.isKind(of: UIActivityIndicatorView.self)}).first{
+            unwrappedActivityIndicator.removeFromSuperview()
+        }else{
+           activityIndicator = createActivityIndicator()
+        }
+        
+        self.toolbar.playButton.addSubview(activityIndicator)
+        activityIndicator.anchorCenterSuperview()
+        activityIndicator.startAnimating()
+        
+    }
+    
+    func hideActivityIndicator(){
+        activityIndicator.stopAnimating()
+    }
+    
+    func createActivityIndicator() -> UIActivityIndicatorView{
+        
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        
+        activityIndicator.color = UIColor.black
+        
+        return activityIndicator
+    }
+    
+    
+
 }
 
 extension MusicLayerController{
@@ -185,15 +245,12 @@ extension MusicLayerController{
         }
     }
     
-    
     func endScrubbing(slider:UISlider){
         self.qtObject.playerManager.endScrubbing()
     }
     
     func didClickOnPlay(button:UIButton){
-        self.qtObject.playerManager.didClickOnPlay { (isPlaying) in
-            self.setPlayButton(isPlaying: isPlaying)
-        }
+        self.qtObject.playerManager.didClickOnPlay()
     }
     
     func didClickOnNext(sender:UIButton){

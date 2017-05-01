@@ -68,27 +68,25 @@ extension StoryDetailController:ApiManagerDelegate{
         self.object.story = story!
         self.story = story!
         let layoutEngine = StoryDetailLayoutEngine(story: story!)
+        
         layoutEngine.makeLayouts { (storyDetailLayout2DArray) in
             self.storyDetaillayout2DArray = storyDetailLayout2DArray
-            print(self.storyDetaillayout2DArray)
             self.dataSource.append("pavan")
             self.adaptor.performUpdates(animated: true, completion: nil)
         }
-       
+        
     }
 }
 
 extension StoryDetailController : IGListAdapterDataSource{
     
     func objects(for listAdapter: IGListAdapter) -> [IGListDiffable] {
-        print(self.storyDetaillayout2DArray)
         
-        //        return self.storyDetaillayout2DArray
         return dataSource as [IGListDiffable]
     }
     
-    func listAdapter(_ listAdapter: IGListAdapter, sectionControllerFor object: Any) -> IGListSectionController {
-        //        return DetailSectionController(story: self.story)
+    func listAdapter(_ listAdapter: IGListAdapter, sectionControllerFor object: Any) -> IGListSectionController{
+        
         return DetailSectionController.init(layout: self.storyDetaillayout2DArray,story: self.story)
         
     }

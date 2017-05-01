@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Quintype
 
 protocol BaseCollectionCellDelegate:class {
     
@@ -94,4 +95,43 @@ class BaseCollectionCell: UICollectionViewCell {
         return cellSize
         
     }
+    
+    func calculateTextViewHeight(data:Any?, targetSize:CGSize) -> CGSize{
+        
+        let textview = UITextView(frame: CGRect.init(x: 0, y: 0, width: targetSize.width - 2 * 16, height: 2))
+        textview.textContainerInset = UIEdgeInsets.zero
+        
+        if let card = data as? CardStoryElement{
+            if let html =  card.text{
+                textview.convert(toHtml: html, textOption: textOption.html)
+            }
+        }
+        
+        let height = textview.setLineHeight(lineHeight: 1.2, labelWidth: targetSize.width - 2 * 16)
+        
+        return CGSize.init(width: targetSize.width, height:ceil(height) + 2 * 16)
+        
+    }
+    
+}
+
+extension UITextView{
+    
+    func setLineHeight(lineHeight: CGFloat, labelWidth: CGFloat) -> CGFloat {
+        
+        let text = self.text
+        
+        if let unwrappedText = text {
+            let attributeString = NSMutableAttributedString(attributedString: self.attributedText)
+            let style = NSMutableParagraphStyle()
+            
+            style.lineSpacing = lineHeight
+            attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, unwrappedText.characters.count))
+            
+            return self.sizeThatFits(CGSize(width: labelWidth, height: 20)).height
+        }
+        
+        return 0
+    }
+    
 }

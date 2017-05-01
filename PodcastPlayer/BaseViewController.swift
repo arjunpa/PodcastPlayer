@@ -13,7 +13,7 @@ protocol BaseControllerProtocol:class{
     var qtObject:QTGlobalProtocol{
         get set
     }
-     init(_ qtObject:QTGlobalProtocol, nibName:String?, bundle:Bundle?)
+     init(_ qtObject:QTGlobalProtocol?, nibName:String?, bundle:Bundle?)
 }
 
 class BaseViewController: UIViewController, BaseControllerProtocol {
@@ -23,13 +23,13 @@ class BaseViewController: UIViewController, BaseControllerProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.shared.beginReceivingRemoteControlEvents()
+//        UIApplication.shared.beginReceivingRemoteControlEvents()
     }
 
-    required init(_ qtObject: QTGlobalProtocol = QTGlobalInstance.init(tdAttributes: nil), nibName: String?, bundle: Bundle?)
+    required init(_ qtObject: QTGlobalProtocol? = QTGlobalInstance.init(tdAttributes: nil), nibName: String?, bundle: Bundle?)
         
     {
-        self.qtObject = qtObject
+        self.qtObject = qtObject!
         super.init(nibName: nibName, bundle: bundle)
     }
     

@@ -43,7 +43,9 @@ class ViewController: BaseViewController {
 //        musicPlayer.toolbar.playerTappableArea.addGestureRecognizer(taprecognizer)
         
         //configureNextController
-        nextViewController = NextControllerViewController.init(nibName:"NextControllerViewController", bundle:nil)
+//        nextViewController = NextControllerViewController.init(nibName:"NextControllerViewController", bundle:nil)
+        
+        nextViewController = NextControllerViewController.init(qtObject, nibName: "NextControllerViewController", bundle: nil)
         nextViewController.rootViewController = self
         nextViewController.transitioningDelegate = self
         nextViewController.modalPresentationStyle = .fullScreen

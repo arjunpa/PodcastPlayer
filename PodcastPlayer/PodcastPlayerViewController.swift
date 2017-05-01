@@ -55,6 +55,7 @@ class PodcastPlayerViewController: BaseViewController {
         let queries: [SearchQueryOptions] = [
             .queryString("malayalam"),
             .types([TrackType.live, TrackType.demo])
+            
         ]
         
         Track.search(queries: queries) {[weak self] (response:PaginatedAPIResponse<Track>) in
@@ -126,13 +127,22 @@ extension PodcastPlayerViewController:PlayerManagerDataSource{
          return tracks[_index - 1].track.streamURL
     }
     
-    func playerManagerDidAskForArtWorksImageUrl(manager:PlayerManager) -> URL?{
-        return tracks[self._index].track.artworkImageURL.largeURL
+    func playerManagerDidAskForArtWorksImageUrl(manager:PlayerManager,size:TrackArtworkImageSize) -> URL?{
+        switch size {
+        case .small:
+            return tracks[self._index].track.artworkImageURL.largeURL
+        case .medium:
+            return tracks[self._index].track.artworkImageURL.cropURL
+        case .large:
+            return tracks[self._index].track.artworkImageURL.highURL
+        }
+        
     }
     
-    func playerManagerDidAskForTrackNameDetails(manager:PlayerManager) -> (String,String){
+    func playerManagerDidAskForTrackTitleAndAuthor(manager:PlayerManager) -> (String,String){
         let trackD = tracks[self._index].track
         
         return (trackD.title,trackD.createdBy.fullname)
     }
 }
+

@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import MediaPlayer
+import Quintype
 
 class CMTimeWrapper:NSObject{
     var seconds:Double
@@ -29,8 +31,8 @@ protocol PlayerManagerDataSource:class{
     func playerManagerShoulMoveToPreviousItem(manager:PlayerManager) -> Bool
     func playerManagerDidAskForNextItem(manager:PlayerManager) -> URL?
     func playerManagerDidAskForPreviousItem(manager:PlayerManager) -> URL?
-    func playerManagerDidAskForArtWorksImageUrl(manager:PlayerManager) -> URL?
-    func playerManagerDidAskForTrackNameDetails(manager:PlayerManager) -> (String,String)
+    func playerManagerDidAskForArtWorksImageUrl(manager:PlayerManager,size:TrackArtworkImageSize) -> URL?
+    func playerManagerDidAskForTrackTitleAndAuthor(manager:PlayerManager) -> (String,String)
     
 }
 
@@ -41,7 +43,9 @@ protocol PlayerManagerDelegate:class{
     func resetDisplayIfNecessary(manager:PlayerManager)
     func durationDidBecomeInvalidWhileSyncingScrubber(manager:PlayerManager)
     func playerManager(manager: PlayerManager, syncScrubberWithCurrent time: Double, duration:Double)
-    func setPlayButton(isPlaying:Bool)
+    
+    func setPlayButton(state:PlayerState)
+    
     func setPlayeritemDuration(duration:Double)
     func didsetArtWorkWithUrl(url:URL?)
     func didsetName(title:String?,AutorName:String?)
@@ -97,11 +101,28 @@ class PlayerManager: NSObject {
     
     var multicastDelegate:MulticastDelegate<PlayerManagerDelegate>!
     var kInterval = 0.5
+    var playerState: PlayerState!
+    
+    
+    var commandCenter: MPRemoteCommandCenter!
+    var nowPlayingInfoCenter: MPNowPlayingInfoCenter!
+    var notificationCenter: NotificationCenter!
+    
+    var nowPlayingInfo: [String : AnyObject]?
     
     required init(playerAttributes:Dictionary<String,Any>?){
         super.init()
+        commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.changePlaybackPositionCommand.isEnabled = true
+        commandCenter.seekForwardCommand.isEnabled = true
+        commandCenter.seekBackwardCommand.isEnabled = true
+        
+        nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+        notificationCenter = NotificationCenter.default
         commonInit()
         configure(playerAttributes: playerAttributes)
+        
+        self.configureCommandCenter()
     }
     
     fileprivate func configurePlayerItemDidEndBlock(){
@@ -111,6 +132,8 @@ class PlayerManager: NSObject {
             self.player.seek(to: kCMTimeZero, completionHandler: { (finished) in
                 guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
                 datasource.playerManagerDidReachEndOfCurrentItem(manager: self)
+                
+                let isPlaying = self.player.actionAtItemEnd
                 
                 if datasource.playerManagerShoulMoveToNextItem(manager: self){
                     if let nextItemURL = datasource.playerManagerDidAskForNextItem(manager: self){
@@ -147,10 +170,14 @@ class PlayerManager: NSObject {
     fileprivate func configure(playerAttributes:Dictionary<String,Any>?){
         guard let attributes = playerAttributes else{return}
         
+        
+        
         if let bgPolicy = (attributes[PlayerManager.BackgroundPolicy] as? NSNumber)?.boolValue{
             if bgPolicy{
                 PlayerManager.enableBackgroundPlay()
             }
+            
+            
         }
         
     }
@@ -163,14 +190,7 @@ class PlayerManager: NSObject {
     
     
     
-    fileprivate func addStatusObservers(){
-        self.playerItem?.addObserver(self, forKeyPath: "status", options: [.initial, .new], context: &PlayerManager.CURRENT_ITEM_CONTEXT)
-        self.playerItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
-        self.playerItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: OperationQueue.main, using: self.playerItemDIdPlayToItem!)
-    }
+    
     
     fileprivate func removeStatusObservers(){
         if self.playerItem != nil{
@@ -202,8 +222,6 @@ class PlayerManager: NSObject {
             return
         }
         
-        updatePlayerUI()
-        
         timeObserver = self.player.addPeriodicTimeObserver(forInterval: CMTime.init(seconds: interval, preferredTimescale: CMTimeScale.init(NSEC_PER_SEC)), queue: timeObserverQueue) { (time) in
             
             self.multicastDelegate.invoke(invokation: { (delegate:PlayerManagerDelegate) in
@@ -215,7 +233,10 @@ class PlayerManager: NSObject {
         
     }
     
-    func updatePlayerUI(){
+    func setUpPlayerUI(){
+        
+       
+        
         //set the duration
         let playerDuration = self.currentPlayerItemDuration
         self.multicastDelegate.invoke { (delegate) in
@@ -224,13 +245,13 @@ class PlayerManager: NSObject {
             }else{
                 print("Player Duration Not valid")
             }
-            
         }
+        
         //set artwork Image
         guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
         
-        let unwrappedUrl = datasource.playerManagerDidAskForArtWorksImageUrl(manager: self)
-        let trackname = datasource.playerManagerDidAskForTrackNameDetails(manager: self)
+        let unwrappedUrl = datasource.playerManagerDidAskForArtWorksImageUrl(manager: self,size: .small)
+        let trackname = datasource.playerManagerDidAskForTrackTitleAndAuthor(manager: self)
         
         self.multicastDelegate.invoke(invokation: { (delegate:PlayerManagerDelegate) in
             delegate.didsetArtWorkWithUrl(url: unwrappedUrl)
@@ -289,40 +310,107 @@ class PlayerManager: NSObject {
 }
 
 extension PlayerManager{
+    
+    fileprivate func addStatusObservers(){
+        self.playerItem?.addObserver(self, forKeyPath: "status", options: [.initial, .new], context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+        self.playerItem?.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+        self.playerItem?.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: &PlayerManager.CURRENT_ITEM_CONTEXT)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem, queue: OperationQueue.main, using: self.playerItemDIdPlayToItem!)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVAudioSessionInterruption, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleInterruptions(_:)), name: NSNotification.Name.AVAudioSessionInterruption, object: nil)
+    }
+    
+    func handleInterruptions(_ notification:Notification){
+        
+        guard let typeKey = notification.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt,let interruptionType = AVAudioSessionInterruptionType(rawValue: typeKey) else{
+            return
+        }
+        
+        switch interruptionType {
+        case .began:
+            print("began")
+            self.player.pause()
+            break
+        case .ended:
+            print("ended")
+            self.player.play()
+            break
+        }
+        
+    }
+    
     // The player is going to take some time to buffer the remote resource and prepare it for play. So, only play the music when the player is ready.
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+
+        
         if (keyPath ?? "" == "status")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
             if player.status == AVPlayerStatus.readyToPlay{
-                initTimeObserver()
+                self.playerState = PlayerState.ReadyToPlay
                 
+                print("KEYPATH:\(keyPath):player Status AVPlayerStatus.readyToPlay")
+                
+                initTimeObserver()
+                setUpPlayerUI()
                 player.play()
                 
+                //set play button
                 self.multicastDelegate.invoke { (delegate) in
-                    delegate.setPlayButton(isPlaying: self.player.isPlaying)
+                    delegate.setPlayButton(state: PlayerState.ReadyToPlay)
                 }
-            }
                 
-            else if player.status == AVPlayerStatus.unknown{
+
+            }else if player.status == AVPlayerStatus.unknown{
+                self.playerState = PlayerState.Interrupted
                 deinitTimeObserver()
             }
         }
+            
         else if  (keyPath ?? "" == "playbackLikelyToKeepUp")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
             
             if self.playerItem?.isPlaybackLikelyToKeepUp ?? false{
+                
+                //set play button
+                self.multicastDelegate.invoke { (delegate) in
+                    delegate.setPlayButton(state: PlayerState.Playing)
+                }
+                
+                print("KEYPATH:\(keyPath):player Item Status isPlaybackLikelyToKeepUp")
+                
+                //update the control center after buffering is finished
+                
+                self.updateNowPlayingInfoForCurrentPlaybackItem()
+                
                 if UIApplication.shared.applicationState == .background{
                     self.player.play()
                     self.endBgTask()
                 }
-                //  self.player.play()
+                
+            }else{
+                print("KEYPATH:\(keyPath):player Item Status Playback NOT LikelyToKeepUp")
+                print("buffering")
             }
         }
         else if  (keyPath ?? "" == "playbackBufferEmpty")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
             
+            self.playerState = PlayerState.Buffering
+            
+            //set play button
+            self.multicastDelegate.invoke { (delegate) in
+                delegate.setPlayButton(state: PlayerState.Buffering)
+            }
+            
             if self.playerItem?.isPlaybackBufferEmpty ?? false{
+                print("KEYPATH:\(keyPath):player Item Status isPlaybackBufferEmpty")
                 if UIApplication.shared.applicationState == .background{
                     self.beginBgTask()
                 }
+            }else{
+                print("buffer Not empty")
             }
         }
             
@@ -332,8 +420,10 @@ extension PlayerManager{
     }
 }
 
+
+//MARK: - Player Actions
+
 extension PlayerManager{
-    
     
     /* The user is dragging the movie controller thumb to scrub through the movie. */
     func beginScrubbing() {
@@ -377,10 +467,12 @@ extension PlayerManager{
             
             self.multicastDelegate.invoke(invokation: { (delegate) in
                 
-                print(type(of:delegate))
-                
                 delegate.playerManager(manager: self, periodicTimeObserverEventDidOccur: CMTimeWrapper.init(seconds: time, value: cmTime.value, timeScale: cmTime.timescale))
             })
+            
+            
+            self.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: time as Double);
+            self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
             
             self.player.seek(to: CMTimeMakeWithSeconds(time, CMTimeScale.init(NSEC_PER_SEC)), completionHandler: { (finished) in
                 self.timeObserverQueue.async {
@@ -391,23 +483,54 @@ extension PlayerManager{
         }
     }
     
-    func didClickOnPlay(isPlaying:(Bool) -> Void){
+    func didClickOnPlay(){
         if !self.player.isPlaying{
             self.player.rate = 1
-            isPlaying(self.player.isPlaying)
+
+            self.multicastDelegate.invoke { (delegate) in
+                delegate.setPlayButton(state: PlayerState.Playing)
+            }
             
         }else{
             self.player.rate = 0
-            isPlaying(self.player.isPlaying)
             
+            self.multicastDelegate.invoke { (delegate) in
+                delegate.setPlayButton(state: PlayerState.Paused)
+            }
+
         }
     }
     
     func didClickOnNext(){
+        
         guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
+        
+        self.multicastDelegate.invoke { (delegate) in
+                delegate.resetDisplayIfNecessary(manager: self)
+        }
+        
+        resetNowPlayingInfoCenter()
         
         if datasource.playerManagerShoulMoveToNextItem(manager: self){
             if let nextItemURL = datasource.playerManagerDidAskForNextItem(manager: self){
+                self.playWithURL(url: nextItemURL)
+                return
+            }
+            self.removeStatusObservers();
+        }
+    }
+    
+    func didClickOnPrevious(){
+        guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
+        
+        self.multicastDelegate.invoke { (delegate) in
+            delegate.resetDisplayIfNecessary(manager: self)
+        }
+        
+        resetNowPlayingInfoCenter()
+        
+        if datasource.playerManagerShoulMoveToPreviousItem(manager: self){
+            if let nextItemURL = datasource.playerManagerDidAskForPreviousItem(manager: self){
                 self.playWithURL(url: nextItemURL)
                 return
             }
@@ -422,11 +545,140 @@ extension PlayerManager{
     
 }
 
+//MARK: - Control Center NowPlaying
+
+extension PlayerManager{
+    
+    func configureCommandCenter() {
+        
+        self.commandCenter.playCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
+            guard let sself = self else { return .commandFailed }
+            
+            sself.didClickOnPlay()
+            
+            return .success
+        })
+        
+        self.commandCenter.pauseCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
+            guard let sself = self else { return .commandFailed }
+            if sself.player.isPlaying{
+                sself.didClickOnPlay()
+            }
+            return .success
+        })
+        
+        self.commandCenter.nextTrackCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
+            guard let sself = self else { return .commandFailed }
+            sself.didClickOnNext()
+            sself.updateNowPlayingInfoElapsedTime()
+            return .success
+        })
+        
+        self.commandCenter.previousTrackCommand.addTarget (handler: { [weak self] event -> MPRemoteCommandHandlerStatus in
+            guard let sself = self else { return .commandFailed }
+            sself.didClickOnPrevious()
+            sself.updateNowPlayingInfoElapsedTime()
+            return .success
+        })
+        
+        self.commandCenter.changePlaybackPositionCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            
+            if let unwrappedEvent = event as? MPChangePlaybackPositionCommandEvent{
+                print(unwrappedEvent.positionTime)
+                let position = unwrappedEvent.positionTime
+                let playerItemDuration = self.currentPlayerItemDuration
+                
+              let  valued = (position * (1)/playerItemDuration.seconds)
+                
+                self.deinitTimeObserver()
+                self.initTimeObserver()
+                
+                    self.scrub(value: Float(valued), minValue: 0, maxValue: 1, isSeeking: { (isSeeking) in
+                        print(isSeeking)
+                    })
+            }
+            return .success
+        }
+
+        self.commandCenter.seekForwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
+            return .success
+        }
+    }
+    
+    func updateNowPlayingInfoForCurrentPlaybackItem(){
+        guard let player = self.player else {
+            self.configureNowPlayingInfo(nil)
+            return
+        }
+        
+        guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
+        
+        let unwrappedUrl = datasource.playerManagerDidAskForArtWorksImageUrl(manager: self,size: .medium)
+        let titleAndAuthor = datasource.playerManagerDidAskForTrackTitleAndAuthor(manager: self)
+        
+        let nowPlayingInfo = [MPMediaItemPropertyTitle:titleAndAuthor.0,
+                              MPMediaItemPropertyArtist:titleAndAuthor.1,
+                              MPMediaItemPropertyPlaybackDuration:"\(self.currentPlayerItemDuration.seconds)",
+                              MPNowPlayingInfoPropertyPlaybackRate:NSNumber(value: 1.0 as Float)] as [String : Any]// MPNowPlayingInfoPropertyIsLiveStream:NSNumber(value: true) add this to indicate live streaming
+        
+        
+            self.downloadImage(url: unwrappedUrl, completion: { (image) -> (Void) in
+                guard var nowPlayingInfo = self.nowPlayingInfo else { return }
+                nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 100, height: 100), requestHandler: { (size) -> UIImage in
+                    return image
+                })
+               self.configureNowPlayingInfo(nowPlayingInfo)
+            })
+            
+        self.configureNowPlayingInfo(nowPlayingInfo as [String : AnyObject]?)
+        
+        self.updateNowPlayingInfoElapsedTime()
+    }
+    
+    func downloadImage(url:URL?, completion:@escaping ((UIImage) -> (Void))){
+        if let unwrappedUrl = url{
+            URLSession.shared.dataTask(with: unwrappedUrl) { (data, response, error) in
+                DispatchQueue.main.async {
+                    if let unwrappedData = data{
+                        completion(UIImage(data: unwrappedData) ?? UIImage())
+                    }
+                }
+                
+                }.resume()
+        }
+    }
+        
+    func configureNowPlayingInfo(_ nowPlayingInfo: [String: AnyObject]?) {
+        self.nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
+        self.nowPlayingInfo = nowPlayingInfo
+    }
+    
+    func updateNowPlayingInfoElapsedTime() {
+        guard var nowPlayingInfo = self.nowPlayingInfo else { return }
+        print("Player Current Time:\(self.player.currentTime().seconds)")
+        
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: self.player.currentTime().seconds as Double);
+        
+        self.configureNowPlayingInfo(nowPlayingInfo)
+    }
+    
+    func resetNowPlayingInfoCenter(){
+        self.nowPlayingInfo = nil
+        self.nowPlayingInfoCenter.nowPlayingInfo = nil
+    }
+}
+
 extension AVPlayer {
     var isPlaying: Bool {
         return rate != 0 && error == nil
     }
 }
 
-
+enum PlayerState:String{
+    case ReadyToPlay
+    case Buffering
+    case Playing
+    case Paused
+    case Interrupted
+}
 

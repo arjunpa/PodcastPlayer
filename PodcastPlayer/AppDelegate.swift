@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //        Quintype.initWithBaseUrl(baseURL: "https://hindi.thequint.com")
-        //        Quintype.initWithBaseUrl(baseURL: "http://gaonconnection-web.staging.quintype.io")
+//                Quintype.initWithBaseUrl(baseURL: "https://gaonconnection-web.staging.quintype.io")
         Quintype.initWithBaseUrl(baseURL: "https://www.thequint.com")
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()

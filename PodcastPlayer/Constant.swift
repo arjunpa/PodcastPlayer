@@ -17,3 +17,10 @@ public struct Constants{
   
     
 }
+
+
+enum TrackArtworkImageSize:String{
+    case small
+    case medium
+    case large
+}

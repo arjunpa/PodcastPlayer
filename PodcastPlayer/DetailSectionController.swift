@@ -165,7 +165,9 @@ extension DetailSectionController: IGListSectionType{
             
         case .storyDetailSummeryElementCell:
             let cell = collectionContext?.dequeueReusableCell(of: StoryDetailSummeryElementCell.self, for: self, at: index) as! StoryDetailSummeryElementCell
+            
             cell.configure(data: self.data.storyElement)
+            
             if showSummary{
                 cell.minimizeButton.setImage(UIImage(named:"arrowup"), for: UIControlState.normal)
             }else{
@@ -321,6 +323,7 @@ extension DetailSectionController: IGListSectionType{
             let sizingCell = StoryDetailCommentElementCell(frame: CGRect.zero)
             let calculatedSize = sizingCell.calculateHeight(targetSize: targetSize)
             return calculatedSize
+            
         case .storyDetailSummeryElementCell:
             if showSummary{
                 let sizingCell = StoryDetailSummeryElementCell(frame: CGRect.zero)

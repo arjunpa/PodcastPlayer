@@ -50,7 +50,6 @@ class StoryDetailSummeryElementCell:BaseCollectionCell {
     }()
     
     var summeryTextViewHeight:NSLayoutConstraint?
-    var heightForSummery:CGFloat = 0
     
     
     override func configure(data: Any?) {
@@ -73,7 +72,7 @@ class StoryDetailSummeryElementCell:BaseCollectionCell {
         
     
          let view = self.contentView
-view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
+        view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
         
         
         view.addSubview(summertLabel)
@@ -87,9 +86,6 @@ view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgrou
         minimizeButton.anchor(view.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 15, leftConstant: 0, bottomConstant: 0, rightConstant: 15, widthConstant: 30, heightConstant: 30)
 
        summeryDescription.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 68, leftConstant: 15, bottomConstant: 15, rightConstant: 15, widthConstant: 0, heightConstant: 0)
-        
-        
-
         
     }
     
