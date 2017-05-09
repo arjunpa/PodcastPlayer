@@ -45,5 +45,5 @@ enum storySubType:String{
     case instagram = "instagram"
     case question = "question"
     case answer = "answer"
-    
+    case qAndA = "q-and-a"
 }

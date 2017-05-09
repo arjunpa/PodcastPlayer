@@ -13,8 +13,8 @@ import Quintype
 
 public struct constantCells{
     
-    static var topStoryDetailsCells:[storyDetailLayoutType] = [.storyDetailHeaderImageElementCell,.storyDetailHeaderTextElementCell,.storyDetailSocialShareElementCell]
-    static var bottomStoryDetailsCells:[storyDetailLayoutType] = [.storyDetailsTagElementCell,.storyDetailCommentElementCell]
+    static var topStoryDetailsCells:[storyDetailLayoutType] = [.storyDetailHeaderImageElementCell,.storyDetailHeaderTextElementCell]//.storyDetailSocialShareElementCellr
+    static var bottomStoryDetailsCells:[storyDetailLayoutType] = [.storyDetailCommentElementCell]//.storyDetailsTagElementCell,
     
 }
 
@@ -92,7 +92,7 @@ class StoryDetailLayoutEngine{
                 break
                 
             case storySubType.imageGallery.rawValue?:
-                createCell(cell: storyDetailLayoutType.storyDetailImageSliderElementCell,storyElement:storyElement)
+                createCell(cell: storyDetailLayoutType.galleryElementCell,storyElement:storyElement)
                 break
                 
             case storySubType.instagram.rawValue?:
@@ -129,6 +129,10 @@ class StoryDetailLayoutEngine{
             case storySubType.tweet.rawValue?:
                 createCell(cell: storyDetailLayoutType.storyDetailTwitterElementCell,storyElement:storyElement)
                 //                createCell(cell: storyDetailLayoutType.tweet)
+                break
+                
+            case storySubType.qAndA.rawValue?:
+                createCell(cell: storyDetailLayoutType.storyDetailQandACell, storyElement: storyElement)
                 break
                 
             case nil:
@@ -181,6 +185,7 @@ class StoryDetailLayoutEngine{
                 }
                 break
                 
+        
             default:
                 //print("break; unknow item")
                 break

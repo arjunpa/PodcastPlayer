@@ -27,13 +27,7 @@ class StoryDetailsTagElementCell: BaseCollectionCell {
         return label
         
     }()
-    
-    var sepraterLine:UIView = {
-       
-        let view = UIView()
-        view.backgroundColor = Themes.storyDetailCells.storyDetailsTagElementCell.sepraterLineColor.withAlphaComponent(0.2)
-        return view
-    }()
+
     
     var tags:[Tag] = []
     
@@ -61,9 +55,6 @@ class StoryDetailsTagElementCell: BaseCollectionCell {
     func layoutTags(index:Int,button:UIButton,tag:String){
         
         let view = self.contentView
-        view.addSubview(sepraterLine)
-        
-        sepraterLine.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 15, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0.5)
         
         let buttonWidth = tag.getWidthOfString(with: UIFont.systemFont(ofSize: 12))  + totalButtonInset + buttonBorderWidth + 10
         
@@ -103,8 +94,6 @@ class StoryDetailsTagElementCell: BaseCollectionCell {
     }
     
     override func setupViews() {
-        super.setupViews()
-        
         
         let view = self.contentView
         view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)

@@ -30,7 +30,7 @@ class CommentController: BaseViewController,UIWebViewDelegate {
         commentWebView.fillSuperview()
         
         if let htmlString = html{
-            commentWebView.loadHTMLString(htmlString, baseURL: URL(string:"http://localhost"))
+            commentWebView.loadHTMLString(htmlString, baseURL: URL(string:"https://localhost"))
         }
         
     }

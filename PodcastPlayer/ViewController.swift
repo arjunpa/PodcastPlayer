@@ -66,10 +66,6 @@ class ViewController: BaseViewController {
             self.disableInteractivePlayerTransitioning = false
         }
     }
-    
-
-    
-    
 }
 
 extension ViewController:UIViewControllerTransitioningDelegate{

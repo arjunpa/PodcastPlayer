@@ -16,24 +16,19 @@ class StoryDetailHeaderTextElementCell: BaseCollectionCell {
     var headingText:UILabel = {
         
         let label = UILabel()
-        label.textColor = Themes.storyDetailCells.storyDetailHeaderTextElementCell.headerFontColor
-        label.font =  Themes.storyDetailCells.storyDetailHeaderTextElementCell.headerFontSize
         label.numberOfLines = 0
         return label
         
     }()
     
-    //    var shortDescription:UILabel = {
-    //
-    //        let label = UILabel()
-    //        label.textColor = Themes.storyDetailCells.StoryHeaderDetailCell.shortDescriptionFontColor
-    //        label.font = .systemFont(ofSize: Themes.storyDetailCells.StoryHeaderDetailCell.shortDescriptionFontSize)
-    //        label.numberOfLines = 0
-    //        label.textAlignment = .left
-    //        return label
-    //
-    //    }()
-    //
+    var subtitleLabel:UILabel = {
+        
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+        
+    var currentTheam : Theme!
     
     override func configure(data: Any?) {
         super.configure(data: data)
@@ -43,10 +38,10 @@ class StoryDetailHeaderTextElementCell: BaseCollectionCell {
         if let heading = data?.headline{
             headingText.text = heading
         }
+        subtitleLabel.text = data?.subheadline ?? ""
         
-        //        if let description = data
-        
-        
+        headingText.setLineSpacing(spacing: 1.56)
+        subtitleLabel.setLineSpacing(spacing: 1.69)
     }
     
     
@@ -54,14 +49,31 @@ class StoryDetailHeaderTextElementCell: BaseCollectionCell {
         super.setupViews()
         
          let view = self.contentView
-view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
-        view.addSubview(headingText)
-        //        self.contentView.addSubview(shortDescription)
-    
-        headingText.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 15, leftConstant: 15, bottomConstant: 8, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
-        //        shortDescription.anchor(headingText.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 15, leftConstant: 15, bottomConstant: 15, rightConstant: 15, widthConstant: 0, heightConstant: 0)
+        ThemeService.shared.addThemeable(themable: self,applyImmediately: true)
+        
+        view.addSubview(headingText)
+        view.addSubview(subtitleLabel)
+    
+        headingText.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 8, leftConstant: 15, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
+        
+        subtitleLabel.anchor(headingText.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 15, bottomConstant: 10, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
     }
     
+    deinit{
+        ThemeService.shared.removeThemeable(themable: self)
+    }
+}
+
+extension StoryDetailHeaderTextElementCell:Themeable{
+    func applyTheme(theme: Theme) {
+        if currentTheam == nil || type(of:theme) != type(of:currentTheam!){
+        headingText.textColor = theme.storyHeadlineColor
+        headingText.font = theme.storyHeadlineFont
+        
+        subtitleLabel.textColor = theme.storySubheadlineColor
+        subtitleLabel.font = theme.storySubheadlineFont
+        }
+    }
 }

@@ -15,13 +15,12 @@ class StoryDetailQuestionElementCell: BaseCollectionCell {
     let questionTextElement:UITextView = {
     
         let textView = UITextView()
-        textView.textColor = Themes.storyDetailCells.storyDetailQnAElementCell.questionFontColor
         textView.isEditable = false
         textView.isScrollEnabled = false
         textView.dataDetectorTypes = .link
-        textView.font = Themes.storyDetailCells.storyDetailQnAElementCell.questionFontSize
-        textView.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
-        textView.textColor = .blue
+        
+        textView.textColor = ThemeService.shared.theme.questionElementColor
+        textView.font = ThemeService.shared.theme.questionElementFont
         return textView
         
     }()
@@ -29,17 +28,13 @@ class StoryDetailQuestionElementCell: BaseCollectionCell {
     
     
     override func setupViews() {
-        super.setupViews()
+        
+        ThemeService.shared.addThemeable(themable: self)
         
          let view = self.contentView
-        view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
-        
         
         view.addSubview(questionTextElement)
         questionTextElement.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 15, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        
-        
     }
     
     
@@ -49,8 +44,21 @@ class StoryDetailQuestionElementCell: BaseCollectionCell {
         let card = data as? CardStoryElement
         
         if let questionText = card?.text{
-            questionTextElement.convert(toHtml: questionText, textOption: textOption.html)
+            questionTextElement.convert(toHtml: questionText, textOption: textOption.question)
         }
     }
     
+    deinit{
+        ThemeService.shared.removeThemeable(themable: self)
+    }
+    
+}
+
+
+
+extension StoryDetailQuestionElementCell:Themeable{
+    func applyTheme(theme: Theme) {
+        questionTextElement.textColor = ThemeService.shared.theme.questionElementColor
+        questionTextElement.font = ThemeService.shared.theme.questionElementFont
+    }
 }

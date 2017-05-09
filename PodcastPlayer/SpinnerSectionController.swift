@@ -28,16 +28,18 @@ func spinnerSectionController() -> IGListSingleSectionController {
 
 final class SpinnerCell: UICollectionViewCell {
     
+    
     lazy var activityIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        view.hidesWhenStopped = true
         self.contentView.addSubview(view)
         return view
     }()
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    
+    func showActivity(){
         let bounds = contentView.bounds
         activityIndicator.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        activityIndicator.startAnimating()
     }
-    
 }

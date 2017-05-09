@@ -12,33 +12,38 @@ import Quintype
 
 class DefaultStoryCell: BaseCollectionCell {
     
-    let kinterElementSpacing:CGFloat = 8
-    let kmarginPadding:CGFloat = 16
+    let kinterElementSpacing:CGFloat = 15
+    let kmarginPadding:CGFloat = 15
     let imageBaseUrl = "https://" + (Quintype.publisherConfig?.cdn_image)! + "/"
-
+    
     
     var imageView : UIImageView = {
         let image = UIImageView()
+        image.image = UIImage()
         image.contentMode = .scaleToFill
         return image
     }()
     
     var headerLabel : UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 1
-        
-        label.textColor = UIColor(hexString: "#f95f00")
-        
         return label
     }()
     
     var descriptionLabel : UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.numberOfLines = 4
         return label
     }()
-
-    override func setupView() {
+    
+    var currentTheam : Theme!
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        //added for themeing
+        ThemeService.shared.addThemeable(themable: self,applyImmediately: true)
+        
         let view = self.contentView
         view.addSubview(imageView)
         view.addSubview(headerLabel)
@@ -48,22 +53,41 @@ class DefaultStoryCell: BaseCollectionCell {
         
         headerLabel.anchor(view.topAnchor, left: imageView.rightAnchor, bottom: nil, right: view.rightAnchor, topConstant: kmarginPadding, leftConstant: kinterElementSpacing, bottomConstant: 0, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
         
-        descriptionLabel.anchor(headerLabel.bottomAnchor, left: imageView.rightAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: kinterElementSpacing, leftConstant: kinterElementSpacing, bottomConstant: kmarginPadding, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
+        descriptionLabel.anchor(headerLabel.bottomAnchor, left: imageView.rightAnchor, bottom: nil, right: view.rightAnchor, topConstant: 6, leftConstant: kinterElementSpacing, bottomConstant: 0, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
     }
     
     override func configure(data: Any?) {
         let story = data as? Story
+        self.imageView.image = #imageLiteral(resourceName: "image_pholder")
         
-        headerLabel.text = story?.sections.first?.display_name?.uppercased()
+        headerLabel.text = story?.sections.first?.name?.uppercased()
         descriptionLabel.text = story?.headline
         
-       if let imageKey = story?.hero_image_s3_key{
-        self.imageView.loadImage(url:  self.imageBaseUrl + imageKey + "?w=\(250)", targetSize: CGSize.init(width: 250, height: 250), imageMetaData: nil)
+        headerLabel.setLineSpacing(spacing: 1.5)
+        headerLabel.addTextSpacing(spacing: 1.7)
+        descriptionLabel.setLineSpacing(spacing: 1.5)
         
+        if let imageKey = story?.hero_image_s3_key{
+          
+            self.imageView.loadImage(url: self.imageBaseUrl + imageKey + "?w=\(120)", targetSize: CGSize.init(width: 120, height: 90), imageMetaData: (story?.hero_image_metadata))
         }
-        
     }
-    
 
-    
+    deinit{
+        ThemeService.shared.removeThemeable(themable: self)
+        print("DefaultStoryCell denit called")
+    }
+}
+
+extension DefaultStoryCell : Themeable{
+    func applyTheme(theme: Theme) {
+        if currentTheam == nil || type(of:theme) != type(of:currentTheam!){
+            self.currentTheam = theme
+            headerLabel.font = theme.normalListSectionFont
+            headerLabel.textColor = theme.normalListSectionColor
+            
+            descriptionLabel.font = theme.normalListTitleFont
+            descriptionLabel.textColor = theme.normalListTitleColor
+        }
+    }
 }

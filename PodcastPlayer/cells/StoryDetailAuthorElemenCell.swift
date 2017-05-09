@@ -35,7 +35,7 @@ class StoryDetailAuthorElemenCell: BaseCollectionCell {
         super.setupViews()
         
          let view = self.contentView
-view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
+        view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
         
         view.addSubview(authorImage)
         view.addSubview(authorName)

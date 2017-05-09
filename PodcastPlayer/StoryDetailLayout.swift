@@ -22,7 +22,7 @@ public enum storyDetailLayoutType : String{
     case storyDetailBigFactElementCell = "storyDetailBigFactElementCell"
     case storyDetailAuthorElemenCell = "storyDetailAuthorElemenCell"
     case storyDetailsTagElementCell = "storyDetailsTagElementCell"
-    case storyDetailImageSliderElementCell = "storyDetailImageSliderElementCell"
+    case galleryElementCell = "galleryElementCell"
     case storyDetailImageElementCell = "storyDetailImageElementCell"
     case storyDetailSummeryElementCell = "storyDetailSummeryElementCell"
     case storyDetailQuestionElementCell = "storyDetailQuestionElementCell"
@@ -34,6 +34,8 @@ public enum storyDetailLayoutType : String{
     case storyDetailCommentElementCell = "storyDetailCommentElementCell"
     
     case storyDetailTitleElementCell = "storyDetailTitleElementCell"
+    case storyDetailQandACell  = "storyDetailQandACell"
+    
     //    case relatedStoryElementCell = "relatedStoryElementCell"
     
 }

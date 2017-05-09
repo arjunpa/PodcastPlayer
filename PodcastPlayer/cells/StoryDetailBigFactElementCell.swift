@@ -44,7 +44,7 @@ class StoryDetailBigFactElementCell:BaseCollectionCell{
         super.setupViews()
         
          let view = self.contentView
-view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
+        view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
         
         view.addSubview(bigFactTitleElement)
         view.addSubview(bigFactTextElement)

@@ -78,7 +78,7 @@ class StoryDetailJsEmbbedElementCell:BaseCollectionCell,UIWebViewDelegate{
                 
                 let fullHtml = "<html><head><style>body,iframe { box-shadow: none !important; width:\(UIScreen.main.bounds.width - 45); }</style> </head><body id='foo'> \(html) </body></html>"
                 if contentLoaded != card!.id!{
-                    jsEmbedView.loadHTMLString(fullHtml, baseURL: NSURL.init(string: "http://localhost") as URL?)
+                    jsEmbedView.loadHTMLString(fullHtml, baseURL: NSURL.init(string: "https://localhost") as URL?)
                     contentLoaded = card!.id!
                 }
             }

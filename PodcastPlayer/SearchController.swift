@@ -73,7 +73,7 @@ extension SearchController : UISearchBarDelegate{
 
 extension SearchController:ApiManagerDelegate{
     func didloadStories(stories: [Story]?) {
-        print(stories)
+
     }
 }
 

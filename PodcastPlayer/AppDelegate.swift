@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //        Quintype.initWithBaseUrl(baseURL: "https://hindi.thequint.com")
 //                Quintype.initWithBaseUrl(baseURL: "https://gaonconnection-web.staging.quintype.io")
-        Quintype.initWithBaseUrl(baseURL: "https://www.thequint.com")
+        Quintype.initWithBaseUrl(baseURL: "https://thequint.staging.quintype.io")
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         Fabric.with([Twitter.self])
@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
     
     
     func applicationWillResignActive(_ application: UIApplication) {

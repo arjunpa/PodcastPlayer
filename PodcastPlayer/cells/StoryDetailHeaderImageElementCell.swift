@@ -17,52 +17,55 @@ class StoryDetailHeaderImageElementCell: BaseCollectionCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         return imageView
+    }()
+    
+    var bottomTitleTextLabel : InsetLabel = {
+        let textLabel = InsetLabel()
+        textLabel.insets = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+        textLabel.layer.cornerRadius = 3
+        textLabel.layer.borderColor = UIColor.black.cgColor
+        textLabel.layer.borderWidth = 1.0
+        textLabel.numberOfLines = 1
         
+        return textLabel
         
     }()
     
-    var _imageViewHeightConstraint:NSLayoutConstraint?
-    var imageViewHeightConstraint:NSLayoutConstraint{
-        get{
-            if _imageViewHeightConstraint != nil{
-                self.coverImageView.removeConstraint(_imageViewHeightConstraint!)
-                
-            }
-            
-            self._imageViewHeightConstraint = NSLayoutConstraint.init(item: self.coverImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
-            self._imageViewHeightConstraint!.priority = 999
-            self.coverImageView.addConstraint(_imageViewHeightConstraint!)
-            return _imageViewHeightConstraint!
-        }
-        set{
-            self._imageViewHeightConstraint = newValue
-        }
+    let shareButton:UIButton = {
+        
+        let button = UIButton()
+        button.setImage(UIImage(named:"share"), for: UIControlState.normal)
+        button.imageView?.image = button.imageView?.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        button.imageView?.tintColor = ThemeService.shared.theme.sectionTitleColor
+        button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        return button
+        
+    }()
+    
+    var currentTheam:Theme!
+    
+    override func setupViews() {
+        
+        let view = self.contentView
+        
+        ThemeService.shared.addThemeable(themable: self,applyImmediately: true)
+        
+        view.addSubview(coverImageView)
+        view.addSubview(bottomTitleTextLabel)
+        view.addSubview(shareButton)
+        
+        coverImageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 250)
+        
+        bottomTitleTextLabel.anchor(coverImageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 15, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        shareButton.anchor(bottomTitleTextLabel.topAnchor, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: -8, leftConstant: 15, bottomConstant: 0, rightConstant: 15, widthConstant: 40, heightConstant: 40)
+        
+        let spacingConstraint =  NSLayoutConstraint.init(item: bottomTitleTextLabel, attribute: .right, relatedBy: .lessThanOrEqual, toItem: shareButton, attribute: .left, multiplier: 1, constant: -15)
+        
+        view.addConstraint(spacingConstraint)
+        
+        
     }
-    
-    
-    
-    var alphaLayerForCoverImage:UIView = {
-        
-        let view = UIView()
-        view.backgroundColor = Themes.storyDetailCells.storyDetailHeaderImageElementCell.alphaLayerForCoverImageColor.withAlphaComponent(Themes.storyDetailCells.storyDetailHeaderImageElementCell.opacityAlphaLayerForCoverImage)
-        return view
-        
-    }()
-    
-    var bottomStoryTextDescription:UILabel = {
-        
-        let label = UILabel()
-        label.textColor = Themes.storyDetailCells.storyDetailHeaderImageElementCell.bottomStoryDescriptionFontColor
-        label.font = Themes.storyDetailCells.storyDetailHeaderImageElementCell.bottomStoryTextDescriptionFont
-        label.clipsToBounds = true
-        label.numberOfLines = 4
-        label.lineBreakMode = .byWordWrapping
-        return label
-        
-        
-    }()
-    
-    
     
     override func configure(data: Any?) {
         super.configure(data: data)
@@ -73,59 +76,54 @@ class StoryDetailHeaderImageElementCell: BaseCollectionCell {
             
             let imageSize = self.calculateImageSize(metadata: card?.hero_image_metadata)
             
-            self.imageViewHeightConstraint.constant = imageSize.height
-            
-            coverImageView.loadImage(url: imageBaseUrl + image + "?w=\(imageSize.width)", targetSize: CGSize(width: imageSize.width, height: imageSize.height),imageMetaData:(card?.hero_image_metadata))
-            
+            coverImageView.loadImage(url: imageBaseUrl + image + "?w=\(imageSize.width)", targetSize: CGSize(width: imageSize.width, height: 250),imageMetaData:(card?.hero_image_metadata))
         }
         
-        if let storyDescription = card?.hero_image_caption{
-            bottomStoryTextDescription.text = storyDescription.trim()
-        }
+        bottomTitleTextLabel.text = card?.sections.first?.display_name ?? card?.sections.first?.name
+        
+        bottomTitleTextLabel.addTextSpacing(spacing: 1.7)
         
     }
     
     func calculateImageSize(metadata:ImageMetaData?) -> CGSize{
-        let widthDimension2 = UIScreen.main.bounds.size.width
+        let screenWidth = UIScreen.main.bounds.size.width
         guard metadata != nil else {
-            return CGSize.init(width: widthDimension2, height: widthDimension2 * 3.0/4.0)
+            return CGSize.init(width: screenWidth, height: screenWidth * 3.0/4.0)
         }
         
         if let width = metadata?.width, metadata!.height != nil{
-            let widthDimenstion1 = CGFloat(width.floatValue)
-            let heightDimension1 = CGFloat((metadata?.height!.floatValue)!)
+            let imageWidth = CGFloat(width.floatValue)
+            let imageHeight = CGFloat((metadata?.height!.floatValue)!)
             
-            
-            let heightDimenstion2 = widthDimension2 * heightDimension1/widthDimenstion1
-            return CGSize.init(width: widthDimension2, height: heightDimenstion2)
+            let actualImageHeight = screenWidth * imageHeight/imageWidth //aspect ratio
+            return CGSize.init(width: screenWidth, height: actualImageHeight)
         }
-        
-        
-        return CGSize.init(width: widthDimension2, height: widthDimension2 * 3.0/4.0)
+        return CGSize.init(width: screenWidth, height: screenWidth * 3.0/4.0)
     }
     
     
-    
-    override func setupViews() {
-        super.setupViews()
-        
-        let view = self.contentView
-        view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
-        
-        view.addSubview(coverImageView)
-        coverImageView.addSubview(alphaLayerForCoverImage)
-        alphaLayerForCoverImage.addSubview(bottomStoryTextDescription)
-        
-        view.bringSubview(toFront: alphaLayerForCoverImage)
-        
-        coverImageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        alphaLayerForCoverImage.anchor(nil, left: coverImageView.leftAnchor, bottom: coverImageView.bottomAnchor, right: coverImageView.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        bottomStoryTextDescription.anchor(alphaLayerForCoverImage.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 15, bottomConstant: 10, rightConstant: 15, widthConstant: 0, heightConstant: 0)
-        
-        
-        
+    deinit{
+        ThemeService.shared.removeThemeable(themable: self)
     }
-    
 }
+
+extension StoryDetailHeaderImageElementCell:Themeable{
+    func applyTheme(theme: Theme) {
+        if currentTheam == nil || type(of:theme) != type(of:currentTheam!){
+            self.currentTheam = theme
+            
+            bottomTitleTextLabel.font = theme.sectionTitleFont
+            bottomTitleTextLabel.textColor = theme.sectionTitleColor
+            bottomTitleTextLabel.layer.borderColor = theme.sectionTitleColor.cgColor
+            
+            shareButton.imageView?.tintColor = theme.sectionTitleColor
+        }
+    }
+}
+
+
+
+
+
+
+

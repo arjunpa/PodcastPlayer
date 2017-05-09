@@ -24,33 +24,24 @@ class StoryDetailImageElementCell: BaseCollectionCell {
         
     }()
     
-    let imageTextDesctiptionLayer:UIView = {
-        
-        let view = UIView()
-        view.backgroundColor = Themes.storyDetailCells.storyDetailImageElementCell.imageDescriptionLayerColor
-        view.alpha = Themes.storyDetailCells.storyDetailImageElementCell.imageDescriptionLayerOpacity
-        return  view
-        
-    }()
-    
-    
     let imageTextDescription:UILabel = {
         
         let label = UILabel()
-        label.font = Themes.storyDetailCells.storyDetailImageElementCell.imageDescriptionFontSize
         label.numberOfLines = 4
-        label.textColor = Themes.storyDetailCells.storyDetailImageElementCell.imageDescriptionFontColor
         label.lineBreakMode = .byWordWrapping
+        label.font = ThemeService.shared.theme.imageCaptionFont
+        label.textColor = ThemeService.shared.theme.imageCaptionTextColor
         return label
         
     }()
+    
+    var currentTheam : Theme!
     
     var _imageViewHeightConstraint:NSLayoutConstraint?
     var imageViewHeightConstraint:NSLayoutConstraint{
         get{
             if _imageViewHeightConstraint != nil{
-                self.imageView.removeConstraint(_imageViewHeightConstraint!)
-                
+                return _imageViewHeightConstraint!
             }
             
             self._imageViewHeightConstraint = NSLayoutConstraint.init(item: self.imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
@@ -63,6 +54,56 @@ class StoryDetailImageElementCell: BaseCollectionCell {
         }
     }
     
+    override func setupViews() {
+        
+        let view = self.contentView
+        view.backgroundColor = .white
+        view.addSubview(imageView)
+        view.addSubview(imageTextDescription)
+        
+        ThemeService.shared.addThemeable(themable: self)
+        
+        imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant:screenWidth , heightConstant: 0)
+        
+        imageTextDescription.anchor(imageView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 8, leftConstant: 15, bottomConstant: 8, rightConstant: 15, widthConstant: 0, heightConstant: 0)
+        
+        // image tap configured in StoryPager
+        
+    }
+    
+    override func configure(data: Any?) {
+        super.configure(data: data)
+        
+        if let card = data as? CardStoryElement{
+            
+            if let image =  card.image_s3_key{
+                
+                let imageSize = self.calculateImageSize(metadata: card.hero_image_metadata)
+                
+                self.imageViewHeightConstraint.constant = imageSize.height
+                
+                imageView.loadImage(url: imageBaseUrl + image + "?w=\(imageSize.width)", targetSize: CGSize(width: imageSize.width, height: imageSize.height),imageMetaData:(card.hero_image_metadata))
+                
+                if let imageDescription = card.title{
+                    imageView.accessibilityLabel = imageBaseUrl + image
+                    imageTextDescription.text = imageDescription.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                }
+            }
+        }else if let meta = data as? MetaImage{
+            self.contentView.backgroundColor = UIColor(hexString:"#f9f9f9")
+//            let imageSize = self.calculateImageSize(metadata: meta.imageMeta)
+            
+            self.imageViewHeightConstraint.constant = self.contentView.bounds.height
+            
+            imageView.loadImage(url: imageBaseUrl + (meta.image ?? "") + "?w=\(self.contentView.bounds.width)", targetSize:  CGSize(width: self.contentView.bounds.width, height: self.contentView.bounds.height), imageMetaData: meta.imageMeta)
+            
+            if let imageDescription = meta.imageDescription{
+                imageView.accessibilityLabel = imageBaseUrl + (meta.image ?? "")
+//                imageTextDescription.text = imageDescription.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                imageTextDescription.text = nil
+            }
+        }
+    }
     
     func calculateImageSize(metadata:ImageMetaData?) -> CGSize{
         let widthDimension2 = UIScreen.main.bounds.size.width
@@ -83,49 +124,15 @@ class StoryDetailImageElementCell: BaseCollectionCell {
         return CGSize.init(width: widthDimension2, height: widthDimension2 * 3.0/4.0)
     }
     
-    override func setupViews() {
-        
-         let view = self.contentView
-        view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
-        
-        view.addSubview(imageView)
-        imageView.addSubview(imageTextDesctiptionLayer)
-        imageView.addSubview(imageTextDescription)
-        
-        imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 15, rightConstant: 0, widthConstant:screenWidth , heightConstant: 0)
-        
-        imageTextDesctiptionLayer.anchor(nil, left: imageView.leftAnchor, bottom: imageView.bottomAnchor, right: imageView.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 25)
-        
-        imageTextDescription.anchor(nil, left: imageView.leftAnchor, bottom: imageView.bottomAnchor, right: imageView.rightAnchor, topConstant: 0, leftConstant: 15, bottomConstant: 5, rightConstant: 15, widthConstant: 0, heightConstant: 0)
-        
-        // image tap configured in StoryPager
-        
-        
+    deinit {
+        ThemeService.shared.removeThemeable(themable: self)
     }
-    
-    
-    
-    override func configure(data: Any?) {
-        super.configure(data: data)
-        
-        let card = data as? CardStoryElement
-        
-        if let image =  card?.image_s3_key{
-            
-            let imageSize = self.calculateImageSize(metadata: card?.hero_image_metadata)
-            
-            self.imageViewHeightConstraint.constant = imageSize.height
-            
-            imageView.loadImage(url: imageBaseUrl + image + "?w=\(imageSize.width)", targetSize: CGSize(width: imageView.frame.width, height: imageView.frame.height),imageMetaData:(card?.hero_image_metadata))
-            
-            if let imageDescription = card?.title{
-                imageView.accessibilityLabel = imageBaseUrl + image
-                    imageTextDescription.text = imageDescription
-                
-            }
-        }
-        
-       
+}
+
+extension StoryDetailImageElementCell:Themeable{
+    func applyTheme(theme: Theme) {
+        currentTheam = theme
+        imageTextDescription.font = theme.imageCaptionFont
+        imageTextDescription.textColor = theme.imageCaptionTextColor
     }
-    
 }

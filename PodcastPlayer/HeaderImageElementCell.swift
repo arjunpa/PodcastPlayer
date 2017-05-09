@@ -12,10 +12,11 @@ import Quintype
 
 class HeaderImageElementCell: BaseCollectionCell {
     
-    let s = UIScreen.main.bounds.size.width - 32
+    let screenWidth = UIScreen.main.bounds.size.width
     
-    let kinterElementSpacing:CGFloat = 8
+    let kinterElementSpacing:CGFloat = 15
     let kmarginPadding:CGFloat = 16
+    
     let imageBaseUrl = "https://" + (Quintype.publisherConfig?.cdn_image)! + "/"
     
     
@@ -25,9 +26,14 @@ class HeaderImageElementCell: BaseCollectionCell {
         return imageView
     }()
     
-    var bottomTitleTextLabel : UILabel = {
-        let textLabel = UILabel()
+    var bottomTitleTextLabel : InsetLabel = {
+        let textLabel = InsetLabel()
+        textLabel.insets = UIEdgeInsets(top: 3, left: 8, bottom: 3, right: 8)
+        textLabel.layer.cornerRadius = 3
+        textLabel.layer.borderColor = UIColor.black.cgColor
+        textLabel.layer.borderWidth = 1.0
         textLabel.numberOfLines = 1
+        
         return textLabel
         
     }()
@@ -39,53 +45,50 @@ class HeaderImageElementCell: BaseCollectionCell {
         
     }()
     
-    var _imageViewHeightConstraint:NSLayoutConstraint?
-    var imageViewHeightConstraint:NSLayoutConstraint{
-        get{
-            if _imageViewHeightConstraint != nil{
-                self.imageView.removeConstraint(_imageViewHeightConstraint!)
-                
-            }
-            
-            self._imageViewHeightConstraint = NSLayoutConstraint.init(item: self.imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 0)
-            self._imageViewHeightConstraint!.priority = 999
-            self.imageView.addConstraint(_imageViewHeightConstraint!)
-            return _imageViewHeightConstraint!
-        }
-        set{
-            self._imageViewHeightConstraint = newValue
-        }
-    }
+    var currentTheam : Theme!
     
-    override func setupView() {
-        super.setupView()
+    override func setupViews() {
+        super.setupViews()
+        
+        //added for themeing
+        ThemeService.shared.addThemeable(themable: self,applyImmediately: true)
         
         let view = self.contentView
         view.addSubview(imageView)
         view.addSubview(bottomTitleTextLabel)
         view.addSubview(bottomDescriptionTextLabel)
         
-        imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: kmarginPadding, leftConstant: kmarginPadding, bottomConstant: 0, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
+        imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 220)
         
-        bottomTitleTextLabel.anchor(imageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: kinterElementSpacing, leftConstant: kmarginPadding, bottomConstant: 0, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
+        bottomTitleTextLabel.anchor(imageView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: kinterElementSpacing, leftConstant: kmarginPadding, bottomConstant: 0, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
         
-        bottomDescriptionTextLabel.anchor(bottomTitleTextLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: kinterElementSpacing, leftConstant: kmarginPadding, bottomConstant: kinterElementSpacing, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
+        bottomDescriptionTextLabel.anchor(bottomTitleTextLabel.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 8, leftConstant: kmarginPadding, bottomConstant: 10, rightConstant: kmarginPadding, widthConstant: 0, heightConstant: 0)
         
+        let spacingConstraint =  NSLayoutConstraint.init(item: bottomTitleTextLabel, attribute: .right, relatedBy: .lessThanOrEqual, toItem: view, attribute: .right, multiplier: 1, constant: -15)
+        
+        view.addConstraint(spacingConstraint)
     }
-    
-    
     
     override func configure(data:Any?){
         let story = data as? Story
-        bottomTitleTextLabel.text = story?.sections.first?.display_name
+        self.imageView.image = nil
+        bottomTitleTextLabel.text = story?.sections.first?.display_name ?? story?.sections.first?.name ?? ""
+        
+        bottomTitleTextLabel.addTextSpacing(spacing: 1.7)
+        
         bottomDescriptionTextLabel.text = story?.headline
-        //        self.imageView.image = UIImage()
+        bottomDescriptionTextLabel.setLineSpacing(spacing: 2)
         
         if let image = story?.hero_image_s3_key{
-            let imageSize = calculateImageSize(metadata: story?.hero_image_metadata,width: s)
-            imageViewHeightConstraint.constant = imageSize.height
-            self.imageView.loadImage(url: imageBaseUrl + image + "?w=\(imageSize.width)", targetSize: imageSize,imageMetaData:(story?.hero_image_metadata))
+            let imageSize = calculateImageSize(metadata: story?.hero_image_metadata,width: screenWidth)
+            
+            self.imageView.loadImage(url: self.imageBaseUrl + image + "?w=\(imageSize.width)", targetSize: imageSize, imageMetaData: (story?.hero_image_metadata))
         }
+    }
+
+    deinit{
+        ThemeService.shared.removeThemeable(themable: self)
+        print("HeaderImageElementCell denit called")
     }
 }
 
@@ -100,9 +103,26 @@ func calculateImageSize(metadata:ImageMetaData?,width:CGFloat) -> CGSize{
         let widthDimenstion1 = CGFloat(width.floatValue)
         let heightDimension1 = CGFloat((metadata?.height!.floatValue)!)
         
-        
         let heightDimenstion2 = widthDimension2 * heightDimension1/widthDimenstion1
         return CGSize.init(width: widthDimension2, height: heightDimenstion2)
     }
     return CGSize.init(width: widthDimension2, height: widthDimension2 * 3.0/4.0)
+}
+
+
+
+extension HeaderImageElementCell : Themeable{
+    func applyTheme(theme: Theme) {
+        
+        if currentTheam == nil || type(of:theme) != type(of:currentTheam!){
+            self.currentTheam = theme
+            
+            bottomTitleTextLabel.font = theme.sectionTitleFont
+            bottomTitleTextLabel.textColor = theme.sectionTitleColor
+            bottomTitleTextLabel.layer.borderColor = theme.sectionTitleColor.cgColor
+            
+            bottomDescriptionTextLabel.font = theme.headerTitleFont
+            bottomDescriptionTextLabel.textColor = theme.headerTitleColor
+        }
+    }
 }

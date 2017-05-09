@@ -44,15 +44,7 @@ class StoryDetailSocialShareElementCell: BaseCollectionCell {
         return label
         
     }()
-    
-    //    let publishedDateSeprator:UIView = {
-    //
-    //        let view = UIView()
-    //        view.backgroundColor = Themes.storyDetailCells.storyDetailSocialShareElementCell.separatorBarColor
-    //        return view
-    //
-    //    }()
-    
+
     let facebookShareIcon:UIButton = {
         
         let button = UIButton()
@@ -114,14 +106,11 @@ class StoryDetailSocialShareElementCell: BaseCollectionCell {
         super.setupViews()
         
          let view = self.contentView
-view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
+        view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
         
         view.addSubview(authorName)
         view.addSubview(authorNameSeprator)
         view.addSubview(publishedDate)
-        //        view.addSubview(publishedDateSeprator)
-        //        view.addSubview(facebookShareIcon)
-        //        view.addSubview(twitterShareIcon)
         view.addSubview(shareButton)
         view.addSubview(commentButton)
         view.addSubview(sepratorLine)
@@ -132,16 +121,9 @@ view.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgrou
         
         publishedDate.anchor(view.topAnchor, left: authorNameSeprator.rightAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
-        //        publishedDateSeprator.anchor(view.topAnchor, left: publishedDate.rightAnchor, bottom: view.bottomAnchor, right: nil, topConstant: 15, leftConstant: 15, bottomConstant: 15, rightConstant: 0, widthConstant: 1, heightConstant: 0)
-        
         commentButton.anchor(publishedDate.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, topConstant: 8, leftConstant: 15, bottomConstant: 0, rightConstant: 0, widthConstant: 40, heightConstant: 40)
         
         shareButton.anchor(commentButton.topAnchor, left: commentButton.rightAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 5, bottomConstant: 0, rightConstant: 0, widthConstant: 40, heightConstant: 40)
-        
-        //        facebookShareIcon.anchor(view.topAnchor, left: publishedDateSeprator.rightAnchor, bottom: view.bottomAnchor, right: nil, topConstant: 15, leftConstant: 15, bottomConstant: 15, rightConstant: 0, widthConstant: 35, heightConstant: 35)
-        //
-        //        twitterShareIcon.anchor(view.topAnchor, left: facebookShareIcon.rightAnchor, bottom: view.bottomAnchor, right: nil, topConstant: 15, leftConstant: 15, bottomConstant: 15, rightConstant: 0, widthConstant: 35, heightConstant: 35)
-        //
         
         sepratorLine.anchor(commentButton.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 15, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0.5)
 

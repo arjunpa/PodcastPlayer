@@ -30,11 +30,7 @@ class StoryDetailTitleElementCell: BaseCollectionCell {
         //        self.contentView.addSubview(shortDescription)
         
         headingText.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 15, leftConstant: 15, bottomConstant: 8, rightConstant: 15, widthConstant: 0, heightConstant: 0)
-        
-        //        shortDescription.anchor(headingText.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 15, leftConstant: 15, bottomConstant: 15, rightConstant: 15, widthConstant: 0, heightConstant: 0)
-        
     }
-    
     
     override func configure(data: Any?) {
         super.configure(data: data)

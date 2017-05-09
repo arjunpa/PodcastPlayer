@@ -9,6 +9,7 @@
 import UIKit
 import Quintype
 import Kingfisher
+import AVFoundation
 
 class MusicLayerController: BaseViewController {
     
@@ -81,6 +82,9 @@ class MusicLayerController: BaseViewController {
 
 extension MusicLayerController:PlayerManagerDelegate{
     func playerManager(manager:PlayerManager,periodicTimeObserverEventDidOccur time:CMTimeWrapper) {
+        
+        let isplaying = AVAudioSession.sharedInstance().isOtherAudioPlaying
+        print("Playing:\(isplaying)")
         let displayTime = formatTimeFromSeconds(seconds: time.seconds)
         self.toolbar.displayTime.text = displayTime
     }
@@ -228,7 +232,10 @@ extension MusicLayerController:PlayerManagerDelegate{
         return activityIndicator
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+      print("viewWillDisappear came here")
+    }
 
 }
 

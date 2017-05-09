@@ -322,6 +322,26 @@ extension PlayerManager{
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVAudioSessionInterruption, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleInterruptions(_:)), name: NSNotification.Name.AVAudioSessionInterruption, object: nil)
+        
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AVPlayerItemBecameCurrentNotification"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleVideoPlaying(_:)), name: NSNotification.Name(rawValue: "AVPlayerItemBecameCurrentNotification"), object: nil)
+        
+    }
+    
+    func handleVideoPlaying(_ notification:Notification){
+        print(notification.name)
+        print("came here")
+        if let object = notification.object as? AVPlayerItem{
+            if object.asset.tracks(withMediaType: AVMediaTypeVideo).count == 0{
+                print("Playing audio")
+            }else{
+                print("Playing Video")
+                    self.didClickOnPlay()
+                
+            }
+        }
     }
     
     func handleInterruptions(_ notification:Notification){

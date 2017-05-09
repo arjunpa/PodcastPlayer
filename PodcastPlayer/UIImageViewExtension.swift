@@ -125,7 +125,7 @@ extension UIImageView{
                                 if convertedUrl != nil{
                 
                                     let imageView = UIImageView()
-                                    imageView.kf.setWebPImage(with: convertedUrl, placeholder: nil, options:  [.transition(animation)], progressBlock: nil, completionHandler: { (image, error, cache, url) in
+                                    imageView.kf.setWebPImage(with: convertedUrl, placeholder: placeholder, options:  [.transition(animation)], progressBlock: nil, completionHandler: { (image, error, cache, url) in
                                         
                                         if let downloadedImage = image{
                                          self.image = self.foucsPointConverter(image:downloadedImage, metaData: imageMetaData!, targetSize: targetSize)

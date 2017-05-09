@@ -58,8 +58,9 @@
 		<string>OpenSans-Regular.ttf</string>
 		<string>OpenSans-Bold.ttf</string>
 		<string>OpenSans-Semibold.ttf</string>
-		<string></string>
-		<string></string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>Lato-Semibold.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

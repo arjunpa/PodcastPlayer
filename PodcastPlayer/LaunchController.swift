@@ -20,7 +20,7 @@ class LaunchController: UIViewController {
 
             appdelegate?.window?.rootViewController = viewContoller
             
-            print(configData)
+    
         }) { (error) in
             print(error)
         }
