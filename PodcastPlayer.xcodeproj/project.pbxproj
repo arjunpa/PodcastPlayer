@@ -413,6 +413,7 @@
 				1D77D8281EC1D12C0023E868 /* RelatedStoryCell.swift */,
 				1D8A30751EA3EE29000151C3 /* StoryDetailAuthorElemenCell.swift */,
 				1D8A30771EA3EE29000151C3 /* StoryDetailBigFactElementCell.swift */,
+				1D8A30881EA3EE29000151C3 /* StoryDetailYoutubeElementCell.swift */,
 				1D8A307E1EA3EE29000151C3 /* StoryDetailJsEmbbedElementCell.swift */,
 				1D8A307F1EA3EE29000151C3 /* StoryDetailJWPlayerElementCell.swift */,
 				1D8A30821EA3EE29000151C3 /* StoryDetailSocialShareElementCell.swift */,
@@ -420,7 +421,6 @@
 				1D8A30841EA3EE29000151C3 /* StoryDetailSummeryElementCell.swift */,
 				1D8A30861EA3EE29000151C3 /* StoryDetailTitleElementCell.swift */,
 				1D8A30871EA3EE29000151C3 /* StoryDetailTwitterElementCell.swift */,
-				1D8A30881EA3EE29000151C3 /* StoryDetailYoutubeElementCell.swift */,
 				1D77D82C1EC1D9F40023E868 /* RelatedStoriesTitleCell.swift */,
 			);
 			path = cells;

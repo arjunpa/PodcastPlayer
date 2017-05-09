@@ -17,7 +17,7 @@ class StoryDetailAnswerElementCell: BaseCollectionCell {
         let textView = UITextView()
         
         textView.isEditable = false
-        textView.isScrollEnabled = true
+        textView.isScrollEnabled = false
         textView.dataDetectorTypes = .link
         textView.font = ThemeService.shared.theme.answerElementFont
         textView.textColor = ThemeService.shared.theme.answerElementColor

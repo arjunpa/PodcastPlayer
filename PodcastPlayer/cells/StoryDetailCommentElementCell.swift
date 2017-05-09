@@ -49,7 +49,7 @@ class StoryDetailCommentElementCell:BaseCollectionCell{
         view.addSubview(commentButton)
         commentButton.addSubview(commentArrowImage)
         
-        commentButton.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 15, bottomConstant: 15, rightConstant: 15, widthConstant: 0, heightConstant: 35)
+        commentButton.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 15, bottomConstant: 15, rightConstant: 15, widthConstant: 0, heightConstant: 35)
         
         commentArrowImage.anchor(commentButton.topAnchor, left: nil, bottom: nil, right: commentButton.rightAnchor, topConstant: 8, leftConstant: 0, bottomConstant: 5, rightConstant: 20, widthConstant: 20, heightConstant: 20)
     }

@@ -12,12 +12,29 @@ import Quintype
 
 class RelatedStoriesSectionController: BaseIGListSectionController {
     
-    var stories:[Story]!
+    var stories:[Story] = []
     
-    init(stories:[Story]){
+    var storiesLoaded = false
+    
+    init(storyID:String){
         super.init()
-        self.stories = stories
-//        supplementaryViewSource = self
+        let manager = ApiManager.init(delegate: self)
+        manager.getRelatedStory(storyId: storyID)
+        supplementaryViewSource = self
+    }
+}
+
+extension RelatedStoriesSectionController:ApiManagerDelegate{
+    func didloadRelatedStories(stories: [Story]?) {
+        
+        DispatchQueue.main.async {
+            self.stories = stories!
+            self.collectionContext?.performBatch(animated: false, updates: {
+                self.storiesLoaded = true
+                self.collectionContext?.reload(self)
+            }, completion: nil)
+            
+        }
     }
 }
 
@@ -39,7 +56,7 @@ extension RelatedStoriesSectionController:IGListSectionType{
     }
     
     func didUpdate(to object: Any) {
-        //        self.stories = object as? [Story]
+        print("RelatedStoriesSectionController called")
     }
     
     
@@ -56,16 +73,34 @@ extension RelatedStoriesSectionController:IGListSectionType{
 extension RelatedStoriesSectionController:IGListSupplementaryViewSource{
     
     func supportedElementKinds() -> [String] {
-        return [UICollectionElementKindSectionHeader]
+        return [UICollectionElementKindSectionHeader,UICollectionElementKindSectionFooter]
     }
     
     func viewForSupplementaryElement(ofKind elementKind: String, at index: Int) -> UICollectionReusableView {
-        let view = collectionContext?.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, for: self, class: RelatedStoriesTitleCell.self, at: index) as? RelatedStoriesTitleCell
-        view?.setText(text: "RELATED ARTICLES")
-        return view!
+        switch elementKind {
+        case UICollectionElementKindSectionHeader:
+            let view = collectionContext?.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, for: self, class: RelatedStoriesTitleCell.self, at: index) as? RelatedStoriesTitleCell
+            view?.setText(text: "RELATED ARTICLES")
+            return view!
+        default:
+            let view  = collectionContext?.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, for: self, class: SpinnerCell.self, at: index) as!  SpinnerCell
+            view.showActivity()
+            
+            return view
+        }
+        
     }
     
     func sizeForSupplementaryView(ofKind elementKind: String, at index: Int) -> CGSize {
-        return CGSize(width: collectionContext!.containerSize.width, height: 30)
+        switch elementKind {
+        case UICollectionElementKindSectionHeader:
+            return CGSize(width: collectionContext!.containerSize.width, height: 30)
+            
+        default:
+            
+           return (storiesLoaded ? CGSize(width: collectionContext!.containerSize.width, height: 0) : CGSize(width: collectionContext!.containerSize.width, height: 30))
+            
+        }
+        
     }
 }

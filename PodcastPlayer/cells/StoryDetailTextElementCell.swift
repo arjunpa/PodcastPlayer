@@ -17,7 +17,7 @@ class StoryDetailTextElementCell: BaseCollectionCell {
     var textElement:UITextView = {
         let textView = UITextView()
         textView.isEditable = false
-        textView.isScrollEnabled = true
+        textView.isScrollEnabled = false
         textView.dataDetectorTypes = .link
         textView.font = ThemeService.shared.theme.storyHtmlTextFont
         textView.textColor = ThemeService.shared.theme.storyHtmlTextColor

@@ -85,7 +85,7 @@ extension StoryDetailController : IGListAdapterDataSource{
     func listAdapter(_ listAdapter: IGListAdapter, sectionControllerFor object: Any) -> IGListSectionController{
         switch object as! String{
         case detailLayout.relatedStory.rawValue:
-            return RelatedStoriesSectionController(stories: self.relatedStories)
+            return RelatedStoriesSectionController(storyID:self.object.id!)
             
         default:
             return DetailSectionController.init(layout: self.storyDetaillayout2DArray,story: self.story)
@@ -105,25 +105,14 @@ extension StoryDetailController:ApiManagerDelegate{
         let layoutEngine = StoryDetailLayoutEngine(story: story!)
         
         layoutEngine.makeLayouts { (storyDetailLayout2DArray) in
-            self.manager.getRelatedStory(storyId: self.object.id!)
             
             self.storyDetaillayout2DArray = storyDetailLayout2DArray
             self.dataSource.append(detailLayout.storyDetail.rawValue)
+            self.dataSource.append(detailLayout.relatedStory.rawValue)
             self.adaptor.performUpdates(animated: true, completion: nil)
         }
     }
     
-    func didloadRelatedStories(stories: [Story]?) {
-        print("relatedStories loaded")
-        if let unwrappedStories = stories{
-            self.relatedStories = unwrappedStories
-            self.dataSource.append(detailLayout.relatedStory.rawValue)
-            self.adaptor.performUpdates(animated: true, completion: nil)
-        }else{
-            print("No related Stories")
-        }
-        
-    }
 }
 
 extension StoryDetailController:Themeable{

@@ -109,7 +109,6 @@ extension DetailSectionController: IGListSectionType{
     
     func numberOfItems() -> Int {
         return self.layoutEngine.count
-//        return 3
     }
     
     func cellForItem(at index: Int) -> UICollectionViewCell {
