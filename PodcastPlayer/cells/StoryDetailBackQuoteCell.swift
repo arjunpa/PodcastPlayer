@@ -19,7 +19,7 @@ class StoryDetailBlockkQuoteElementCell: BaseCollectionCell {
         textView.textContainerInset = UIEdgeInsets.zero
         textView.textColor = .black
         textView.isEditable = false
-        textView.isScrollEnabled = false
+        textView.isScrollEnabled = true
         textView.dataDetectorTypes = .link
         textView.font = ThemeService.shared.theme.blockquoteElementFont
         textView.textColor = ThemeService.shared.theme.blockQuoteElementColor
@@ -53,7 +53,6 @@ class StoryDetailBlockkQuoteElementCell: BaseCollectionCell {
             
         }
     }
-
     
     deinit{
         ThemeService.shared.removeThemeable(themable: self)

@@ -11,8 +11,6 @@ import Quintype
 
 class StoryDetailHeaderTextElementCell: BaseCollectionCell {
     
-    
-    
     var headingText:UILabel = {
         
         let label = UILabel()
@@ -27,7 +25,7 @@ class StoryDetailHeaderTextElementCell: BaseCollectionCell {
         label.numberOfLines = 0
         return label
     }()
-        
+    
     var currentTheam : Theme!
     
     override func configure(data: Any?) {
@@ -48,19 +46,19 @@ class StoryDetailHeaderTextElementCell: BaseCollectionCell {
     override func setupViews() {
         super.setupViews()
         
-         let view = self.contentView
-        
+        let view = self.contentView
+
         ThemeService.shared.addThemeable(themable: self,applyImmediately: true)
         
         view.addSubview(headingText)
         view.addSubview(subtitleLabel)
-    
-        headingText.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 8, leftConstant: 15, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
+        
+        headingText.anchor(view.topAnchor, left: view.leftAnchor, bottom: subtitleLabel.topAnchor, right: view.rightAnchor, topConstant: 8, leftConstant: 15, bottomConstant: 10, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
         subtitleLabel.anchor(headingText.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 15, bottomConstant: 10, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
     }
-    
+
     deinit{
         ThemeService.shared.removeThemeable(themable: self)
     }
@@ -69,11 +67,11 @@ class StoryDetailHeaderTextElementCell: BaseCollectionCell {
 extension StoryDetailHeaderTextElementCell:Themeable{
     func applyTheme(theme: Theme) {
         if currentTheam == nil || type(of:theme) != type(of:currentTheam!){
-        headingText.textColor = theme.storyHeadlineColor
-        headingText.font = theme.storyHeadlineFont
-        
-        subtitleLabel.textColor = theme.storySubheadlineColor
-        subtitleLabel.font = theme.storySubheadlineFont
+            headingText.textColor = theme.storyHeadlineColor
+            headingText.font = theme.storyHeadlineFont
+            
+            subtitleLabel.textColor = theme.storySubheadlineColor
+            subtitleLabel.font = theme.storySubheadlineFont
         }
     }
 }

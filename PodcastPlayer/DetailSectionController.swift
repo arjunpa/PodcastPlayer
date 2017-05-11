@@ -24,8 +24,12 @@ class DetailSectionController:BaseIGListSectionController,BaseCollectionCellDele
     var layoutEngine = [StoryDetailLayout]()
     
     var sizingCells:[String:BaseCollectionCell] = [:]
-
+    
     var youtubeCellIdentifiers:[String] = []
+    
+    let scale = UIScreen.main.scale
+    
+    var cachedAttributedString : [Int:NSAttributedString] = [:]
     
     init(layout:[StoryDetailLayout],story:Story){
         super.init()
@@ -33,7 +37,9 @@ class DetailSectionController:BaseIGListSectionController,BaseCollectionCellDele
         self.story = story
         inset = UIEdgeInsetsMake(0, 0, 0, 0)
         targetSize = (collectionContext?.containerSize)!
+        
         createSizingCells()
+        displayDelegate = self
     }
     
     func createSizingCells(){
@@ -114,161 +120,179 @@ extension DetailSectionController: IGListSectionType{
     func cellForItem(at index: Int) -> UICollectionViewCell {
         
         self.data = self.layoutEngine[index]
+        
+        var cell : UICollectionViewCell?
+        
         switch (self.data.layoutType) {
         //static top
         case .storyDetailHeaderImageElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailHeaderImageElementCell.self, for: self, at: index) as! StoryDetailHeaderImageElementCell
-            cell.configure(data: self.story)
-            cell.shareButton.accessibilityElements = [self.story]
-            cell.shareButton.addTarget(self, action: #selector(shareButtonAction(sender:)), for: UIControlEvents.touchUpInside)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailHeaderImageElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailHeaderImageElementCell
+            currentCell.configure(data: self.story)
+            currentCell.shareButton.accessibilityElements = [self.story]
+            currentCell.shareButton.addTarget(self, action: #selector(shareButtonAction(sender:)), for: UIControlEvents.touchUpInside)
+            
+            
         case .storyDetailHeaderTextElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailHeaderTextElementCell.self, for: self, at: index) as! StoryDetailHeaderTextElementCell
-            cell.configure(data: self.story)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailHeaderTextElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailHeaderTextElementCell
+            currentCell.configure(data: self.story)
+            
+            
         case .storyDetailSocialShareElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailSocialShareElementCell.self, for: self, at: index) as! StoryDetailSocialShareElementCell
-            cell.configure(data: self.story)
-            cell.shareButton.accessibilityElements = [self.story]
-            cell.shareButton.addTarget(self, action: #selector(shareButtonAction(sender:)), for: UIControlEvents.touchUpInside)
-            cell.commentButton.addTarget(self, action: #selector(commentButtonAction(sender:)), for: UIControlEvents.touchUpInside)
-            cell.authorName.addTarget(self, action: #selector(authorDetailsButtonAction(sender:)), for: UIControlEvents.touchUpInside)
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailSocialShareElementCell.self, for: self, at: index) as! StoryDetailSocialShareElementCell
             
-            if let authorId = story.author_id?.intValue{ cell.authorName.tag = authorId }
-            if let slug = story.slug{ cell.commentButton.accessibilityLabel = slug }
-            return cell
+            let currentCell = cell as! StoryDetailSocialShareElementCell
             
-        //static bottom
+            currentCell.configure(data: self.story)
+            currentCell.shareButton.accessibilityElements = [self.story]
+            currentCell.shareButton.addTarget(self, action: #selector(shareButtonAction(sender:)), for: UIControlEvents.touchUpInside)
+            currentCell.commentButton.addTarget(self, action: #selector(commentButtonAction(sender:)), for: UIControlEvents.touchUpInside)
+            currentCell.authorName.addTarget(self, action: #selector(authorDetailsButtonAction(sender:)), for: UIControlEvents.touchUpInside)
+            
+            if let authorId = story.author_id?.intValue{ currentCell.authorName.tag = authorId }
+            if let slug = story.slug{ currentCell.commentButton.accessibilityLabel = slug }
+        
         case .storyDetailsTagElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailsTagElementCell.self, for: self, at: index) as! StoryDetailsTagElementCell
-            cell.configure(data: self.story)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailsTagElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailsTagElementCell
+            
+            currentCell.configure(data: self.story)
+            
         case .storyDetailCommentElementCell :
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailCommentElementCell.self, for: self, at: index) as! StoryDetailCommentElementCell
-            if let slug = self.story.slug{ cell.commentButton.accessibilityLabel = slug }
-            cell.commentButton.addTarget(self, action: #selector(commentButtonAction(sender:)), for: UIControlEvents.touchUpInside)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailCommentElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailCommentElementCell
             
+            if let slug = self.story.slug{ currentCell.commentButton.accessibilityLabel = slug }
+            currentCell.commentButton.addTarget(self, action: #selector(commentButtonAction(sender:)), for: UIControlEvents.touchUpInside)
             
-            //add related story section here
             
         case .storyDetailTextElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailTextElementCell.self, for: self, at: index) as! StoryDetailTextElementCell
-            cell.configure(data: data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailTextElementCell.self, for: self, at: index)
+            //            cell.configure(data: data.storyElement)
+            let currentCell = cell as! StoryDetailTextElementCell
+            currentCell.textElement.attributedText = cachedAttributedString[index]!
             
         case .storyDetailBlockkQuoteElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailBlockkQuoteElementCell.self, for: self, at: index) as! StoryDetailBlockkQuoteElementCell
-            cell.configure(data: data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailBlockkQuoteElementCell.self, for: self, at: index)
+            //            cell.configure(data: data.storyElement)
+            let currentCell = cell as! StoryDetailBlockkQuoteElementCell
+            currentCell.textElement.attributedText = cachedAttributedString[index]!
             
         case .storyDetailQuoteElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailQuoteElementCell.self, for: self, at: index) as! StoryDetailQuoteElementCell
-            cell.configure(data: data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailQuoteElementCell.self, for: self, at: index)
+            //            cell.configure(data: data.storyElement)
+            let currentCell = cell as! StoryDetailQuoteElementCell
+            currentCell.textElement.attributedText = cachedAttributedString[index]!
+            
             
         case .storyDetailBlurbElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailBlurbElementCell.self, for: self, at: index) as! StoryDetailBlurbElementCell
-            cell.configure(data: data.storyElement)
-            
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailBlurbElementCell.self, for: self, at: index)
+            //            cell.configure(data: data.storyElement)
+            let currentCell = cell as! StoryDetailBlurbElementCell
+            currentCell.textElement.attributedText = cachedAttributedString[index]!
             
         case .storyDetailQuestionElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailQuestionElementCell.self, for: self, at: index) as! StoryDetailQuestionElementCell
-            cell.configure(data: data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailQuestionElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailQuestionElementCell
+            currentCell.configure(data: data.storyElement)
             
         case .storyDetailAnswerElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailAnswerElementCell.self, for: self, at: index) as! StoryDetailAnswerElementCell
-            cell.configure(data: data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailAnswerElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailAnswerElementCell
+            currentCell.configure(data: data.storyElement)
             
         case .storyDetailBigFactElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailBigFactElementCell.self, for: self, at: index) as! StoryDetailBigFactElementCell
-            cell.configure(data: data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailBigFactElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailBigFactElementCell
+            currentCell.configure(data: data.storyElement)
             
         case .storyDetailAuthorElemenCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailAuthorElemenCell.self, for: self, at: index) as! StoryDetailAuthorElemenCell
-            cell.configure(data: data.storyElement)
-            return cell
-            
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailAuthorElemenCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailAuthorElemenCell
+            currentCell.configure(data: data.storyElement)
         case .galleryElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: GalleryElementCell.self, for: self, at: index) as! GalleryElementCell
-            cell.configure(data: data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: GalleryElementCell.self, for: self, at: index)
+            
+            let currentCell = cell as! GalleryElementCell
+            currentCell.configure(data: data.storyElement)
+            
             
         case .storyDetailImageElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailImageElementCell.self, for: self, at: index) as! StoryDetailImageElementCell
-            cell.configure(data: data.storyElement)
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailImageElementCell.self, for: self, at: index)
+            let currentCell = cell  as! StoryDetailImageElementCell
+            currentCell.configure(data: data.storyElement)
             let tapGestureReconizerObject =  UITapGestureRecognizer(target:self, action: #selector(openImage(sender:)))
-            cell.imageView.addGestureRecognizer(tapGestureReconizerObject)
+            currentCell.imageView.addGestureRecognizer(tapGestureReconizerObject)
             
-            return cell
             
         case .storyDetailSummeryElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailSummeryElementCell.self, for: self, at: index) as! StoryDetailSummeryElementCell
-            
-            cell.configure(data: self.data.storyElement)
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailSummeryElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailSummeryElementCell
+            currentCell.configure(data: self.data.storyElement)
             
             if showSummary{
-                cell.minimizeButton.setImage(UIImage(named:"arrowup"), for: UIControlState.normal)
+                currentCell.minimizeButton.setImage(UIImage(named:"arrowup"), for: UIControlState.normal)
             }else{
-                cell.minimizeButton.setImage(UIImage(named:"arrowdown"), for: UIControlState.normal)
+                currentCell.minimizeButton.setImage(UIImage(named:"arrowdown"), for: UIControlState.normal)
             }
-            cell.minimizeButton.tag = index
-            cell.minimizeButton.addTarget(self, action: #selector(summarytoggleButtonPressed(sender:)), for: .touchUpInside)
-            return cell
+            currentCell.minimizeButton.tag = index
+            currentCell.minimizeButton.addTarget(self, action: #selector(summarytoggleButtonPressed(sender:)), for: .touchUpInside)
+            
         case .storyDetailJsEmbbedElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailJsEmbbedElementCell.self, for: self, at: index) as! StoryDetailJsEmbbedElementCell
-            cell.configure(data: self.data.storyElement, index: index, status: false)
-            cell.delegate = self
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailJsEmbbedElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailJsEmbbedElementCell
+            currentCell.configure(data: self.data.storyElement, index: index, status: false)
+            currentCell.delegate = self
             
         case .storyDetailTwitterElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailTwitterElementCell.self, for: self, at: index) as! StoryDetailTwitterElementCell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailTwitterElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailTwitterElementCell
             if (twitterCellheight.index(forKey: index) == nil){
-                cell.configure(data: self.data.storyElement, index: index, status: true)
+                currentCell.configure(data: self.data.storyElement, index: index, status: true)
             }else{
-                cell.configure(data: self.data.storyElement, index: index, status: false)
+                currentCell.configure(data: self.data.storyElement, index: index, status: false)
             }
             
-            cell.delegate = self
-            return cell
+            currentCell.delegate = self
+            
             
         case .storyDetailYoutubeElementCell:
             
             let id = "Youtube\(index)"
             if youtubeCellIdentifiers.contains(id){
-                let cell = collectionContext?.dequeueReusableCellFromStoryboard(withIdentifier: id, for: self, at: index) as! StoryDetailYoutubeElementCell //collectionContext?.dequeueReusableCell(of: StoryDetailYoutubeElementCell.self, for: self, at: index) as! StoryDetailYoutubeElementCell
-                cell.configure(data: self.data.storyElement)
-                return cell
+                cell = collectionContext?.dequeueReusableCellFromStoryboard(withIdentifier: id, for: self, at: index)  //collectionContext?.dequeueReusableCell(of: StoryDetailYoutubeElementCell.self, for: self, at: index) as! StoryDetailYoutubeElementCell
+            let currentCell = cell as! StoryDetailYoutubeElementCell
+                currentCell.configure(data: self.data.storyElement)
             }else{
                 let vc = self.viewController as? StoryDetailController
                 vc?.collectionView.register(StoryDetailYoutubeElementCell.self, forCellWithReuseIdentifier: id)
                 
                 self.youtubeCellIdentifiers.append(id)
-                let cell = collectionContext?.dequeueReusableCellFromStoryboard(withIdentifier: id, for: self, at: index) as! StoryDetailYoutubeElementCell //collectionContext?.dequeueReusableCell(of: StoryDetailYoutubeElementCell.self, for: self, at: index) as! StoryDetailYoutubeElementCell
-                cell.configure(data: self.data.storyElement)
-                return cell
+                cell = collectionContext?.dequeueReusableCellFromStoryboard(withIdentifier: id, for: self, at: index)  //collectionContext?.dequeueReusableCell(of: StoryDetailYoutubeElementCell.self, for: self, at: index) as! StoryDetailYoutubeElementCell
+                let currentCell = cell as! StoryDetailYoutubeElementCell
+                currentCell.configure(data: self.data.storyElement)
             }
             
             
         case .storyDetailJWPlayerElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailJWPlayerElementCell.self, for: self, at: index) as! StoryDetailJWPlayerElementCell
-            cell.configure(data: self.data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailJWPlayerElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailJWPlayerElementCell
+            currentCell.configure(data: self.data.storyElement)
             
         case .storyDetailTitleElementCell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailTitleElementCell.self, for: self, at: index) as! StoryDetailTitleElementCell
-            cell.configure(data: self.data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailTitleElementCell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailTitleElementCell
+            currentCell.configure(data: self.data.storyElement)
+            
         case .storyDetailQandACell:
-            let cell = collectionContext?.dequeueReusableCell(of: StoryDetailQandACell.self, for: self, at: index) as! StoryDetailQandACell
-            cell.configure(data: self.data.storyElement)
-            return cell
+            cell = collectionContext?.dequeueReusableCell(of: StoryDetailQandACell.self, for: self, at: index)
+            let currentCell = cell as! StoryDetailQandACell
+            currentCell.configure(data: self.data.storyElement)
             
         }
+        
+        return cell!
         
     }
     
@@ -281,22 +305,21 @@ extension DetailSectionController: IGListSectionType{
         switch self.data.layoutType {
         case .storyDetailHeaderImageElementCell:
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailHeaderImageElementCell.rawValue]//StoryDetailHeaderImageElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailHeaderImageElementCell.rawValue] as? StoryDetailHeaderImageElementCell//StoryDetailHeaderImageElementCell(frame: CGRect.zero)
             sizingCell?.configure(data: self.story)
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
             
         case .storyDetailHeaderTextElementCell:
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailHeaderTextElementCell.rawValue]//StoryDetailHeaderTextElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailHeaderTextElementCell.rawValue] as? StoryDetailHeaderTextElementCell//StoryDetailHeaderTextElementCell(frame: CGRect.zero)
             sizingCell?.configure(data: self.story)
-            
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
             
         case .storyDetailSocialShareElementCell :
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailSocialShareElementCell.rawValue]//StoryDetailSocialShareElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailSocialShareElementCell.rawValue] as? StoryDetailSocialShareElementCell//StoryDetailSocialShareElementCell(frame: CGRect.zero)
             sizingCell?.configure(data:story)
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
@@ -304,63 +327,66 @@ extension DetailSectionController: IGListSectionType{
         case .storyDetailTextElementCell:
             
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailTextElementCell.rawValue]//StoryDetailTextElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailTextElementCell.rawValue] as? StoryDetailTextElementCell//StoryDetailTextElementCell(frame: CGRect.zero)
             
-            let calculatedSize = sizingCell?.calculateTextViewHeight(data: data.storyElement?.text, targetSize: targetSize)
-            
-            return calculatedSize!
+            let calculatedSizeAndText = sizingCell?.calculateTextViewHeight(data: data.storyElement?.text, targetSize: targetSize)
+            cachedAttributedString[index] = calculatedSizeAndText?.1
+            return calculatedSizeAndText!.0
             
             
         case .storyDetailBlockkQuoteElementCell:
             
             let sizingCell = sizingCells[storyDetailLayoutType.storyDetailBlockkQuoteElementCell.rawValue] as? StoryDetailBlockkQuoteElementCell
             
-            let calculatedSize = sizingCell?.calculateTextViewHeight(data:data.storyElement?.text,targetSize:targetSize,textOption:textOption.blockquote)
-            return calculatedSize!
+            let calculatedSizeAndText = sizingCell?.calculateTextViewHeight(data:data.storyElement?.text,targetSize:targetSize,textOption:textOption.blockquote)
+            cachedAttributedString[index] = calculatedSizeAndText?.1
+            return calculatedSizeAndText!.0
             
         case .storyDetailQuoteElementCell:
             
             let sizingCell = sizingCells[storyDetailLayoutType.storyDetailQuoteElementCell.rawValue] as? StoryDetailQuoteElementCell
-            var calculatedSize = sizingCell?.calculateTextViewHeight(data: data.storyElement?.text, targetSize: targetSize,textOption:textOption.quote)
-           let labelHeight = sizingCell?.authorName.heightForView(text: data.storyElement?.metadata?.attribution ?? "", font: ThemeService.shared.theme.normalListSectionFont, width: targetSize.width)
+            var calculatedSizeAndText = sizingCell?.calculateTextViewHeight(data: data.storyElement?.text, targetSize: targetSize,textOption:textOption.quote)
             
-            calculatedSize?.height += labelHeight! + 5//padding
-            return calculatedSize!
+            let labelHeight = sizingCell?.authorName.heightForView(text: data.storyElement?.metadata?.attribution ?? "", font: ThemeService.shared.theme.normalListSectionFont, width: targetSize.width)
+            
+            
+            cachedAttributedString[index] = calculatedSizeAndText?.1
+            calculatedSizeAndText?.0.height += labelHeight! + 5//padding
+            return calculatedSizeAndText!.0
             
         case .storyDetailBlurbElementCell:
             
-            
             let sizingCell = sizingCells[storyDetailLayoutType.storyDetailBlurbElementCell.rawValue] as? StoryDetailBlurbElementCell
             
-            let calculatedSize = sizingCell?.calculateTextViewHeight(data: data.storyElement?.metadata?.content, targetSize: targetSize,textOption:textOption.blurb)
+            let calculatedSizeAndText = sizingCell?.calculateTextViewHeight(data: data.storyElement?.metadata?.content, targetSize: targetSize,textOption:textOption.blurb)
             
-            return calculatedSize!
+            cachedAttributedString[index] = (calculatedSizeAndText?.1)!
+            return calculatedSizeAndText!.0
             
         case .storyDetailQuestionElementCell:
             
-            
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailQuestionElementCell.rawValue]
-            let calculatedSize = sizingCell?.calculateTextViewHeight(data: data.storyElement?.text, targetSize: targetSize)
-            return calculatedSize!
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailQuestionElementCell.rawValue] as? StoryDetailQuestionElementCell
+            let calculatedSizeAndText = sizingCell?.calculateTextViewHeight(data: data.storyElement?.text, targetSize: targetSize)
+            cachedAttributedString[index] = calculatedSizeAndText?.1
+            return calculatedSizeAndText!.0
             
         case .storyDetailAnswerElementCell:
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailAnswerElementCell.rawValue]//StoryDetailAnswerElementCell(frame: CGRect.zero)
-//            sizingCell?.configure(data:data.storyElement)
-//            let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
-            let calculatedSize = sizingCell?.calculateTextViewHeight(data: data.storyElement?.text, targetSize: targetSize)
-            return calculatedSize!
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailAnswerElementCell.rawValue] as? StoryDetailAnswerElementCell// StoryDetailAnswerElementCell(frame: CGRect.zero)
+            let calculatedSizeAndText = sizingCell?.calculateTextViewHeight(data: data.storyElement?.text, targetSize: targetSize)
+            cachedAttributedString[index] = calculatedSizeAndText?.1
+            return calculatedSizeAndText!.0
             
         case .storyDetailBigFactElementCell:
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailBigFactElementCell.rawValue]//StoryDetailBigFactElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailBigFactElementCell.rawValue] as? StoryDetailBigFactElementCell//StoryDetailBigFactElementCell(frame: CGRect.zero)
             sizingCell?.configure(data:data.storyElement)
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
             
         case .storyDetailAuthorElemenCell:
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailAuthorElemenCell.rawValue]//StoryDetailAuthorElemenCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailAuthorElemenCell.rawValue] as? StoryDetailAuthorElemenCell// StoryDetailAuthorElemenCell(frame: CGRect.zero)
             sizingCell?.configure(data:story)
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
@@ -384,13 +410,13 @@ extension DetailSectionController: IGListSectionType{
             
         case .storyDetailCommentElementCell:
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailCommentElementCell.rawValue]//StoryDetailCommentElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailCommentElementCell.rawValue] as? StoryDetailCommentElementCell//StoryDetailCommentElementCell(frame: CGRect.zero)
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
             
         case .storyDetailSummeryElementCell:
             if showSummary{
-                let sizingCell = sizingCells[storyDetailLayoutType.storyDetailSummeryElementCell.rawValue]//StoryDetailSummeryElementCell(frame: CGRect.zero)
+                let sizingCell = sizingCells[storyDetailLayoutType.storyDetailSummeryElementCell.rawValue] as? StoryDetailSummeryElementCell//StoryDetailSummeryElementCell(frame: CGRect.zero)
                 sizingCell?.configure(data: self.data.storyElement)
                 let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
                 return calculatedSize!
@@ -413,18 +439,18 @@ extension DetailSectionController: IGListSectionType{
             }
             
         case .storyDetailYoutubeElementCell:
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailYoutubeElementCell.rawValue]//StoryDetailYoutubeElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailYoutubeElementCell.rawValue] as? StoryDetailYoutubeElementCell//StoryDetailYoutubeElementCell(frame: CGRect.zero)
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
             
         case .storyDetailJWPlayerElementCell:
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailJWPlayerElementCell.rawValue]//StoryDetailJWPlayerElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailJWPlayerElementCell.rawValue] as? StoryDetailJWPlayerElementCell//StoryDetailJWPlayerElementCell(frame: CGRect.zero)
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
             
         case .storyDetailTitleElementCell:
             
-            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailTitleElementCell.rawValue]//StoryDetailTitleElementCell(frame: CGRect.zero)
+            let sizingCell = sizingCells[storyDetailLayoutType.storyDetailTitleElementCell.rawValue] as? StoryDetailTitleElementCell//StoryDetailTitleElementCell(frame: CGRect.zero)
             sizingCell?.configure(data: self.data.storyElement)
             let calculatedSize = sizingCell?.calculateHeight(targetSize: targetSize)
             return calculatedSize!
@@ -437,9 +463,6 @@ extension DetailSectionController: IGListSectionType{
             
             return calculatedSize!
         }
-        
-        //        return CGSize.zero
-        
     }
     
     func didUpdate(to object: Any) {
@@ -534,10 +557,10 @@ extension DetailSectionController: IGListSectionType{
         print(#function)
         
         showSummary = !showSummary
-
+        
         collectionContext?.reload(in: self, at: IndexSet.init(integer: sender.tag))
-
-//        collectionContext?.reload(self)
+        
+        //        collectionContext?.reload(self)
         
     }
     
@@ -551,4 +574,51 @@ extension DetailSectionController: IGListSectionType{
         
     }
     
+}
+
+extension DetailSectionController : IGListDisplayDelegate{
+    
+    // MARK: IGListDisplayDelegate
+    
+    func listAdapter(_ listAdapter: IGListAdapter, willDisplay sectionController: IGListSectionController) {
+        let section = collectionContext!.section(for: self)
+        print("Will display section \(section)")
+    }
+    
+    func listAdapter(_ listAdapter: IGListAdapter, willDisplay sectionController: IGListSectionController, cell: UICollectionViewCell, at index: Int) {
+        
+        //        self.data = self.layoutEngine[index]
+        
+        //        switch (self.data.layoutType) {
+        //
+        //        case .storyDetailTextElementCell:
+        //           let cellD = cell as? StoryDetailTextElementCell
+        //            cellD?.textElement.attributedText = cachedAttributedString[index]
+        //
+        //        case .storyDetailBlockkQuoteElementCell:
+        //            let cellD = cell as? StoryDetailBlockkQuoteElementCell
+        //            cellD?.textElement.attributedText = cachedAttributedString[index]
+        //
+        //        case .storyDetailQuoteElementCell:
+        //
+        //            let cellD = cell as? StoryDetailQuoteElementCell
+        //            cellD?.textElement.attributedText = cachedAttributedString[index]
+        //
+        //        case .storyDetailBlurbElementCell:
+        //
+        //            let cellD  = cell as? StoryDetailBlurbElementCell
+        //            cellD?.textElement.attributedText = cachedAttributedString[index]
+        //
+        //        default : print("Will Display Not called for\(self.data.layoutType)")
+        //        }
+    }
+    
+    func listAdapter(_ listAdapter: IGListAdapter, didEndDisplaying sectionController: IGListSectionController) {
+        let section = collectionContext!.section(for: self)
+        print("Did end displaying section \(section)")
+    }
+    
+    func listAdapter(_ listAdapter: IGListAdapter, didEndDisplaying sectionController: IGListSectionController, cell: UICollectionViewCell, at index: Int) {
+        
+    }
 }

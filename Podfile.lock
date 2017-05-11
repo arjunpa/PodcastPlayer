@@ -67,7 +67,7 @@ DEPENDENCIES:
   - DTCoreText
   - IGListKit
   - JWPlayer-SDK (~> 2.0)
-  - Kingfisher (~> 3.0)
+  - Kingfisher
   - KingfisherWebP (from `https://github.com/yeatse/KingfisherWebP.git`, tag `0.2.0`)
   - Quintype (from `https://github.com/Albinzr/Quintype.git`, tag `0.60`)
   - Soundcloud
@@ -107,6 +107,6 @@ SPEC CHECKSUMS:
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: d119c5903e2dac65c9c5e1b0a37efe00948fb370
+PODFILE CHECKSUM: e4ef7014bb941a9b1f33f85ffb2abdb6361002b1
 
 COCOAPODS: 1.2.0

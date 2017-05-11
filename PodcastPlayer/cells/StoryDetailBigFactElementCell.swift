@@ -31,7 +31,7 @@ class StoryDetailBigFactElementCell:BaseCollectionCell{
         textView.textContainerInset = Themes.storyDetailCells.storyDetailBigFactElementCell.bigFactTextPadding
         textView.textColor = Themes.storyDetailCells.storyDetailBigFactElementCell.bigFactFontColor
         textView.isEditable = false
-        textView.isScrollEnabled = false
+        textView.isScrollEnabled = true
         textView.dataDetectorTypes = .link
         textView.font = Themes.storyDetailCells.storyDetailBigFactElementCell.bigFactFontSize
         textView.backgroundColor = readThemeColorPlist(colorName: colors.defaultCellBackgroundColor.rawValue)
@@ -52,9 +52,6 @@ class StoryDetailBigFactElementCell:BaseCollectionCell{
         bigFactTitleElement.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 15, leftConstant: 15, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
         
         bigFactTextElement.anchor(bigFactTitleElement.bottomAnchor, left: bigFactTitleElement.leftAnchor, bottom: view.bottomAnchor, right: bigFactTitleElement.rightAnchor, topConstant: 15, leftConstant: 0, bottomConstant: 15, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        
-        
     }
     
     
@@ -75,11 +72,6 @@ class StoryDetailBigFactElementCell:BaseCollectionCell{
             bigFactTitleElement.text = bigFactTitle
             
         }
-        
-        
-        
-        
-        
     }
     
 }

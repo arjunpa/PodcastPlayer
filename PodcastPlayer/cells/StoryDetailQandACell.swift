@@ -26,7 +26,7 @@ class StoryDetailQandACell: BaseCollectionCell {
         let tv = UITextView()
         tv.textContainerInset = UIEdgeInsets.zero
         tv.isEditable = false
-        tv.isScrollEnabled = false
+        tv.isScrollEnabled = true
         tv.font = ThemeService.shared.theme.answerElementFont
         tv.textColor = ThemeService.shared.theme.answerElementColor
         return tv
@@ -53,6 +53,7 @@ class StoryDetailQandACell: BaseCollectionCell {
         
         QuestionTextView.convert(toHtml: card?.metadata?.question ?? "", textOption: textOption.question)
         AnswerTextView.convert(toHtml: card?.metadata?.answer ?? "", textOption: textOption.answer)
+        
     }
     
     deinit{

@@ -20,6 +20,7 @@ class DefaultStoryCell: BaseCollectionCell {
     var imageView : UIImageView = {
         let image = UIImageView()
         image.image = UIImage()
+        image.clipsToBounds = true
         image.contentMode = .scaleToFill
         return image
     }()
@@ -58,7 +59,6 @@ class DefaultStoryCell: BaseCollectionCell {
     
     override func configure(data: Any?) {
         let story = data as? Story
-        self.imageView.image = #imageLiteral(resourceName: "image_pholder")
         
         headerLabel.text = story?.sections.first?.name?.uppercased()
         descriptionLabel.text = story?.headline
@@ -69,8 +69,14 @@ class DefaultStoryCell: BaseCollectionCell {
         
         if let imageKey = story?.hero_image_s3_key{
           
-            self.imageView.loadImage(url: self.imageBaseUrl + imageKey + "?w=\(120)", targetSize: CGSize.init(width: 120, height: 90), imageMetaData: (story?.hero_image_metadata))
+            self.imageView.loadImage(url: self.imageBaseUrl + imageKey + "?w=\(120)", targetSize: CGSize.init(width: 120, height: 90), imageMetaData: (story?.hero_image_metadata),placeholder: #imageLiteral(resourceName: "image_pholder"))
         }
+    }
+    
+    override func prepareForReuse() {
+        
+        self.imageView.image = nil
+        super.prepareForReuse()
     }
 
     deinit{

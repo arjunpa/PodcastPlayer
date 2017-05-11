@@ -13,11 +13,10 @@ import DTFoundation
 
 class StoryDetailTextElementCell: BaseCollectionCell {
     
-    
     var textElement:UITextView = {
         let textView = UITextView()
         textView.isEditable = false
-        textView.isScrollEnabled = false
+        textView.isScrollEnabled = true
         textView.dataDetectorTypes = .link
         textView.font = ThemeService.shared.theme.storyHtmlTextFont
         textView.textColor = ThemeService.shared.theme.storyHtmlTextColor
@@ -25,7 +24,6 @@ class StoryDetailTextElementCell: BaseCollectionCell {
         return textView
         
     }()
-
     
     override func configure(data: Any?) {
         super.configure(data: data)
@@ -45,10 +43,14 @@ class StoryDetailTextElementCell: BaseCollectionCell {
         let view = self.contentView
         
         view.addSubview(textElement)
+//        
+//        let a = UITextView()
+//        a.backgroundColor = .red
+//        textElement = a
         
         textElement.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 15, bottomConstant: 0, rightConstant: 15, widthConstant: 0, heightConstant: 0)
     }
-    
+  
     deinit {
         ThemeService.shared.removeThemeable(themable: self)
     }

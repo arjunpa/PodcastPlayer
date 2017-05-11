@@ -65,7 +65,6 @@ class BaseCollectionCell: UICollectionViewCell {
                                                  multiplier: 1,
                                                  constant:newSize.width)
         
-        
         contentView.addConstraint(widthConstraint)
         
         var size = UILayoutFittingCompressedSize
@@ -104,22 +103,26 @@ class BaseCollectionCell: UICollectionViewCell {
         
     }
     
-    func calculateTextViewHeight(data:String?, targetSize:CGSize,textOption:textOption? = textOption.html) -> CGSize{
+    func calculateTextViewHeight(data:String?, targetSize:CGSize,textOption:textOption? = textOption.html) -> (CGSize,NSAttributedString){
+        var sizeAndAttributtedText :(CGSize,NSAttributedString) = (CGSize.zero,NSAttributedString(string:""))
         
         let textview = UITextView(frame: CGRect.init(x: 0, y: 0, width: targetSize.width - 2 * 16, height: 2))
-    
-            if let html =  data{
-                textview.textContainerInset = UIEdgeInsets.zero
-                textview.convert(toHtml: html, textOption: textOption!)
-            }
+        textview.isScrollEnabled = false
+        
+        if let html =  data{
+            textview.textContainerInset = UIEdgeInsets.zero
+            let _ = textview.convertAndReturn(toHtml: html, textOption: textOption!)
+            
+        }
         
         let height = textview.setLineHeight(lineHeight: 1.2, labelWidth: targetSize.width - 2 * 16)
         
-        return CGSize.init(width: targetSize.width, height:ceil(height) + 2 * 16)
+        sizeAndAttributtedText.0 = CGSize.init(width: targetSize.width, height:ceil(height) + 2 * 16)
+        textview.frame.size = sizeAndAttributtedText.0
+        sizeAndAttributtedText.1 = textview.attributedText!
+        return sizeAndAttributtedText
         
     }
-    
-    
 }
 
 extension UITextView{

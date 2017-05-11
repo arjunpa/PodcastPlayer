@@ -27,7 +27,6 @@ public class ThemeService {
     
     var multicastDelegate:MulticastDelegate<Themeable>!
     
-    
     private init() {
         multicastDelegate = MulticastDelegate<Themeable>()
     }

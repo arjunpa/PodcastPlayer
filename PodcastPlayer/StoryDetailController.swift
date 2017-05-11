@@ -36,7 +36,7 @@ class StoryDetailController: BaseViewController {
     }()
     
     lazy var adaptor:IGListAdapter = {
-        return IGListAdapter(updater: IGListAdapterUpdater(), viewController: self, workingRangeSize: 0)
+        return IGListAdapter(updater: IGListAdapterUpdater(), viewController: self, workingRangeSize: 2)
     }()
     
     override func viewDidLoad() {
@@ -108,7 +108,7 @@ extension StoryDetailController:ApiManagerDelegate{
             
             self.storyDetaillayout2DArray = storyDetailLayout2DArray
             self.dataSource.append(detailLayout.storyDetail.rawValue)
-            self.dataSource.append(detailLayout.relatedStory.rawValue)
+//            self.dataSource.append(detailLayout.relatedStory.rawValue)
             self.adaptor.performUpdates(animated: true, completion: nil)
         }
     }

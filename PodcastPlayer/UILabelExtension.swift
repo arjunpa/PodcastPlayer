@@ -54,18 +54,37 @@ extension UILabel{
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = spacing
         
-        let attrString = NSMutableAttributedString(string: text!)
+        let attrString = NSMutableAttributedString(string: self.text ?? "")
         attrString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attrString.length))
         self.attributedText = attrString
         
     }
-    
-    func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
+//    
+//    func setLineHeight(lineHeight: CGFloat, labelWidth: CGFloat) -> CGFloat {
+//        
+//        let text = self.text
+//        
+//        if let unwrappedText = text {
+//            let style = NSMutableParagraphStyle()
+//            style.lineSpacing = lineHeight
+//            
+//            let attributeString = NSMutableAttributedString(string: unwrappedText)
+//            attributeString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSMakeRange(0, attributeString.length))
+//            
+//            return self.sizeThatFits(CGSize(width: labelWidth, height: 20)).height
+//        }
+//        
+//        return 0
+//    }
+//    
+    func heightForView(text:String, font:UIFont, width:CGFloat,lineHeight:CGFloat? = 0) -> CGFloat{
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.text = text
+        label.font = font
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.font = font
-        label.text = text
+        
+       label.setLineSpacing(spacing: lineHeight!)
         
         label.sizeToFit()
         return label.frame.height

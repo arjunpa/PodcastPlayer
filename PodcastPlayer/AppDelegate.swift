@@ -30,8 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //        Quintype.initWithBaseUrl(baseURL: "https://hindi.thequint.com")
-//                Quintype.initWithBaseUrl(baseURL: "https://gaonconnection-web.staging.quintype.io")
-        Quintype.initWithBaseUrl(baseURL: "https://thequint.staging.quintype.io")
+//        Quintype.initWithBaseUrl(baseURL: "https://gaonconnection-web.staging.quintype.io")
+        Quintype.initWithBaseUrl(baseURL: "https://www.gaonconnection.com")
+//        Quintype.initWithBaseUrl(baseURL: "https://thequint.staging.quintype.io")
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         Fabric.with([Twitter.self])

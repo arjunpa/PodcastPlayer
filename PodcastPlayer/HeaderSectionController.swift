@@ -180,6 +180,8 @@ extension HeaderSectionController: IGListSectionType{
         self.viewController?.navigationController?.pushViewController(detailVC, animated: true)
         
     }
+    
+    
 }
 
 

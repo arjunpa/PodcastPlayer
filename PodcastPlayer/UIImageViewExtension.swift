@@ -123,16 +123,16 @@ extension UIImageView{
                             if focusPoints.count == 2{
                                 
                                 if convertedUrl != nil{
-                
+                                    
                                     let imageView = UIImageView()
                                     imageView.kf.setWebPImage(with: convertedUrl, placeholder: placeholder, options:  [.transition(animation)], progressBlock: nil, completionHandler: { (image, error, cache, url) in
                                         
                                         if let downloadedImage = image{
-                                         self.image = self.foucsPointConverter(image:downloadedImage, metaData: imageMetaData!, targetSize: targetSize)
+                                            self.image = self.foucsPointConverter(image:downloadedImage, metaData: imageMetaData!, targetSize: targetSize)
                                         }
                                         
                                     })
-
+                                    
                                 }
                                 
                             }else{
@@ -150,15 +150,12 @@ extension UIImageView{
                         let resize = ResizingImageProcessor(targetSize: targetSize)
                         self.kf.setImage(with: convertedUrl, placeholder: placeholder, options: [.transition(animation),.processor(resize)], completionHandler: { (image, error, cache, url) in })
                     }
-                    
-                    
-                    
                 }else{
                     let resize = ResizingImageProcessor(targetSize: targetSize)
                     self.kf.setImage(with: convertedUrl, placeholder: placeholder, options: [.transition(animation),.processor(resize)], completionHandler: { (image, error, cache, url) in })
                 }
                 
-                self.kf.indicatorType = .activity
+                self.kf.indicatorType = .none
                 
                 break
                 
@@ -174,10 +171,7 @@ extension UIImageView{
 extension UIViewController{
     
     public func clearUnusedImagesfromCache(){
-        
         ImageCache.default.clearMemoryCache()
         ImageCache.default.cleanExpiredDiskCache()
-        
     }
-    
 }

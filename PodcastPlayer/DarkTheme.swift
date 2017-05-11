@@ -36,39 +36,54 @@ public struct DarkTheme:Theme{
     public var normalListTitleColor:UIColor = UIColor(hexString: "#000000")
     public var normalListTitleFont:UIFont = Fonts.listNormalHeadlineFont
     
-    //MARK:- Detail Screen(Story Detail Screen)
-    
-    
-    
-    public var storyHtmlHyperLinkTextColor: UIColor = UIColor()
-    
-    public var imageCaptionFont:UIFont = UIFont.systemFont(ofSize: 14)
-    public var imageCaptionTextColor:UIColor = UIColor()
-    
-    public var blockQuoteElementColor: UIColor = UIColor()
-    
-    public var quoteAttributtionColor:UIColor = UIColor()
-    
-    public var blurbElementColor: UIColor = UIColor()
-    
-    
+
     
     
     //MARK:- Functions
     
     
+    //MARK:- Dedication
+    public var dedicationViewGradientColors:[UIColor] = [UIColor(hexString: "#fad961").withAlphaComponent(0.62),UIColor(hexString:"#f76b1c").withAlphaComponent(0.49)]
     
-    //Dedication View
-    public var dedicationViewGradientColors:[UIColor] = []
+    public var dedicationTitleColor:UIColor = UIColor(hexString:"#232323")
+    public var dedicationTitleFont:UIFont = Fonts.RequestDedicationTitle
     
-   public var dedicationTitleColor:UIColor = UIColor()
-   public var dedicationTitleFont:UIFont = UIFont.systemFont(ofSize: 14)
+    public var dedicationRequestButtonColor:UIColor = UIColor(hexString:"#f95f00")
+    public var dedicationRequestButtonTitle:UIFont = Fonts.ButtonTitle
     
-   public var dedicationRequestButtonColor:UIColor = UIColor()
-   public var dedicationRequestButtonTitle:UIFont = UIFont.systemFont(ofSize: 14)
+    //MARK:- Detail Screen(Story Detail Screen)
+    
+    public var storyHeadlineColor: UIColor = UIColor(hexString:"#121212")
+    public var storyHeadlineFont: UIFont = Fonts.listTopHeadlineFont
+    
+    public var storySubheadlineColor: UIColor = UIColor(hexString:"#4a4a4a")
+    public var storySubheadlineFont: UIFont = Fonts.subheadLineFont
+    
+    public var storyHtmlTextColor:UIColor = UIColor(hexString:"#4a4a4a")
+    public var storyHtmlTextFont: UIFont = Fonts.storyHtmlBodyTextFont
+    public var storyHtmlHyperLinkTextColor:UIColor = UIColor(hexString:"#f44807")
+    
+    public var imageCaptionFont:UIFont = Fonts.CaptionElementFont
+    public var imageCaptionTextColor:UIColor = UIColor(hexString:"#858585")
+    
+    public var blockQuoteElementColor:UIColor = UIColor(hexString:"#fb7f32")
+    
+    
+    public var quoteAttributtionColor:UIColor = UIColor(hexString:"#fb7f32")
+    
+    public var blurbElementColor: UIColor = UIColor(hexString:"#4a4a4a")
+    
+    public var questionElementColor: UIColor = UIColor(hexString:"#4a4a4a")
+    
+    public var answerElementColor: UIColor = UIColor(hexString:"#4a4a4a")
+    
+    public var relatedStoriesSectionTitleFont: UIFont = Fonts.relatedStoryTitle
+    
+    
     
     //MARK:- Initializers
     public init() {}
+    
     
 }
 

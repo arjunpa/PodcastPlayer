@@ -28,7 +28,7 @@ class StoryDetailQuoteElementCell: BaseCollectionCell {
         textView.textContainerInset = UIEdgeInsets.zero
         textView.textColor = .black
         textView.isEditable = false
-        textView.isScrollEnabled = false
+        textView.isScrollEnabled = true
         textView.dataDetectorTypes = .link
         
         textView.font = ThemeService.shared.theme.storyHtmlTextFont
