@@ -10,7 +10,8 @@ import UIKit
 
 class ViewController: BaseViewController {
     
-    let kPlayerPlusTabHeight:CGFloat = 155
+    let kPlayerPlusTabHeight:CGFloat = 120
+    
     var tabbar : TabBarController!
     var musicPlayer : MusicLayerController!
     
@@ -52,7 +53,7 @@ class ViewController: BaseViewController {
         
         presentInteractor = MiniToLargeViewInteractive()
         
-        presentInteractor.attachToViewController(viewController: self, withView: musicPlayer.toolbar.playerTappableArea, presentViewController: nextViewController)
+        presentInteractor.attachToViewController(viewController: self, withView: musicPlayer.toolbar, presentViewController: nextViewController)
         
         dismissInteractor = MiniToLargeViewInteractive()
         

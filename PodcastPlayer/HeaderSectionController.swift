@@ -82,7 +82,6 @@ extension HeaderSectionController: ApiManagerDelegate{
             self.collectionContext?.performBatch(animated: false, updates: {
                 self.collectionContext?.reload(self)
             }, completion: nil)
-
         }
         
     }

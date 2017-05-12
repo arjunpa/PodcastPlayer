@@ -50,7 +50,6 @@ class StoryDetailController: BaseViewController {
         manager = ApiManager(delegate: self)
         manager.getStoryForId(id: self.object.id!)
         
-        
         self.adaptor.collectionView = self.collectionView
         self.adaptor.dataSource = self
     }
@@ -108,7 +107,7 @@ extension StoryDetailController:ApiManagerDelegate{
             
             self.storyDetaillayout2DArray = storyDetailLayout2DArray
             self.dataSource.append(detailLayout.storyDetail.rawValue)
-//            self.dataSource.append(detailLayout.relatedStory.rawValue)
+            self.dataSource.append(detailLayout.relatedStory.rawValue)
             self.adaptor.performUpdates(animated: true, completion: nil)
         }
     }

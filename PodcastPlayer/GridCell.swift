@@ -36,7 +36,6 @@ class GridCell: BaseCollectionCell {
         view.addSubview(imageView)
         view.addSubview(label)
         
-        
         self.imageView.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: kMarginPadding, leftConstant: kMarginPadding, bottomConstant: 0, rightConstant: kMarginPadding, widthConstant: 100, heightConstant: 100)
         
         self.label.anchor(self.imageView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: kMarginPadding, leftConstant: kMarginPadding, bottomConstant: kMarginPadding, rightConstant: kMarginPadding, widthConstant: 0, heightConstant: 0)
@@ -44,7 +43,7 @@ class GridCell: BaseCollectionCell {
     
     
     override func configure(data: Any?) {
-        print(data!)
+        
     }
     
 }

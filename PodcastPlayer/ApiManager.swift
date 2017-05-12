@@ -68,11 +68,12 @@ class ApiManager {
     
     
     func getRelatedStory(storyId:String){
-        
-        Quintype.api.getRelatedStories(storyId: storyId, SectionId: nil, fields: nil, cache: cacheOption.cacheToDiskWithTime(min: 5), Success: { (storyObjectArray) in
-            self.delegate?.didloadRelatedStories(stories: storyObjectArray)
-        }) { (error) in
-            
+        DispatchQueue.global(qos: .background).async {
+            Quintype.api.getRelatedStories(storyId: storyId, SectionId: nil, fields: nil, cache: cacheOption.cacheToDiskWithTime(min: 5), Success: { (storyObjectArray) in
+                self.delegate?.didloadRelatedStories(stories: storyObjectArray)
+            }) { (error) in
+                
+            }
         }
     }
 }

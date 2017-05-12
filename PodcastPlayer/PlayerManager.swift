@@ -250,7 +250,7 @@ class PlayerManager: NSObject {
         //set artwork Image
         guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
         
-        let unwrappedUrl = datasource.playerManagerDidAskForArtWorksImageUrl(manager: self,size: .small)
+        let unwrappedUrl = datasource.playerManagerDidAskForArtWorksImageUrl(manager: self,size: .medium)
         let trackname = datasource.playerManagerDidAskForTrackTitleAndAuthor(manager: self)
         
         self.multicastDelegate.invoke(invokation: { (delegate:PlayerManagerDelegate) in

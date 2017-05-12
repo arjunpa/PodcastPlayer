@@ -152,7 +152,7 @@ extension DetailSectionController: IGListSectionType{
             
             if let authorId = story.author_id?.intValue{ currentCell.authorName.tag = authorId }
             if let slug = story.slug{ currentCell.commentButton.accessibilityLabel = slug }
-        
+            
         case .storyDetailsTagElementCell:
             cell = collectionContext?.dequeueReusableCell(of: StoryDetailsTagElementCell.self, for: self, at: index)
             let currentCell = cell as! StoryDetailsTagElementCell
@@ -172,6 +172,7 @@ extension DetailSectionController: IGListSectionType{
             //            cell.configure(data: data.storyElement)
             let currentCell = cell as! StoryDetailTextElementCell
             currentCell.textElement.attributedText = cachedAttributedString[index]!
+            
             
         case .storyDetailBlockkQuoteElementCell:
             cell = collectionContext?.dequeueReusableCell(of: StoryDetailBlockkQuoteElementCell.self, for: self, at: index)
@@ -262,7 +263,7 @@ extension DetailSectionController: IGListSectionType{
             let id = "Youtube\(index)"
             if youtubeCellIdentifiers.contains(id){
                 cell = collectionContext?.dequeueReusableCellFromStoryboard(withIdentifier: id, for: self, at: index)  //collectionContext?.dequeueReusableCell(of: StoryDetailYoutubeElementCell.self, for: self, at: index) as! StoryDetailYoutubeElementCell
-            let currentCell = cell as! StoryDetailYoutubeElementCell
+                let currentCell = cell as! StoryDetailYoutubeElementCell
                 currentCell.configure(data: self.data.storyElement)
             }else{
                 let vc = self.viewController as? StoryDetailController

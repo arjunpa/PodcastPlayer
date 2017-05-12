@@ -22,6 +22,7 @@ class RelatedStoriesSectionController: BaseIGListSectionController {
         manager.getRelatedStory(storyId: storyID)
         supplementaryViewSource = self
     }
+    
 }
 
 extension RelatedStoriesSectionController:ApiManagerDelegate{
@@ -29,9 +30,11 @@ extension RelatedStoriesSectionController:ApiManagerDelegate{
         
         DispatchQueue.main.async {
             self.stories = stories!
-            self.collectionContext?.performBatch(animated: false, updates: {
-                self.storiesLoaded = true
+            self.storiesLoaded = true
+            
+            self.collectionContext?.performBatch(animated: true, updates: {
                 self.collectionContext?.reload(self)
+                
             }, completion: nil)
             
         }
@@ -65,7 +68,6 @@ extension RelatedStoriesSectionController:IGListSectionType{
         let detailVC = StoryDetailController(self.baseController!.qtObject, nibName:nil, bundle:nil)
         detailVC.object = self.stories[index]
         self.viewController?.navigationController?.pushViewController(detailVC, animated: true)
-        
     }
     
 }

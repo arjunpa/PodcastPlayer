@@ -101,6 +101,9 @@
 		1DA9677F1EC0A2F00073C11D /* GalleryElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA9677E1EC0A2F00073C11D /* GalleryElementCell.swift */; };
 		1DA967811EC0D9B90073C11D /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA967801EC0D9B90073C11D /* CenterCellCollectionViewFlowLayout.swift */; };
 		1DAC400F1E9E58A300A3F719 /* SpinnerSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAC400E1E9E58A300A3F719 /* SpinnerSectionController.swift */; };
+		1DBE8C441EC48F41006F4F26 /* PlayerHeaderSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE8C431EC48F41006F4F26 /* PlayerHeaderSectionController.swift */; };
+		1DBE8C461EC48FA4006F4F26 /* PLayerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE8C451EC48FA4006F4F26 /* PLayerHeaderView.swift */; };
+		1DC39A7A1EC5B11D00BD75A0 /* PLayerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DC39A791EC5B11D00BD75A0 /* PLayerHeaderView.xib */; };
 		1DC7F5A21EB9EDD20037A46F /* Homelayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC7F5A11EB9EDD20037A46F /* Homelayout.swift */; };
 		1DC7F5AE1EB9FC6B0037A46F /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DC7F5A41EB9FC6B0037A46F /* Lato-Black.ttf */; };
 		1DC7F5AF1EB9FC6B0037A46F /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DC7F5A51EB9FC6B0037A46F /* Lato-BlackItalic.ttf */; };
@@ -238,6 +241,9 @@
 		1DA9677E1EC0A2F00073C11D /* GalleryElementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryElementCell.swift; sourceTree = "<group>"; };
 		1DA967801EC0D9B90073C11D /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		1DAC400E1E9E58A300A3F719 /* SpinnerSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerSectionController.swift; sourceTree = "<group>"; };
+		1DBE8C431EC48F41006F4F26 /* PlayerHeaderSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerHeaderSectionController.swift; sourceTree = "<group>"; };
+		1DBE8C451EC48FA4006F4F26 /* PLayerHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PLayerHeaderView.swift; sourceTree = "<group>"; };
+		1DC39A791EC5B11D00BD75A0 /* PLayerHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLayerHeaderView.xib; sourceTree = "<group>"; };
 		1DC7F5A11EB9EDD20037A46F /* Homelayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Homelayout.swift; sourceTree = "<group>"; };
 		1DC7F5A41EB9FC6B0037A46F /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
 		1DC7F5A51EB9FC6B0037A46F /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -476,6 +482,18 @@
 			name = ThemeManager;
 			sourceTree = "<group>";
 		};
+		1DBE8C421EC48F29006F4F26 /* PLayerDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1D5D75D81EAA2995003DBA70 /* NextControllerViewController.swift */,
+				1D5D75D91EAA2995003DBA70 /* NextControllerViewController.xib */,
+				1DBE8C431EC48F41006F4F26 /* PlayerHeaderSectionController.swift */,
+				1DBE8C451EC48FA4006F4F26 /* PLayerHeaderView.swift */,
+				1DC39A791EC5B11D00BD75A0 /* PLayerHeaderView.xib */,
+			);
+			name = PLayerDetail;
+			sourceTree = "<group>";
+		};
 		1DC7F5A31EB9FC530037A46F /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,8 +570,7 @@
 				1D5D75D71EAA297A003DBA70 /* Animate Transition */,
 				C2D43DC11E97725500C161D1 /* MusicLayerController.swift */,
 				C2D43DC21E97725500C161D1 /* MusicLayerController.xib */,
-				1D5D75D81EAA2995003DBA70 /* NextControllerViewController.swift */,
-				1D5D75D91EAA2995003DBA70 /* NextControllerViewController.xib */,
+				1DBE8C421EC48F29006F4F26 /* PLayerDetail */,
 				C204DC611E922C8E00972FDA /* QTGlobalInstance.swift */,
 				C204DC671E92409B00972FDA /* PodcastPlayerViewController.swift */,
 				C204DC681E92409B00972FDA /* PodcastPlayerViewController.xib */,
@@ -683,6 +700,7 @@
 				1D8A30C21EA3F1D5000151C3 /* Merriweather-Italic.ttf in Resources */,
 				C204DC6A1E92409B00972FDA /* PodcastPlayerViewController.xib in Resources */,
 				1DC7F5B71EB9FC6B0037A46F /* Lato-Regular.ttf in Resources */,
+				1DC39A7A1EC5B11D00BD75A0 /* PLayerHeaderView.xib in Resources */,
 				1DC7F5B41EB9FC6B0037A46F /* Lato-Italic.ttf in Resources */,
 				C204DC501E921B9500972FDA /* Main.storyboard in Resources */,
 			);
@@ -764,6 +782,7 @@
 				1DAC400F1E9E58A300A3F719 /* SpinnerSectionController.swift in Sources */,
 				1D64D4911E9D4B6600B4F64F /* DetailSectionController.swift in Sources */,
 				1D5D75D61EAA2974003DBA70 /* MiniToMusicAnimator.swift in Sources */,
+				1DBE8C461EC48FA4006F4F26 /* PLayerHeaderView.swift in Sources */,
 				C258E1D81E937D2700F5A22A /* PlayerControlsProtocol.swift in Sources */,
 				1D876F321EA61C64001326D1 /* SearchDefaultCell.swift in Sources */,
 				1D6FFCA61E9BAF5A00295921 /* dateExtension.swift in Sources */,
@@ -796,6 +815,7 @@
 				C204DC4D1E921B9500972FDA /* ViewController.swift in Sources */,
 				1D8A30D21EA3F24E000151C3 /* StringExtension.swift in Sources */,
 				1D8A30971EA3EE29000151C3 /* StoryDetailQuoteElementCell.swift in Sources */,
+				1DBE8C441EC48F41006F4F26 /* PlayerHeaderSectionController.swift in Sources */,
 				1D8A30911EA3EE29000151C3 /* StoryDetailHeaderTextElementCell.swift in Sources */,
 				1D77D8291EC1D12C0023E868 /* RelatedStoryCell.swift in Sources */,
 				1D6FFCA81E9BAF5A00295921 /* HtmlRender.swift in Sources */,

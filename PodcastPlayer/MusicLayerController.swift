@@ -17,12 +17,12 @@ class MusicLayerController: BaseViewController {
         
         let controlView = PlayerControlsView.loadFromNib()
         
-        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.beginScrubbing(slider:)), for: .touchDown)
-        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.scrub(slider:)), for: .valueChanged)
-        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.scrub(slider:)), for: .touchDragInside)
-        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchCancel)
-        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpInside)
-        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpOutside)
+//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.beginScrubbing(slider:)), for: .touchDown)
+//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.scrub(slider:)), for: .valueChanged)
+//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.scrub(slider:)), for: .touchDragInside)
+//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchCancel)
+//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpInside)
+//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpOutside)
         controlView.playButton.addTarget(self, action: #selector(MusicLayerController.didClickOnPlay(button:)), for: .touchUpInside)
         
         return controlView
@@ -50,32 +50,34 @@ class MusicLayerController: BaseViewController {
         self.view.addSubview(toolbar)
         self.view.clipsToBounds = true
         
+        self.toolbar.backgroundImage.applyGradient(colors: [UIColor(hexString:"#eb8241").withAlphaComponent(0.7),UIColor(hexString:"#000000").withAlphaComponent(0.7)], locations: nil, startPoint: CGPoint(x: 0, y: 0), endPoint: CGPoint(x: 0, y: 1))
+        
         toolbar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         toolbar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         toolbar.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         toolbar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-        self.configurePlayerButtons()
+//        self.configurePlayerButtons()
     }
     
-    func configurePlayerButtons(){
-        let longPressedGuesture = UILongPressGestureRecognizer(target: self, action: #selector(MusicLayerController.forwardButtonHeld(sender:)))
-        //        longPressedGuesture.minimumPressDuration = 2
-        
-        self.toolbar.forwardButton.addGestureRecognizer(longPressedGuesture)
-        
-        let singleTapGuesture = UITapGestureRecognizer(target: self, action: #selector(MusicLayerController.didClickOnNext(sender:)))
-        singleTapGuesture.numberOfTapsRequired = 1
-        self.toolbar.forwardButton.addGestureRecognizer(singleTapGuesture)
-    }
+//    func configurePlayerButtons(){
+//        let longPressedGuesture = UILongPressGestureRecognizer(target: self, action: #selector(MusicLayerController.forwardButtonHeld(sender:)))
+//        //        longPressedGuesture.minimumPressDuration = 2
+//        
+//        self.toolbar.forwardButton.addGestureRecognizer(longPressedGuesture)
+//        
+//        let singleTapGuesture = UITapGestureRecognizer(target: self, action: #selector(MusicLayerController.didClickOnNext(sender:)))
+//        singleTapGuesture.numberOfTapsRequired = 1
+//        self.toolbar.forwardButton.addGestureRecognizer(singleTapGuesture)
+//    }
     
     deinit {
         self.qtObject.playerManager.multicastDelegate.removeDelegate(delegate: self)
     }
     
     func resetDisplay(){
-        self.toolbar.displayTime.text = "00:00"
-        self.toolbar.seeker.value = 0.0
+        self.toolbar.durationLabel.text = "00:00"
+        self.toolbar.progressView.progress = 0
     }
     
 }
@@ -83,27 +85,34 @@ class MusicLayerController: BaseViewController {
 extension MusicLayerController:PlayerManagerDelegate{
     func playerManager(manager:PlayerManager,periodicTimeObserverEventDidOccur time:CMTimeWrapper) {
         
-        let isplaying = AVAudioSession.sharedInstance().isOtherAudioPlaying
-        print("Playing:\(isplaying)")
-        let displayTime = formatTimeFromSeconds(seconds: time.seconds)
-        self.toolbar.displayTime.text = displayTime
+         let duration = manager.currentPlayerItemDuration
+        
+        if duration != kCMTimeIndefinite{
+            print(duration)
+        let displayTime = formatTimeFromSeconds(seconds: duration.seconds - time.seconds)
+        
+        self.toolbar.durationLabel.text = "-\(displayTime)"
+        }
     }
     
     func resetDisplayIfNecessary(manager:PlayerManager) {
-        self.toolbar.displayTime.text = "00:00"
-        self.toolbar.seeker.value = 0.0
+        self.toolbar.durationLabel.text = "00:00"
+        self.toolbar.progressView.progress = 0
     }
     
     func durationDidBecomeInvalidWhileSyncingScrubber(manager:PlayerManager){
         self.resetDisplay()
-        self.toolbar.seeker.minimumValue = 0.0
+        self.toolbar.progressView.progress = 0
     }
     
     func playerManager(manager: PlayerManager, syncScrubberWithCurrent time: Double, duration:Double) {
-        let minimumValue = Float64(self.toolbar.minimumScaleValue)
-        let maximumValue = Float64(self.toolbar.maximumScaleValue)
+        let minimumValue = Float64(0)
+        let maximumValue = Float64(1)
         let currentTime = Float64(time)
-        toolbar.setScaleValue = Float((maximumValue - minimumValue) * currentTime/(duration + minimumValue))
+        let progress = (maximumValue - minimumValue) * currentTime/(duration + minimumValue)
+        
+        self.toolbar.progressView.progress = Float(progress)
+        
     }
     
     func setPlayButton(state:PlayerState){
@@ -112,14 +121,14 @@ extension MusicLayerController:PlayerManagerDelegate{
             
             hideActivityIndicator()
             UIView.transition(with: self.toolbar.playButton, duration: 0.5, options: UIViewAnimationOptions .curveLinear, animations: {
-                self.toolbar.playButton.setImage(UIImage(named: "Pause"), for: .normal)
+                self.toolbar.playButton.setImage(#imageLiteral(resourceName: "pause_icon"), for: .normal)
             }, completion: nil)
             
         case .Paused:
             
             hideActivityIndicator()
             UIView.transition(with: self.toolbar.playButton, duration: 0.5, options: UIViewAnimationOptions .curveLinear, animations: {
-                self.toolbar.playButton.setImage(UIImage(named: "Play"), for: .normal)
+                self.toolbar.playButton.setImage(UIImage(named: "play_icon"), for: .normal)
             }, completion: nil)
             
         case .Buffering:
@@ -137,8 +146,7 @@ extension MusicLayerController:PlayerManagerDelegate{
         case .Interrupted:
             
             break
-        default:
-            break
+        
         }
     }
     
@@ -146,25 +154,26 @@ extension MusicLayerController:PlayerManagerDelegate{
     func setPlayeritemDuration(duration: Double) {
         let displayTime = formatTimeFromSeconds(seconds: duration)
         
-        self.toolbar.durationTimeLabel.text = displayTime
+        self.toolbar.durationLabel.text = "-\(displayTime)"
     }
     
     
     func didsetArtWorkWithUrl(url:URL?){
         if let unwrappedUrl = url{
-            self.toolbar.musicArtWorkImageView.loadImage(url: unwrappedUrl.absoluteString, targetSize: CGSize(width: 100, height: 100))
+            self.toolbar.backgroundImage.kf.setImage(with: URL(string:unwrappedUrl.absoluteString))
         }else{
-            self.toolbar.musicArtWorkImageView.image = UIImage.init(named: "author")
+            self.toolbar.backgroundImage.image = UIImage.init(named: "author")
         }
     }
     
     func didsetName(title: String?, AutorName: String?) {
         self.toolbar.titleLabel.text = title ?? "Unknown"
-        self.toolbar.authorlabel.text = AutorName ?? "Unknown"
+        self.toolbar.artistNameLable.text = AutorName ?? "Unknown"
     }
     
     func shouldShowMusicPlayer(shouldShow:Bool){
         let playerToolbarSize = self.toolbar.sizeFit()
+        self.resetDisplay()
         
         if shouldShow{
             if self.view.frame.size.height == 0{
@@ -227,7 +236,7 @@ extension MusicLayerController:PlayerManagerDelegate{
         activityIndicator.hidesWhenStopped = true
         activityIndicator.activityIndicatorViewStyle = .whiteLarge
         
-        activityIndicator.color = UIColor.black
+        activityIndicator.color = UIColor.white
         
         return activityIndicator
     }
@@ -247,9 +256,9 @@ extension MusicLayerController{
     
     
     func scrub(slider:UISlider){
-        self.qtObject.playerManager.scrub(value: self.toolbar.seeker.value, minValue: self.toolbar.seeker.minimumValue, maxValue: self.toolbar.seeker.maximumValue) { (seeking) in
-            self.isSeeking = seeking
-        }
+//        self.qtObject.playerManager.scrub(value: self.toolbar.seeker.value, minValue: self.toolbar.seeker.minimumValue, maxValue: self.toolbar.seeker.maximumValue) { (seeking) in
+//            self.isSeeking = seeking
+//        }
     }
     
     func endScrubbing(slider:UISlider){
