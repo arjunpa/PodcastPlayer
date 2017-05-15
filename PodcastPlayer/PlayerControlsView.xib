@@ -61,7 +61,7 @@
                     <constraints>
                         <constraint firstItem="yb3-or-2PW" firstAttribute="leading" secondItem="ySF-jw-30s" secondAttribute="leading" id="1qF-SZ-VIU"/>
                         <constraint firstItem="uVv-OU-zAM" firstAttribute="leading" secondItem="cnM-Pj-xvp" secondAttribute="trailing" constant="15" id="2kA-F1-vlG"/>
-                        <constraint firstAttribute="bottom" secondItem="uVv-OU-zAM" secondAttribute="bottom" constant="19" id="J82-8O-rr6"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cnM-Pj-xvp" secondAttribute="bottom" priority="750" constant="14" id="B5H-mk-lGN"/>
                         <constraint firstItem="yb3-or-2PW" firstAttribute="top" secondItem="ySF-jw-30s" secondAttribute="top" id="KxF-ts-kjZ"/>
                         <constraint firstAttribute="trailing" secondItem="XBh-VL-rTB" secondAttribute="trailing" id="LoC-gb-aOI"/>
                         <constraint firstItem="cnM-Pj-xvp" firstAttribute="leading" secondItem="ySF-jw-30s" secondAttribute="leading" constant="20" id="Snu-hZ-iRi"/>
@@ -75,20 +75,18 @@
                         <constraint firstItem="XBh-VL-rTB" firstAttribute="top" secondItem="ySF-jw-30s" secondAttribute="top" id="fe0-tX-eVS"/>
                         <constraint firstItem="uVv-OU-zAM" firstAttribute="top" secondItem="88n-hl-Ra5" secondAttribute="bottom" constant="3" id="hiC-Xb-5rF"/>
                         <constraint firstItem="fl0-JJ-Sqr" firstAttribute="leading" secondItem="88n-hl-Ra5" secondAttribute="trailing" constant="15" id="i73-VW-oRG"/>
-                        <constraint firstAttribute="height" constant="70" id="jhM-K0-1Rq"/>
                         <constraint firstItem="88n-hl-Ra5" firstAttribute="leading" secondItem="cnM-Pj-xvp" secondAttribute="trailing" constant="15" id="mXz-j2-zhP"/>
                         <constraint firstAttribute="bottom" secondItem="XBh-VL-rTB" secondAttribute="bottom" id="qgY-ef-XNW"/>
+                        <constraint firstItem="88n-hl-Ra5" firstAttribute="top" secondItem="ySF-jw-30s" secondAttribute="top" constant="17" id="vBr-KK-rla"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ySF-jw-30s" firstAttribute="width" secondItem="Xqm-2m-bT0" secondAttribute="width" id="74b-Ft-mrS"/>
                 <constraint firstItem="ySF-jw-30s" firstAttribute="top" secondItem="Xqm-2m-bT0" secondAttribute="top" id="lcZ-EB-XB7"/>
                 <constraint firstItem="ySF-jw-30s" firstAttribute="leading" secondItem="Xqm-2m-bT0" secondAttribute="leading" id="oeb-Yy-i0w"/>
                 <constraint firstAttribute="bottom" secondItem="ySF-jw-30s" secondAttribute="bottom" id="rR3-nt-wFx"/>
                 <constraint firstAttribute="trailing" secondItem="ySF-jw-30s" secondAttribute="trailing" id="vkq-Vp-CIa"/>
-                <constraint firstItem="ySF-jw-30s" firstAttribute="height" secondItem="Xqm-2m-bT0" secondAttribute="height" id="wTd-av-cqk"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

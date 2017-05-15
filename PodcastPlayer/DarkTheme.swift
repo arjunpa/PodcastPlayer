@@ -10,6 +10,8 @@ import Foundation
 
 public struct DarkTheme:Theme{
     
+
+    
     public var backgroundColor: UIColor = UIColor(hexString: "#303030")
     public var tintColor: UIColor = UIColor(hexString: "#FFCF00")
     public var navigationBarTintColor: UIColor? = UIColor(hexString: "#404040")
@@ -78,6 +80,16 @@ public struct DarkTheme:Theme{
     public var answerElementColor: UIColor = UIColor(hexString:"#4a4a4a")
     
     public var relatedStoriesSectionTitleFont: UIFont = Fonts.relatedStoryTitle
+    
+    
+    
+    //MARK: Player
+    
+    public var playerSongTitleColor:UIColor = UIColor(hexString:"#ffffff")
+    
+    public var playerArtistLabelColor: UIColor = UIColor(hexString:"#ffffff")
+    
+    public var playerSeekerLabelColor: UIColor = UIColor(hexString:"#ffffff")
     
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MiniToLargeViewInteractive: UIPercentDrivenInteractiveTransition {
+class MiniToLargeViewInteractive: UIPercentDrivenInteractiveTransition ,UIGestureRecognizerDelegate{
     
     var viewController: UIViewController?
     var presentViewController: UIViewController?
@@ -21,6 +21,7 @@ class MiniToLargeViewInteractive: UIPercentDrivenInteractiveTransition {
         self.viewController = viewController
         self.presentViewController = presentViewController
         pan = UIPanGestureRecognizer(target: self, action: #selector(self.onPan(_:)))
+        pan.delegate = self
         view.addGestureRecognizer(pan)
     }
     
@@ -78,4 +79,19 @@ class MiniToLargeViewInteractive: UIPercentDrivenInteractiveTransition {
         
         lastProgress = progress
     }
+    
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool{
+        if let sv = gestureRecognizer.view as? UITableView{
+            print(sv.contentOffset.y)
+            return sv.contentOffset.y <= 0
+        }else{
+            return true
+        }
+    }
 }
+

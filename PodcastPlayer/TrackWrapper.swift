@@ -17,10 +17,12 @@ class TrackWrapper:NSObject{
         self.track = track
         super.init()
     }
-//    public func diffIdentifier() -> NSObjectProtocol{
-//        return self
-//    }
-//    public func isEqual(toDiffableObject object: IGListDiffable?) -> Bool{
-//        return isEqual(object)
-//    }
+    
+    public override func diffIdentifier() -> NSObjectProtocol{
+        return self
+    }
+    
+    public override func isEqual(toDiffableObject object: IGListDiffable?) -> Bool{
+        return isEqual(object)
+    }
 }

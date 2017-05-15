@@ -33,6 +33,9 @@ protocol PlayerManagerDataSource:class{
     func playerManagerDidAskForPreviousItem(manager:PlayerManager) -> URL?
     func playerManagerDidAskForArtWorksImageUrl(manager:PlayerManager,size:TrackArtworkImageSize) -> URL?
     func playerManagerDidAskForTrackTitleAndAuthor(manager:PlayerManager) -> (String,String)
+    func playerMangerDidAskForQueue() -> [TrackWrapper]
+    func playerManagerDidAskForCurrentSongIndex() -> Int
+    
     
 }
 
@@ -50,6 +53,7 @@ protocol PlayerManagerDelegate:class{
     func didsetArtWorkWithUrl(url:URL?)
     func didsetName(title:String?,AutorName:String?)
     func shouldShowMusicPlayer(shouldShow:Bool)
+    func shouldupdateTracksList(tracks:[TrackWrapper]?)
     
 }
 
@@ -61,7 +65,21 @@ class PlayerManager: NSObject {
     fileprivate var playerItem:AVPlayerItem?
     fileprivate var timeObserver:Any?
     fileprivate  var _timeObserverQueue:DispatchQueue?
-    weak var dataSource:PlayerManagerDataSource?
+    weak var dataSource:PlayerManagerDataSource?{
+        
+        didSet {    //called when dataSource changes
+            guard let unwrappedDelegate = self.multicastDelegate else {
+                return
+            }
+            
+            unwrappedDelegate.invoke { (delegate) in
+                guard let unwrappedDataSource = self.dataSource else{return}
+                delegate.shouldupdateTracksList(tracks: unwrappedDataSource.playerMangerDidAskForQueue())
+            }
+            print("PlayerManagerDataSource Changed")
+        }
+        
+    }
     
     fileprivate var timeObserverQueue:DispatchQueue{
         
@@ -188,10 +206,6 @@ class PlayerManager: NSObject {
         self.configurePlayerItemDidEndBlock()
     }
     
-    
-    
-    
-    
     fileprivate func removeStatusObservers(){
         if self.playerItem != nil{
             self.playerItem?.removeObserver(self, forKeyPath: "status")
@@ -201,7 +215,7 @@ class PlayerManager: NSObject {
         }
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
-        
+    
     class func enableBackgroundPlay(){
         do{
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -234,8 +248,6 @@ class PlayerManager: NSObject {
     }
     
     func setUpPlayerUI(){
-        
-       
         
         //set the duration
         let playerDuration = self.currentPlayerItemDuration
@@ -293,8 +305,10 @@ class PlayerManager: NSObject {
         removeStatusObservers()
         self.playerItem = AVPlayerItem.init(url: url)
         self.addStatusObservers()
+        
         player.replaceCurrentItem(with: playerItem!)
         self.lastURL = url
+        
         self.multicastDelegate.invoke { (delegate) in
             delegate.shouldShowMusicPlayer(shouldShow: true)
         }
@@ -338,7 +352,7 @@ extension PlayerManager{
                 print("Playing audio")
             }else{
                 print("Playing Video")
-                    self.didClickOnPlay()
+                self.didClickOnPlay()
                 
             }
         }
@@ -366,7 +380,7 @@ extension PlayerManager{
     // The player is going to take some time to buffer the remote resource and prepare it for play. So, only play the music when the player is ready.
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-
+        
         
         if (keyPath ?? "" == "status")  && context == &PlayerManager.CURRENT_ITEM_CONTEXT{
             if player.status == AVPlayerStatus.readyToPlay{
@@ -383,7 +397,7 @@ extension PlayerManager{
                     delegate.setPlayButton(state: PlayerState.ReadyToPlay)
                 }
                 
-
+                
             }else if player.status == AVPlayerStatus.unknown{
                 self.playerState = PlayerState.Interrupted
                 deinitTimeObserver()
@@ -473,9 +487,11 @@ extension PlayerManager{
     
     func scrub(value:Float,minValue:Float,maxValue:Float,isSeeking seekValue:@escaping (Bool) -> ()) {
         let playerItemDuration = self.currentPlayerItemDuration
+        
         if playerItemDuration == kCMTimeInvalid{
             return
         }
+        
         let durationSeconds = playerItemDuration.seconds
         
         if durationSeconds.isFinite{
@@ -490,7 +506,6 @@ extension PlayerManager{
                 delegate.playerManager(manager: self, periodicTimeObserverEventDidOccur: CMTimeWrapper.init(seconds: time, value: cmTime.value, timeScale: cmTime.timescale))
             })
             
-            
             self.nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: time as Double);
             self.nowPlayingInfoCenter.nowPlayingInfo = self.nowPlayingInfo
             
@@ -499,14 +514,13 @@ extension PlayerManager{
                     seekValue(false)
                 }
             })
-            
         }
     }
     
     func didClickOnPlay(){
         if !self.player.isPlaying{
             self.player.rate = 1
-
+            
             self.multicastDelegate.invoke { (delegate) in
                 delegate.setPlayButton(state: PlayerState.Playing)
             }
@@ -517,7 +531,7 @@ extension PlayerManager{
             self.multicastDelegate.invoke { (delegate) in
                 delegate.setPlayButton(state: PlayerState.Paused)
             }
-
+            
         }
     }
     
@@ -526,7 +540,7 @@ extension PlayerManager{
         guard let datasource = self.dataSource else {self.removeStatusObservers(); return}
         
         self.multicastDelegate.invoke { (delegate) in
-                delegate.resetDisplayIfNecessary(manager: self)
+            delegate.resetDisplayIfNecessary(manager: self)
         }
         
         resetNowPlayingInfoCenter()
@@ -561,6 +575,13 @@ extension PlayerManager{
     func didFastForward(withRate:Float){
         self.kInterval = Double(withRate)/0.5
         self.player.rate = withRate
+    }
+    
+    func didRewindTenSeconds(value:Float){
+        
+        self.scrub(value: value, minValue: 0, maxValue: 1) { (seeking) in
+            print(seeking)
+        }
     }
     
 }
@@ -608,18 +629,18 @@ extension PlayerManager{
                 let position = unwrappedEvent.positionTime
                 let playerItemDuration = self.currentPlayerItemDuration
                 
-              let  valued = (position * (1)/playerItemDuration.seconds)
+                let  valued = (position * (1)/playerItemDuration.seconds)
                 
                 self.deinitTimeObserver()
                 self.initTimeObserver()
                 
-                    self.scrub(value: Float(valued), minValue: 0, maxValue: 1, isSeeking: { (isSeeking) in
-                        print(isSeeking)
-                    })
+                self.scrub(value: Float(valued), minValue: 0, maxValue: 1, isSeeking: { (isSeeking) in
+                    print(isSeeking)
+                })
             }
             return .success
         }
-
+        
         self.commandCenter.seekForwardCommand.addTarget { (event) -> MPRemoteCommandHandlerStatus in
             return .success
         }
@@ -639,17 +660,17 @@ extension PlayerManager{
         let nowPlayingInfo = [MPMediaItemPropertyTitle:titleAndAuthor.0,
                               MPMediaItemPropertyArtist:titleAndAuthor.1,
                               MPMediaItemPropertyPlaybackDuration:"\(self.currentPlayerItemDuration.seconds)",
-                              MPNowPlayingInfoPropertyPlaybackRate:NSNumber(value: 1.0 as Float)] as [String : Any]// MPNowPlayingInfoPropertyIsLiveStream:NSNumber(value: true) add this to indicate live streaming
+            MPNowPlayingInfoPropertyPlaybackRate:NSNumber(value: 1.0 as Float)] as [String : Any]// MPNowPlayingInfoPropertyIsLiveStream:NSNumber(value: true) add this to indicate live streaming
         
         
-            self.downloadImage(url: unwrappedUrl, completion: { (image) -> (Void) in
-                guard var nowPlayingInfo = self.nowPlayingInfo else { return }
-                nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 100, height: 100), requestHandler: { (size) -> UIImage in
-                    return image
-                })
-               self.configureNowPlayingInfo(nowPlayingInfo)
+        self.downloadImage(url: unwrappedUrl, completion: { (image) -> (Void) in
+            guard var nowPlayingInfo = self.nowPlayingInfo else { return }
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: CGSize(width: 100, height: 100), requestHandler: { (size) -> UIImage in
+                return image
             })
-            
+            self.configureNowPlayingInfo(nowPlayingInfo)
+        })
+        
         self.configureNowPlayingInfo(nowPlayingInfo as [String : AnyObject]?)
         
         self.updateNowPlayingInfoElapsedTime()
@@ -667,7 +688,7 @@ extension PlayerManager{
                 }.resume()
         }
     }
-        
+    
     func configureNowPlayingInfo(_ nowPlayingInfo: [String: AnyObject]?) {
         self.nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
         self.nowPlayingInfo = nowPlayingInfo
@@ -685,6 +706,21 @@ extension PlayerManager{
     func resetNowPlayingInfoCenter(){
         self.nowPlayingInfo = nil
         self.nowPlayingInfoCenter.nowPlayingInfo = nil
+    }
+    
+    func updatePlayerUI(){
+        
+        self.setUpPlayerUI()
+    }
+    
+    func getQueuedTracks() -> [TrackWrapper]?{
+        guard let unwrappedDataSource = dataSource else{return nil}
+        return unwrappedDataSource.playerMangerDidAskForQueue()
+    }
+    
+    func getCurrentSongIndex() -> Int?{
+        guard let unwrappedDataSource = dataSource else{return nil }
+        return unwrappedDataSource.playerManagerDidAskForCurrentSongIndex()
     }
 }
 

@@ -17,6 +17,10 @@ class PodcastPlayerViewController: BaseViewController {
     fileprivate var _index:Int = 0
     let kTabBarHeight:CGFloat = 50
     
+    var getSongsFor = ""
+    
+    var randArray = ["atif aslam","ed sheeran","mix","english"]
+    
     var collection_view:IGListCollectionView = {
        let view = IGListCollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         return view
@@ -31,7 +35,7 @@ class PodcastPlayerViewController: BaseViewController {
         super.viewDidLoad()
         self.configureSCClient()
         self.configurCollectionView()
-        self.qtObject.playerManager.dataSource = self
+        
     }
 
     func configurCollectionView(){
@@ -52,8 +56,12 @@ class PodcastPlayerViewController: BaseViewController {
         SoundcloudClient.clientIdentifier = "fs2FkPBdYj7aNns0zJqgi8ZmR7CAXaBw"
         SoundcloudClient.redirectURI = ""
         
+        getSongs(query: getSongsFor)
+    }
+    
+    func getSongs(query:String){
         let queries: [SearchQueryOptions] = [
-            .queryString("malayalam"),
+            .queryString(query),
             .types([TrackType.live, TrackType.demo])
             
         ]
@@ -66,17 +74,18 @@ class PodcastPlayerViewController: BaseViewController {
                 return TrackWrapper.init(track: track)
             })
             DispatchQueue.main.async(execute: {
-                self?.igAdaptor.reloadData(completion: nil)
+                weakSelf.igAdaptor.reloadData(completion: nil)
             })
         }
     }
-
+ 
 }
 
 extension PodcastPlayerViewController:IGListAdapterDataSource{
     func objects(for listAdapter: IGListAdapter) -> [IGListDiffable] {
         return self.tracks
     }
+    
     func listAdapter(_ listAdapter: IGListAdapter, sectionControllerFor object: Any) -> IGListSectionController {
         
         let controller = TracksSectionController.init()
@@ -90,13 +99,19 @@ extension PodcastPlayerViewController:IGListAdapterDataSource{
 
 extension PodcastPlayerViewController:TracksSectionControllerDelegate{
     func sectionIndexSelected(controller: IGListSectionController, index: Int) {
-        
         self._index = index
+        
+        self.qtObject.playerManager.dataSource = self
+        
+        self.qtObject.playerManager.playWithURL(url: self.tracks[self._index].track.streamURL!)
     }
 }
 
 extension PodcastPlayerViewController:PlayerManagerDataSource{
     
+    func playerManagerDidAskForCurrentSongIndex() -> Int{
+        return _index
+    }
 
     func playerManagerDidReachEndOfCurrentItem(manager:PlayerManager){
     
@@ -144,5 +159,10 @@ extension PodcastPlayerViewController:PlayerManagerDataSource{
         
         return (trackD.title,trackD.createdBy.fullname)
     }
+    
+    func playerMangerDidAskForQueue() -> [TrackWrapper]{
+        return self.tracks
+    }
+
 }
 

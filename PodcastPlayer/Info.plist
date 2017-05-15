@@ -61,6 +61,7 @@
 		<string>Lato-Bold.ttf</string>
 		<string>Lato-Regular.ttf</string>
 		<string>Lato-Semibold.ttf</string>
+		<string>Lato-Light.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

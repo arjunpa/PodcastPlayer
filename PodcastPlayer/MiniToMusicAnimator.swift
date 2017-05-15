@@ -27,15 +27,12 @@ class MiniToMusicAnimator: BaseAnimator {
         
         let container = context.containerView
         
-//        let playerView = fakeMiniView()
-//        destinationController.view.addSubview(playerView)
+//        var playerView : UIView!
         
-        var playerView : UIView!
-        if let unwrappedPlayerView = musicSnapShot?(){
-            destinationController.view.addSubview(unwrappedPlayerView)
-            playerView = unwrappedPlayerView
-        }
-        
+//        if let unwrappedPlayerView = musicSnapShot?(){
+//            destinationController.view.addSubview(unwrappedPlayerView)
+//            playerView = unwrappedPlayerView
+//        }
         
         container.addSubview(sourceController.view)
         container.addSubview(destinationController.view)
@@ -46,10 +43,12 @@ class MiniToMusicAnimator: BaseAnimator {
         
         UIView.animate(withDuration: transitionDuration(using: context), delay: 0, options: animationOption, animations: {
             destinationController.view.frame = fromRect
-            playerView.alpha = 0
+//            playerView.alpha = 0
+            
             
         }) { (isFinished) in
-            playerView.removeFromSuperview()
+//            playerView.removeFromSuperview()
+            
             if context.transitionWasCancelled{
                 context.completeTransition(false)
             }else{
@@ -72,11 +71,6 @@ class MiniToMusicAnimator: BaseAnimator {
             unwrappedPlayerView.alpha = 0
             playerView = unwrappedPlayerView
         }
-        
-//        let playerView = fakeMiniView()
-//        playerView.alpha = 0
-//        sourceController.view.addSubview(playerView)
-        
         
         container.addSubview(destinationController.view)
         container.addSubview(sourceController.view)
@@ -102,17 +96,5 @@ class MiniToMusicAnimator: BaseAnimator {
     override func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return transitionContext!.isInteractive ? 0.4 : 0.3
     }
-    
-    func fakeMiniView() -> UIView {
-        // Fake a mini view, two ways:
-        // 1. create a new certain one
-        // 2. snapshot old one.
-        
-        let appdeledate = UIApplication.shared.delegate as? AppDelegate
-        
-        let musicPLayer = MusicLayerController.init((appdeledate?.qtInstance)!, nibName: "MusicLayerController", bundle: nil)
-        musicPLayer.view.frame.origin.y = 0
-        return musicPLayer.view
-    }
-    
+
 }

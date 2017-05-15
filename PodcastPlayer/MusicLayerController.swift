@@ -17,12 +17,6 @@ class MusicLayerController: BaseViewController {
         
         let controlView = PlayerControlsView.loadFromNib()
         
-//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.beginScrubbing(slider:)), for: .touchDown)
-//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.scrub(slider:)), for: .valueChanged)
-//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.scrub(slider:)), for: .touchDragInside)
-//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchCancel)
-//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpInside)
-//        controlView.seeker.addTarget(self, action: #selector(MusicLayerController.endScrubbing(slider:)), for: .touchUpOutside)
         controlView.playButton.addTarget(self, action: #selector(MusicLayerController.didClickOnPlay(button:)), for: .touchUpInside)
         
         return controlView
@@ -38,9 +32,7 @@ class MusicLayerController: BaseViewController {
         super.viewDidLoad()
         self.qtObject.playerManager.multicastDelegate.addDelegate(delegate: self)
         self.loadPlayerView(toolbar: toolbar)
-//        UIApplication.shared.beginReceivingRemoteControlEvents()
-        // Do any additional setup after loading the view.
-        
+
     }
     
     func loadPlayerView(toolbar:UIView){
@@ -57,19 +49,7 @@ class MusicLayerController: BaseViewController {
         toolbar.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         toolbar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
-//        self.configurePlayerButtons()
     }
-    
-//    func configurePlayerButtons(){
-//        let longPressedGuesture = UILongPressGestureRecognizer(target: self, action: #selector(MusicLayerController.forwardButtonHeld(sender:)))
-//        //        longPressedGuesture.minimumPressDuration = 2
-//        
-//        self.toolbar.forwardButton.addGestureRecognizer(longPressedGuesture)
-//        
-//        let singleTapGuesture = UITapGestureRecognizer(target: self, action: #selector(MusicLayerController.didClickOnNext(sender:)))
-//        singleTapGuesture.numberOfTapsRequired = 1
-//        self.toolbar.forwardButton.addGestureRecognizer(singleTapGuesture)
-//    }
     
     deinit {
         self.qtObject.playerManager.multicastDelegate.removeDelegate(delegate: self)
@@ -88,7 +68,6 @@ extension MusicLayerController:PlayerManagerDelegate{
          let duration = manager.currentPlayerItemDuration
         
         if duration != kCMTimeIndefinite{
-            print(duration)
         let displayTime = formatTimeFromSeconds(seconds: duration.seconds - time.seconds)
         
         self.toolbar.durationLabel.text = "-\(displayTime)"
@@ -160,9 +139,9 @@ extension MusicLayerController:PlayerManagerDelegate{
     
     func didsetArtWorkWithUrl(url:URL?){
         if let unwrappedUrl = url{
-            self.toolbar.backgroundImage.kf.setImage(with: URL(string:unwrappedUrl.absoluteString))
+            self.toolbar.backgroundImage.kf.setImage(with: URL(string:unwrappedUrl.absoluteString), placeholder: #imageLiteral(resourceName: "music_pholder"), options: nil, progressBlock: nil, completionHandler: nil)
         }else{
-            self.toolbar.backgroundImage.image = UIImage.init(named: "author")
+            self.toolbar.backgroundImage.image = #imageLiteral(resourceName: "music_pholder")
         }
     }
     
@@ -240,12 +219,10 @@ extension MusicLayerController:PlayerManagerDelegate{
         
         return activityIndicator
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-      print("viewWillDisappear came here")
-    }
 
+    func shouldupdateTracksList(tracks: [TrackWrapper]?) {
+        print("shouldupdateTracksList called for musicLayerController")
+    }
 }
 
 extension MusicLayerController{

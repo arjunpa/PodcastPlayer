@@ -14,7 +14,6 @@ class MulticastDelegate<T>: NSObject {
     private var weakDelegates:NSHashTable<AnyObject> = NSHashTable.weakObjects()
     
     func addDelegate(delegate:T){
-        
         weakDelegates.add(delegate as AnyObject?)
     }
     

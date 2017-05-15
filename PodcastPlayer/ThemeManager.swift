@@ -81,6 +81,19 @@ public protocol Theme {
     var relatedStoriesSectionTitleFont:UIFont{get}
     
     
+    var playerSongTitlelabelFont:UIFont{get}
+    var playerArtistLabelFont:UIFont{get}
+    
+    var playerSeekerLabelFont:UIFont{get}
+    
+    
+    var playerSongTitleColor:UIColor{get}
+    var playerArtistLabelColor:UIColor{get}
+    
+    var playerSeekerLabelColor:UIColor{get}
+    
+    
+    
 }
 
 extension Theme{
@@ -142,6 +155,12 @@ extension Theme{
     
     public var relatedStoriesSectionTitleFont:UIFont{return Fonts.relatedStoryTitle}
     
+    
+    public var playerSongTitlelabelFont:UIFont{return Fonts.playerTitleFont}
+    
+    public var playerArtistLabelFont:UIFont{return Fonts.playerArtistFont}
+    
+    public var playerSeekerLabelFont:UIFont{return Fonts.playerSeekerLabelFont}
     
     
     public func applyBackgroundColor(views:[UIView]){

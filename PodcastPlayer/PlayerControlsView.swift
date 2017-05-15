@@ -48,21 +48,6 @@ public class BasePlayerControlView:UIView{
 
 public class PlayerControlsView: BasePlayerControlView {
 
-//    @IBOutlet weak var authorlabel: UILabel!
-//
-//    @IBOutlet weak var titleLabel: UILabel!
-//    @IBOutlet weak var displayTime:UILabel!
-//    @IBOutlet weak var seeker:UISlider!
-//    @IBOutlet weak var playerTappableArea: UIView!
-//    
-//    @IBOutlet weak var durationTimeLabel: UILabel!
-//    
-//    @IBOutlet weak var forwardButton: UIButton!
-//    
-//    @IBOutlet weak var playButton:UIButton!
-//
-//    @IBOutlet weak var musicArtWorkImageView: UIImageView!
-
     @IBOutlet weak var playButton: UIButton!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -95,38 +80,7 @@ public class PlayerControlsView: BasePlayerControlView {
         let sized = self.systemLayoutSizeFitting(compressedSize)
         return sized
     }
-    
-//    override public var setScaleValue: Float{
-//        get{
-//            return seeker.value
-//        }
-//        set{
-//            seeker.value = newValue
-//        }
-//    }
-//    
-//    override public var maximumScaleValue:Float {
-//    get{
-//        return seeker.maximumValue
-//    }
-//        set{
-//            seeker.maximumValue = newValue
-//        }
-//    }
-//
-//    override public var minimumScaleValue:Float {
-//        get{
-//          return seeker.minimumValue
-//        }
-//        set{
-//            seeker.maximumValue = newValue
-//        }
-//    }
-    
-//    override public func updateTime(displayTime: String) {
-//        self.displayTime.text = displayTime
-//    }
-//    
+  
     override public func resetDisplay() {
         self.durationLabel.text = "00:00"
         self.durationLabel.text = "00:00"

@@ -39,16 +39,12 @@ class ViewController: BaseViewController {
         //add music player
         musicPlayer = MusicLayerController.init(qtObject, nibName: "MusicLayerController", bundle: nil)
         self.addViewController(anyController: self.musicPlayer)
-       
-//        let taprecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapOnMusicPlayer(_:)))
-//        musicPlayer.toolbar.playerTappableArea.addGestureRecognizer(taprecognizer)
         
-        //configureNextController
-//        nextViewController = NextControllerViewController.init(nibName:"NextControllerViewController", bundle:nil)
+        nextViewController = NextControllerViewController.init(self.qtObject, nibName:nil, bundle:nil)
         
-        nextViewController = NextControllerViewController.init(qtObject, nibName: "NextControllerViewController", bundle: nil)
         nextViewController.rootViewController = self
         nextViewController.transitioningDelegate = self
+        
         nextViewController.modalPresentationStyle = .fullScreen
         
         presentInteractor = MiniToLargeViewInteractive()
@@ -57,7 +53,7 @@ class ViewController: BaseViewController {
         
         dismissInteractor = MiniToLargeViewInteractive()
         
-        dismissInteractor.attachToViewController(viewController: nextViewController, withView: nextViewController.view, presentViewController: nil)
+        dismissInteractor.attachToViewController(viewController: nextViewController, withView: nextViewController.tableView, presentViewController: nil)
         
     }
     

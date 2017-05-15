@@ -40,12 +40,20 @@ class TabBarController: UITabBarController {
             case 0:
 
                 let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtobject, nibName: "PodcastPlayerViewController", bundle: nil)
+                podController.getSongsFor = "atif aslam"
                 let nc = UINavigationController(rootViewController: podController)
                 nc.title = item
                 viewControllers.append(nc)
             case 1:
-                let watchVC = WatchViewController.init(qtobject, nibName: nil, bundle: nil)
-                let nc = UINavigationController(rootViewController: watchVC)
+                
+//                let watchVC = WatchViewController.init(qtobject, nibName: nil, bundle: nil)
+//                let nc = UINavigationController(rootViewController: watchVC)
+//                nc.title = item
+//                viewControllers.append(nc)
+                
+                let podController:PodcastPlayerViewController = PodcastPlayerViewController.init(qtobject, nibName: "PodcastPlayerViewController", bundle: nil)
+                podController.getSongsFor = "english"
+                let nc = UINavigationController(rootViewController: podController)
                 nc.title = item
                 viewControllers.append(nc)
             case 3:

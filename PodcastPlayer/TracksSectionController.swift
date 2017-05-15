@@ -53,7 +53,7 @@ extension TracksSectionController:IGListSectionType{
             self.delegate?.sectionIndexSelected(controller: self, index:index)
         }
         
-        self.qtObject.playerManager.playWithURL(url: self.track.track.streamURL!)
+        
     }
     
     public func sizeForItem(at index: Int) -> CGSize{

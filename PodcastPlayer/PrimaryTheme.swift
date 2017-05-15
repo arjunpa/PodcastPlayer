@@ -81,6 +81,15 @@ public struct PrimaryTheme:Theme{
     public var relatedStoriesSectionTitleFont: UIFont = Fonts.relatedStoryTitle
     
     
+    //MARK: Player
+    
+    public var playerSongTitleColor:UIColor = UIColor(hexString:"#ffffff")
+    
+    public var playerArtistLabelColor: UIColor = UIColor(hexString:"#ffffff")
+    
+    public var playerSeekerLabelColor: UIColor = UIColor(hexString:"#ffffff")
+    
+    
     //MARK:- Initializers
     public init() {}
     
